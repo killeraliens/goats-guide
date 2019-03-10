@@ -1,7 +1,14 @@
-<h1>Events#index</h1>
-<% @events.each do |event| %>
-  <h2><%= event.title %></h2>
-  <p><%= event.description %></p>
-  <p><%= event.date_format %> <%= event.time %></p>
-  <p><%= event.venue.name %> </p>
-<% end %>
+<div class="container">
+  <% @events.each do |event| %>
+    <%= link_to(event) do %>
+      <div class="card-text">
+        <h2><%= event.title %></h2>
+        <p><%= event.descript_limit %></p>
+        <p><%= event.date_format %> </p>
+        <p><%= event.time %></p>
+        <p><%= event.venue.name %> </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
