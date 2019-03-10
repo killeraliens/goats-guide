@@ -1,0 +1,6 @@
+<h1>Events#index</h1>
+<% @events.each do |event| %>
+  <h2><%= event.title %></h2>
+  <p><%= event.description %></p>
+  <p><%= event.date_format %> <%= event.time %></p>
+<% end %>
