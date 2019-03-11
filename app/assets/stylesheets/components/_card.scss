@@ -1,0 +1,12 @@
+.card {
+  // @include gradient-horizontal(rgba(255,255,255,.06), rgba(255,255,255,.02));
+  background: linear-gradient(45deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  padding: 8px;
+  border: none;
+  border-radius: 0;
+}
+
+.card a {
+  text-decoration: none;
+  color: $bone-white;
+}

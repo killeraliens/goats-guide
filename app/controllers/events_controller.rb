@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :update]
+  before_action :find_event, only: [:show, :update, :saved_event_create]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
@@ -7,7 +7,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def new
@@ -15,7 +14,16 @@ class EventsController < ApplicationController
   end
 
   def create
-    Event.create(event_params)
+    @event = Event.create(event_params)
+    # @event.user = current_user
+    if @event.save
+      redirect_to events_path, notice: 'event created'
+    else
+      render :new
+    end
+  end
+
+  def update
   end
 
   private

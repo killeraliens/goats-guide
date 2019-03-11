@@ -1,14 +1,18 @@
 <div class="container">
   <% @events.each do |event| %>
-    <%= link_to(event) do %>
-      <div class="card-text">
-        <h2><%= event.title %></h2>
-        <p><%= event.descript_limit %></p>
-        <p><%= event.date_format %> </p>
-        <p><%= event.time %></p>
-        <p><%= event.venue.name %> </p>
-      </div>
-    <% end %>
+    <div class="card">
+      <%= link_to(event) do %>
+        <div class="card-text">
+          <h2><%= event.title %></h2>
+          <p><%= event.descript_limit %></p>
+          <p><%= event.date_format %> </p>
+          <p><%= event.time %></p>
+          <p><%= event.venue.name %> </p>
+        </div>
+      <% end %>
+      <%= link_to 'save event', event_saved_events_path(event), method: :post %>
+    </div>
   <% end %>
 </div>
+
 
