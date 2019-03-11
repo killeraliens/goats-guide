@@ -1,0 +1,397 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Advanced search - Encyclopaedia Metallum: The Metal Archives</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+							<link rel="stylesheet" type="text/css" href="/min/index.php?g=css" />
+				
+					<script type="text/javascript" src="/min/index.php?g=js"></script>
+				<script type="text/javascript">
+			var URL_SITE	= 'https://www.metal-archives.com/';
+			var URL_IMAGES	= 'https://www.metal-archives.com/images/';
+			var URL_CSS		= 'https://www.metal-archives.com/css/';
+			$(document).ready(function() {
+				toggleFixedPositioning(1280, 600);
+				executeOnAllPages();
+				
+											});
+
+
+		</script>
+		<noscript>
+			<style type="text/css">
+				.no-js { display: block !important; }
+			</style>
+		</noscript>
+		
+		<!--[if lt IE 8]>
+			<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+			 <link rel="stylesheet" type="text/css" href="https://www.metal-archives.com/css/default/oldie.css" />
+		<![endif]-->		
+
+		<script type="text/javascript">
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-4046749-4']);
+			  _gaq.push(['_trackPageview']);
+
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			  })();
+		</script>
+	</head>
+	<body >
+		<div id="wrapper">
+	        <div id="header">
+	            <a href="https://www.metal-archives.com/" id="MA_logo">Metal Archives</a>
+				<div class="clear loading"><img src="https://www.metal-archives.com/images/loading.gif" alt="loading" width="12" height="12" /> loading...</div>
+	            <div id="search_box">
+		            <form id="search_form" action="https://www.metal-archives.com/search" method="get">
+						<div>
+							<label>Search:</label><br/>
+							<input name="searchString" type="text" id="searchQueryBox" size="25" value="" tabindex="1" />
+							<select name="type" tabindex="2">
+								<option value="band_name">Band name</option>
+								<option value="band_genre">Music genre</option>
+								<option value="band_themes">Lyrical themes</option>
+								<option value="album_title">Album title</option>
+								<option value="song_title">Song title</option>
+								<option value="label_name">Label</option>
+								<option value="artist_alias">Artist</option>
+								<option value="user_name">User profile</option>
+								<option value="google">Google</option>
+							</select>
+							<br/>
+							<a href="https://www.metal-archives.com/search/advanced/?searchString=&type=" class="float_left" tabindex="4">Advanced search</a>
+							<button type="submit" class="btn_submit float_right" tabindex="3">Submit</button>
+						</div>
+		            </form>
+		        </div>
+	            
+	            <div id="top_menu_box">
+	                <ul class="menu_style_1">
+	                    <li><a href="https://www.metal-archives.com/content/help">Help</a></li>
+						<li><a href="https://www.metal-archives.com/content/rules">Rules</a></li>
+						<li><a href="https://forum.metal-archives.com" target="_top">Forum</a></li>
+	                </ul>
+	                <ul class="menu_style_2">
+						<li><a href="https://www.metal-archives.com/content/faq">FAQ</a></li>
+												<li><a href="https://www.metal-archives.com/content/support">Support Us</a></li>
+	                    <li><a href="https://www.metal-archives.com/content/tools">Add-ons</a></li>
+	              </ul>
+	            </div>        
+	        </div>
+	        <div id="left_col">
+	            <div id="member_box">
+	            		            				                <form name="login_form" id="login_form" action="https://www.metal-archives.com/authentication/login" method="post">
+							<div>
+								<label>Username</label><br/>
+								<input type="text" name="loginUsername" />
+								<label>Password</label><br/>
+								<input type="password" name="loginPassword" />
+								<input type="hidden" name="origin" value="/search/advanced/searching/bands?bandName=&amp;genre=&amp;country=&amp;yearCreationFrom=&amp;yearCreationTo=&amp;bandNotes=&amp;status=1&amp;themes=&amp;location=&amp;bandLabelName=" />
+								<button type="submit" class="btn_login float_right">Login</button>
+							</div>
+		                </form>
+		                <a href="https://www.metal-archives.com/user/signup" class="float-left writeAction">Register</a>  
+		                <span class="float_right"><a href="https://www.metal-archives.com/user/forgot-password" class="float-left writeAction">Forgot login?</a>  </span>
+						<div class="clear"> </div>
+		            	            </div>
+	            <div id="left_menu_box">
+	            		                <ul class="menu_style_3 block_spacer_20">
+	                	<li>
+	                		Bands 
+	                		<ul>
+			                    <li><a href="https://www.metal-archives.com/browse/letter">alphabetical</a></li>
+			                    <li><a href="https://www.metal-archives.com/browse/country">country</a></li>
+			                    <li><a href="https://www.metal-archives.com/browse/genre">genre</a></li>
+	                    	</ul>
+	                    </li>
+	                    <li>
+	                    	Labels
+	                    	<ul>
+			                    <li><a href="https://www.metal-archives.com/label">alphabetical</a></li>
+			                    <li><a href="https://www.metal-archives.com/label/country">country</a></li>
+	                    	</ul>
+	                    </li>
+	                    <li><a href="https://www.metal-archives.com/review/browse">Reviews</a></li>
+	                </ul>
+	                <ul class="menu_style_3 block_spacer_20">
+	                    <li><a href="https://www.metal-archives.com/artist/rip">R.I.P.</a></li>
+	                    <li><a href="https://www.metal-archives.com/band/random">Random Band</a></li>
+	                    <li><a href="https://www.metal-archives.com/user/list">User rankings</a></li>
+	                	<li><a href="https://www.metal-archives.com/news">News archive</a></li>
+					</ul>
+					 <ul class="menu_style_3 ornement_30">
+	                    <li><a href="https://www.metal-archives.com/report/list">Reports</a></li>
+	                    <li><a href="https://www.metal-archives.com/todo">Contribute / To do</a></li>
+	                </ul>
+	            </div>
+	            <div id="left_text_box">
+	           		<p class="small_text center"> &copy; 2002-2019<br/>Encyclopaedia Metallum </p>
+					<p class="small_text center">Best viewed<br /> <a href="http://www.getfirefox.com" target="_blank">without</a> Internet Explorer, <br/>in 1280 x 960 resolution<br/> or higher.</p> 
+	            </div>
+	            <div>
+	            	<p class="small_text center"><a href="https://www.metal-archives.com/content/pp">Privacy Policy</a></p>
+	            </div>
+	        </div>
+	        <div id="content_wrapper">
+				<script type="text/javascript" src="https://www.metal-archives.com/js/jquery/jquery.dataTables.min.js"> </script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".no-js").removeClass("no-js");
+	$("#advancedTabs").tabs();
+	$(document).on('click', ".viewLyrics", function () {
+		var songId = $(this).attr('id').substr(11);
+		var lyricsRow = $('#lyricsRow_' + songId);
+		$(this).toggleClass('ui-state-active');
+		if (lyricsRow.length == 0) {
+			var row = $(this).parent().parent();
+			row.after('<tr id="lyricsRow_' + songId + '"><td id="lyrics_' +  songId + '" colspan="3">(loading lyrics...)</td></tr>');
+			var highlight = escape($('#lyrics').val());
+			$('#lyrics_' + songId).load(URL_SITE + "release/ajax-view-lyrics/id/" + songId + '?highlight=' + highlight);
+		} else {
+			lyricsRow.toggle();
+		}
+	});
+	$('.multiLink, .singleLink').click(function() { if($(this).html() == "multi") { multiClick(this); } else { singleClick(this); } });
+});
+// Country/status list toggle events
+function multiClick(link) {
+	var clicked = $(link).attr('id') ? $(link).attr('id').substr(5) : 'country';
+	var size = (clicked == 'status') ? 6 : 10;
+	$('.' + clicked + 'Select').attr( { 'multiple': true, 'name': clicked + '[]', 'size': size }); 
+	$(link).html('single');
+}
+function singleClick(link) {
+	var clicked = $(link).attr('id') ? $(link).attr('id').substr(5) : 'country';
+	$('.' + clicked + 'Select').attr( { 'multiple': false, 'name': clicked, 'size': 0 }); 
+	$(link).html('multi');
+}
+
+</script>
+
+<h1 class="page_title">Advanced search</h1>
+
+<h4>You may set up/combine as many filters as you need. </h4>
+
+<p>
+	Tip #1: to search for part of a word, use * as wildcards (e.g. searching "hel*" will return results containing "hell" or "helm").<br />
+	Tip #2: to exclude terms, use the - symbol (e.g. searching "death -melodic" will return results that do <strong>not</strong> contain the word "melodic").<br />
+	Read more tips on searching possibilities <a href="https://www.metal-archives.com/content/help?index=3#tab_db">here</a>.
+</p>
+
+
+<div id="advancedTabs" class="tabs no-js">
+	<ul>
+		<li><a href="#bands">Search bands</a></li>
+		<li><a href="#albums">Search albums</a></li>
+		<li><a href="#songs">Search songs</a></li>
+	</ul>
+	
+	<div id="bands" class="ui-tabs-hide">
+    	<div class="ui-tabs-panel-content searchFilterBox">
+    		<h3 class="searchFilterTitle">Search for bands</h3>
+			<div class="advancedForm">
+				<form class="advancedSearch" method="get" action="https://www.metal-archives.com/search/advanced/searching/bands#bands">
+					<div class="advancedSearchLeft">
+						<p>
+							<label>Band name:</label> 
+							<input type="text" id="bandName" value="" name="bandName" maxlength="255"   /> &nbsp; <label for="exactMatchBand" class="checkbox">Exact match?</label> <input type="checkbox" id="exactMatchBand" name="exactBandMatch" value="1" />
+						</p>
+						<p>
+							<label>Genre:</label> 
+							<input type="text" id="genre" value="" name="genre" maxlength="100"   />
+						</p>
+						<p>
+							<label>Country: [<a class="multiLink" href="javascript:;" title="Use ctrl + click for multi-selection">multi</a>]</label> 
+							<select name="country"  id="country" class="countrySelect"  ><option value=""  selected="selected">(Any)</option><option value="AF" >Afghanistan</option><option value="AX" >&Aring;land Islands</option><option value="AL" >Albania</option><option value="DZ" >Algeria</option><option value="AS" >American Samoa</option><option value="AD" >Andorra</option><option value="AO" >Angola</option><option value="AI" >Anguilla</option><option value="AQ" >Antarctica</option><option value="AG" >Antigua and Barbuda</option><option value="AR" >Argentina</option><option value="AM" >Armenia</option><option value="AW" >Aruba</option><option value="AU" >Australia</option><option value="AT" >Austria</option><option value="AZ" >Azerbaijan</option><option value="BS" >Bahamas</option><option value="BH" >Bahrain</option><option value="BD" >Bangladesh</option><option value="BB" >Barbados</option><option value="BY" >Belarus</option><option value="BE" >Belgium</option><option value="BZ" >Belize</option><option value="BJ" >Benin</option><option value="BM" >Bermuda</option><option value="BT" >Bhutan</option><option value="BO" >Bolivia</option><option value="BQ" >Bonaire, Sint Eustatius and Saba</option><option value="BA" >Bosnia and Herzegovina</option><option value="BW" >Botswana</option><option value="BV" >Bouvet Island</option><option value="BR" >Brazil</option><option value="IO" >British Indian Ocean Territory</option><option value="BN" >Brunei</option><option value="BG" >Bulgaria</option><option value="BF" >Burkina Faso</option><option value="BI" >Burundi</option><option value="KH" >Cambodia</option><option value="CM" >Cameroon</option><option value="CA" >Canada</option><option value="CV" >Cape Verde</option><option value="KY" >Cayman Islands</option><option value="CF" >Central African Republic</option><option value="TD" >Chad</option><option value="CL" >Chile</option><option value="CN" >China</option><option value="CX" >Christmas Island</option><option value="CC" >Cocos (Keeling) Islands</option><option value="CO" >Colombia</option><option value="KM" >Comoros</option><option value="CD" >Congo, Democratic Republic of</option><option value="CG" >Congo, Republic of</option><option value="CK" >Cook Islands</option><option value="CR" >Costa Rica</option><option value="HR" >Croatia</option><option value="CU" >Cuba</option><option value="CW" >Cura&ccedil;ao</option><option value="CY" >Cyprus</option><option value="CZ" >Czech Republic</option><option value="DK" >Denmark</option><option value="DJ" >Djibouti</option><option value="DM" >Dominica</option><option value="DO" >Dominican Republic</option><option value="TL" >East Timor</option><option value="EC" >Ecuador</option><option value="EG" >Egypt</option><option value="SV" >El Salvador</option><option value="GQ" >Equatorial Guinea</option><option value="ER" >Eritrea</option><option value="EE" >Estonia</option><option value="ET" >Ethiopia</option><option value="FK" >Falkland Islands</option><option value="FO" >Faroe Islands</option><option value="FJ" >Fiji</option><option value="FI" >Finland</option><option value="FR" >France</option><option value="GF" >French Guiana</option><option value="PF" >French Polynesia</option><option value="TF" >French Southern Territories</option><option value="GA" >Gabon</option><option value="GM" >Gambia</option><option value="GE" >Georgia</option><option value="DE" >Germany</option><option value="GH" >Ghana</option><option value="GI" >Gibraltar</option><option value="GR" >Greece</option><option value="GL" >Greenland</option><option value="GD" >Grenada</option><option value="GP" >Guadeloupe</option><option value="GU" >Guam</option><option value="GT" >Guatemala</option><option value="GG" >Guernsey</option><option value="GN" >Guinea</option><option value="GW" >Guinea-Bissau</option><option value="GY" >Guyana</option><option value="HT" >Haiti</option><option value="HM" >Heard and McDonald Islands</option><option value="HN" >Honduras</option><option value="HK" >Hong Kong</option><option value="HU" >Hungary</option><option value="IS" >Iceland</option><option value="IN" >India</option><option value="ID" >Indonesia</option><option value="XX" >International</option><option value="IR" >Iran</option><option value="IQ" >Iraq</option><option value="IE" >Ireland</option><option value="IM" >Isle of Man</option><option value="IL" >Israel</option><option value="IT" >Italy</option><option value="CI" >Ivory Coast</option><option value="JM" >Jamaica</option><option value="JP" >Japan</option><option value="JE" >Jersey</option><option value="JO" >Jordan</option><option value="KZ" >Kazakhstan</option><option value="KE" >Kenya</option><option value="KI" >Kiribati</option><option value="KP" >Korea, North</option><option value="KR" >Korea, South</option><option value="KW" >Kuwait</option><option value="KG" >Kyrgyzstan</option><option value="LA" >Laos</option><option value="LV" >Latvia</option><option value="LB" >Lebanon</option><option value="LS" >Lesotho</option><option value="LR" >Liberia</option><option value="LY" >Libya</option><option value="LI" >Liechtenstein</option><option value="LT" >Lithuania</option><option value="LU" >Luxembourg</option><option value="MO" >Macau</option><option value="MK" >Macedonia (FYROM)</option><option value="MG" >Madagascar</option><option value="MW" >Malawi</option><option value="MY" >Malaysia</option><option value="MV" >Maldives</option><option value="ML" >Mali</option><option value="MT" >Malta</option><option value="MH" >Marshall Islands</option><option value="MQ" >Martinique</option><option value="MR" >Mauritania</option><option value="MU" >Mauritius</option><option value="YT" >Mayotte</option><option value="MX" >Mexico</option><option value="FM" >Micronesia, Federated States of</option><option value="MD" >Moldova</option><option value="MC" >Monaco</option><option value="MN" >Mongolia</option><option value="ME" >Montenegro</option><option value="MS" >Montserrat</option><option value="MA" >Morocco</option><option value="MZ" >Mozambique</option><option value="MM" >Myanmar</option><option value="NA" >Namibia</option><option value="NR" >Nauru</option><option value="NP" >Nepal</option><option value="NL" >Netherlands</option><option value="NC" >New Caledonia</option><option value="NZ" >New Zealand</option><option value="NI" >Nicaragua</option><option value="NE" >Niger</option><option value="NG" >Nigeria</option><option value="NU" >Niue</option><option value="NF" >Norfolk Island</option><option value="MP" >Northern Mariana Islands</option><option value="NO" >Norway</option><option value="OM" >Oman</option><option value="PK" >Pakistan</option><option value="PW" >Palau</option><option value="PS" >Palestine</option><option value="PA" >Panama</option><option value="PG" >Papua New Guinea</option><option value="PY" >Paraguay</option><option value="PE" >Peru</option><option value="PH" >Philippines</option><option value="PN" >Pitcairn Island</option><option value="PL" >Poland</option><option value="PT" >Portugal</option><option value="PR" >Puerto Rico</option><option value="QA" >Qatar</option><option value="RE" >Reunion</option><option value="RO" >Romania</option><option value="RU" >Russia</option><option value="RW" >Rwanda</option><option value="BL" >Saint Barth&eacute;lemy</option><option value="KN" >Saint Kitts &amp; Nevis</option><option value="LC" >Saint Lucia</option><option value="MF" >Saint Martin (French part)</option><option value="PM" >Saint Pierre and Miquelon</option><option value="VC" >Saint Vincent and The Grenadines</option><option value="WS" >Samoa</option><option value="SM" >San Marino</option><option value="ST" >Sao Tome and Principe</option><option value="SA" >Saudi Arabia</option><option value="SN" >Senegal</option><option value="RS" >Serbia</option><option value="SC" >Seychelles</option><option value="SL" >Sierra Leone</option><option value="SG" >Singapore</option><option value="SX" >Sint Maarten (Dutch part)</option><option value="SK" >Slovakia</option><option value="SI" >Slovenia</option><option value="SB" >Solomon Islands</option><option value="SO" >Somalia</option><option value="ZA" >South Africa</option><option value="GS" >South Georgia &amp; South Sandwich Islands</option><option value="SS" >South Sudan</option><option value="ES" >Spain</option><option value="LK" >Sri Lanka</option><option value="SH" >St Helena, Ascension &amp; Tristan da Cunha</option><option value="SD" >Sudan</option><option value="SR" >Suriname</option><option value="SJ" >Svalbard</option><option value="SZ" >Swaziland</option><option value="SE" >Sweden</option><option value="CH" >Switzerland</option><option value="SY" >Syria</option><option value="TW" >Taiwan</option><option value="TJ" >Tajikistan</option><option value="TZ" >Tanzania</option><option value="TH" >Thailand</option><option value="TG" >Togo</option><option value="TK" >Tokelau</option><option value="TO" >Tonga</option><option value="TT" >Trinidad and Tobago</option><option value="TN" >Tunisia</option><option value="TR" >Turkey</option><option value="TM" >Turkmenistan</option><option value="TC" >Turks and Caicos Islands</option><option value="TV" >Tuvalu</option><option value="UM" >U.S. Minor Outlying Islands</option><option value="UG" >Uganda</option><option value="UA" >Ukraine</option><option value="AE" >United Arab Emirates</option><option value="GB" >United Kingdom</option><option value="US" >United States</option><option value="ZZ" >Unknown</option><option value="UY" >Uruguay</option><option value="UZ" >Uzbekistan</option><option value="VU" >Vanuatu</option><option value="VA" >Vatican City</option><option value="VE" >Venezuela</option><option value="VN" >Vietnam</option><option value="VG" >Virgin Islands (British)</option><option value="VI" >Virgin Islands (US)</option><option value="WF" >Wallis and Futuna</option><option value="EH" >Western Sahara</option><option value="YE" >Yemen</option><option value="ZM" >Zambia</option><option value="ZW" >Zimbabwe</option></select> 
+						</p>
+						<p>
+							<label>Year of formation:</label> 
+							From <input type="text" id="yearCreationFrom" value="" name="yearCreationFrom" maxlength="4" size="4"   /> to <input type="text" id="yearCreationTo" value="" name="yearCreationTo" maxlength="4" size="4"   />
+						</p>
+						<p>
+							<label>Additional notes:</label> 
+							<input type="text" id="bandNotes" value="" name="bandNotes"   />
+						</p>
+					</div>
+					<div class="advancedSearchRight">
+						<p>
+							<label>Status: [<a id="link_status" class="multiLink" href="javascript:;" title="Use ctrl + click for multi-selection">multi</a>]</label> 
+							<select name="status"  id="status" class="statusSelect"  ><option value="" >(Any)</option><option value="1"  selected="selected">Active</option><option value="2" >On hold</option><option value="3" >Split-up</option><option value="4" >Unknown</option><option value="5" >Changed name</option><option value="6" >Disputed</option></select>
+						</p>
+						<p>
+							<label>Lyrical theme(s):</label> 
+							<input type="text" id="themes" value="" name="themes" maxlength="80"   />
+						</p>
+						<p>
+							<label>City/state/province:</label> 
+							<input type="text" id="location" value="" name="location" maxlength="100"   />
+						</p>
+						<p>
+							<label>Label:</label> 
+							<input type="text" id="bandLabelName" value="" name="bandLabelName" maxlength="60" size="15"   />
+							<label for="indieLabelBand" class="checkbox">Indie?</label> <input type="checkbox" id="indieLabelBand" name="indieLabel" value="1"  />
+						</p>
+					</div>
+					<div class="clear block_spacer_top_20">
+						<input type="submit" class="defaultButton" value="Perform search" />
+					</div>
+					<div class="clear"> </div>
+				</form>
+															<!-- Results -->
+						<div id="advancedResults">
+							<h3 class="searchFilterTitle">Search results</h3>
+							<table id="searchResultsBand" class="display" cellpadding="0" cellspacing="0">
+								<thead>
+									<tr>
+																					<th>Band</th>
+																					<th>Genre</th>
+																					<th>Country</th>
+																			</tr>
+								</thead>	
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+						<script type="text/javascript">
+							//$.fn.dataTableExt.sErrMode = 'throw';
+							createGrid(
+								"#searchResultsBand", 200, 
+								"search/ajax-advanced/searching/bands/?bandName=&genre=&country=&yearCreationFrom=&yearCreationTo=&bandNotes=&status=1&themes=&location=&bandLabelName=", 
+								{ 
+									bSort: false,
+									oLanguage: { 
+										sProcessing: 'Searching, please wait...',
+										sEmptyTable: 'No matches found. Please try with different search terms.'
+									 }
+								}
+							);
+						</script>
+												</div>
+    	</div>
+    </div>
+    
+    <div id="albums" class="ui-tabs-hide">
+    	<div class="ui-tabs-panel-content searchFilterBox">
+    		<h3 class="searchFilterTitle">Search for releases</h3>
+    		<div class="advancedForm">
+    			<form class="advancedSearch" method="get" action="https://www.metal-archives.com/search/advanced/searching/albums#albums">
+					<div class="advancedSearchLeft">
+						<p>
+							<label>Band name:</label> 
+							<input type="text" id="bandName" value="" name="bandName" maxlength="255"   /> &nbsp; <label for="exactBandMatch" class="checkbox">Exact match?</label> <input type="checkbox" id="exactBandMatch" name="exactBandMatch" value="1" />
+						</p>
+						<p>
+							<label>Release title:</label> 
+							<input type="text" id="releaseTitle" value="" name="releaseTitle" maxlength="200"   /> &nbsp; <label for="exactReleaseMatch" class="checkbox">Exact match?</label> <input type="checkbox" id="exactReleaseMatch" name="exactReleaseMatch" value="1" />
+						</p>
+						<p>
+							<label>Year/month (YYYY/MM):</label> 
+							From <input type="text" id="releaseYearFrom" value="" name="releaseYearFrom" maxlength="4" size="4"   />/<input type="text" id="releaseMonthFrom" value="" name="releaseMonthFrom" maxlength="2" size="2"   /> to <input type="text" id="releaseYearTo" value="" name="releaseYearTo" maxlength="4" size="4"   />/<input type="text" id="releaseMonthTo" value="" name="releaseMonthTo" maxlength="2" size="2"   />
+						</p>
+						<p>
+							<label>Band country: [<a class="multiLink" href="javascript:;" title="Use ctrl + click for multi-selection">multi</a>]</label> 
+							<select name="country"  id="country" class="countrySelect"  ><option value=""  selected="selected">(Any)</option><option value="AF" >Afghanistan</option><option value="AX" >&Aring;land Islands</option><option value="AL" >Albania</option><option value="DZ" >Algeria</option><option value="AS" >American Samoa</option><option value="AD" >Andorra</option><option value="AO" >Angola</option><option value="AI" >Anguilla</option><option value="AQ" >Antarctica</option><option value="AG" >Antigua and Barbuda</option><option value="AR" >Argentina</option><option value="AM" >Armenia</option><option value="AW" >Aruba</option><option value="AU" >Australia</option><option value="AT" >Austria</option><option value="AZ" >Azerbaijan</option><option value="BS" >Bahamas</option><option value="BH" >Bahrain</option><option value="BD" >Bangladesh</option><option value="BB" >Barbados</option><option value="BY" >Belarus</option><option value="BE" >Belgium</option><option value="BZ" >Belize</option><option value="BJ" >Benin</option><option value="BM" >Bermuda</option><option value="BT" >Bhutan</option><option value="BO" >Bolivia</option><option value="BQ" >Bonaire, Sint Eustatius and Saba</option><option value="BA" >Bosnia and Herzegovina</option><option value="BW" >Botswana</option><option value="BV" >Bouvet Island</option><option value="BR" >Brazil</option><option value="IO" >British Indian Ocean Territory</option><option value="BN" >Brunei</option><option value="BG" >Bulgaria</option><option value="BF" >Burkina Faso</option><option value="BI" >Burundi</option><option value="KH" >Cambodia</option><option value="CM" >Cameroon</option><option value="CA" >Canada</option><option value="CV" >Cape Verde</option><option value="KY" >Cayman Islands</option><option value="CF" >Central African Republic</option><option value="TD" >Chad</option><option value="CL" >Chile</option><option value="CN" >China</option><option value="CX" >Christmas Island</option><option value="CC" >Cocos (Keeling) Islands</option><option value="CO" >Colombia</option><option value="KM" >Comoros</option><option value="CD" >Congo, Democratic Republic of</option><option value="CG" >Congo, Republic of</option><option value="CK" >Cook Islands</option><option value="CR" >Costa Rica</option><option value="HR" >Croatia</option><option value="CU" >Cuba</option><option value="CW" >Cura&ccedil;ao</option><option value="CY" >Cyprus</option><option value="CZ" >Czech Republic</option><option value="DK" >Denmark</option><option value="DJ" >Djibouti</option><option value="DM" >Dominica</option><option value="DO" >Dominican Republic</option><option value="TL" >East Timor</option><option value="EC" >Ecuador</option><option value="EG" >Egypt</option><option value="SV" >El Salvador</option><option value="GQ" >Equatorial Guinea</option><option value="ER" >Eritrea</option><option value="EE" >Estonia</option><option value="ET" >Ethiopia</option><option value="FK" >Falkland Islands</option><option value="FO" >Faroe Islands</option><option value="FJ" >Fiji</option><option value="FI" >Finland</option><option value="FR" >France</option><option value="GF" >French Guiana</option><option value="PF" >French Polynesia</option><option value="TF" >French Southern Territories</option><option value="GA" >Gabon</option><option value="GM" >Gambia</option><option value="GE" >Georgia</option><option value="DE" >Germany</option><option value="GH" >Ghana</option><option value="GI" >Gibraltar</option><option value="GR" >Greece</option><option value="GL" >Greenland</option><option value="GD" >Grenada</option><option value="GP" >Guadeloupe</option><option value="GU" >Guam</option><option value="GT" >Guatemala</option><option value="GG" >Guernsey</option><option value="GN" >Guinea</option><option value="GW" >Guinea-Bissau</option><option value="GY" >Guyana</option><option value="HT" >Haiti</option><option value="HM" >Heard and McDonald Islands</option><option value="HN" >Honduras</option><option value="HK" >Hong Kong</option><option value="HU" >Hungary</option><option value="IS" >Iceland</option><option value="IN" >India</option><option value="ID" >Indonesia</option><option value="XX" >International</option><option value="IR" >Iran</option><option value="IQ" >Iraq</option><option value="IE" >Ireland</option><option value="IM" >Isle of Man</option><option value="IL" >Israel</option><option value="IT" >Italy</option><option value="CI" >Ivory Coast</option><option value="JM" >Jamaica</option><option value="JP" >Japan</option><option value="JE" >Jersey</option><option value="JO" >Jordan</option><option value="KZ" >Kazakhstan</option><option value="KE" >Kenya</option><option value="KI" >Kiribati</option><option value="KP" >Korea, North</option><option value="KR" >Korea, South</option><option value="KW" >Kuwait</option><option value="KG" >Kyrgyzstan</option><option value="LA" >Laos</option><option value="LV" >Latvia</option><option value="LB" >Lebanon</option><option value="LS" >Lesotho</option><option value="LR" >Liberia</option><option value="LY" >Libya</option><option value="LI" >Liechtenstein</option><option value="LT" >Lithuania</option><option value="LU" >Luxembourg</option><option value="MO" >Macau</option><option value="MK" >Macedonia (FYROM)</option><option value="MG" >Madagascar</option><option value="MW" >Malawi</option><option value="MY" >Malaysia</option><option value="MV" >Maldives</option><option value="ML" >Mali</option><option value="MT" >Malta</option><option value="MH" >Marshall Islands</option><option value="MQ" >Martinique</option><option value="MR" >Mauritania</option><option value="MU" >Mauritius</option><option value="YT" >Mayotte</option><option value="MX" >Mexico</option><option value="FM" >Micronesia, Federated States of</option><option value="MD" >Moldova</option><option value="MC" >Monaco</option><option value="MN" >Mongolia</option><option value="ME" >Montenegro</option><option value="MS" >Montserrat</option><option value="MA" >Morocco</option><option value="MZ" >Mozambique</option><option value="MM" >Myanmar</option><option value="NA" >Namibia</option><option value="NR" >Nauru</option><option value="NP" >Nepal</option><option value="NL" >Netherlands</option><option value="NC" >New Caledonia</option><option value="NZ" >New Zealand</option><option value="NI" >Nicaragua</option><option value="NE" >Niger</option><option value="NG" >Nigeria</option><option value="NU" >Niue</option><option value="NF" >Norfolk Island</option><option value="MP" >Northern Mariana Islands</option><option value="NO" >Norway</option><option value="OM" >Oman</option><option value="PK" >Pakistan</option><option value="PW" >Palau</option><option value="PS" >Palestine</option><option value="PA" >Panama</option><option value="PG" >Papua New Guinea</option><option value="PY" >Paraguay</option><option value="PE" >Peru</option><option value="PH" >Philippines</option><option value="PN" >Pitcairn Island</option><option value="PL" >Poland</option><option value="PT" >Portugal</option><option value="PR" >Puerto Rico</option><option value="QA" >Qatar</option><option value="RE" >Reunion</option><option value="RO" >Romania</option><option value="RU" >Russia</option><option value="RW" >Rwanda</option><option value="BL" >Saint Barth&eacute;lemy</option><option value="KN" >Saint Kitts &amp; Nevis</option><option value="LC" >Saint Lucia</option><option value="MF" >Saint Martin (French part)</option><option value="PM" >Saint Pierre and Miquelon</option><option value="VC" >Saint Vincent and The Grenadines</option><option value="WS" >Samoa</option><option value="SM" >San Marino</option><option value="ST" >Sao Tome and Principe</option><option value="SA" >Saudi Arabia</option><option value="SN" >Senegal</option><option value="RS" >Serbia</option><option value="SC" >Seychelles</option><option value="SL" >Sierra Leone</option><option value="SG" >Singapore</option><option value="SX" >Sint Maarten (Dutch part)</option><option value="SK" >Slovakia</option><option value="SI" >Slovenia</option><option value="SB" >Solomon Islands</option><option value="SO" >Somalia</option><option value="ZA" >South Africa</option><option value="GS" >South Georgia &amp; South Sandwich Islands</option><option value="SS" >South Sudan</option><option value="ES" >Spain</option><option value="LK" >Sri Lanka</option><option value="SH" >St Helena, Ascension &amp; Tristan da Cunha</option><option value="SD" >Sudan</option><option value="SR" >Suriname</option><option value="SJ" >Svalbard</option><option value="SZ" >Swaziland</option><option value="SE" >Sweden</option><option value="CH" >Switzerland</option><option value="SY" >Syria</option><option value="TW" >Taiwan</option><option value="TJ" >Tajikistan</option><option value="TZ" >Tanzania</option><option value="TH" >Thailand</option><option value="TG" >Togo</option><option value="TK" >Tokelau</option><option value="TO" >Tonga</option><option value="TT" >Trinidad and Tobago</option><option value="TN" >Tunisia</option><option value="TR" >Turkey</option><option value="TM" >Turkmenistan</option><option value="TC" >Turks and Caicos Islands</option><option value="TV" >Tuvalu</option><option value="UM" >U.S. Minor Outlying Islands</option><option value="UG" >Uganda</option><option value="UA" >Ukraine</option><option value="AE" >United Arab Emirates</option><option value="GB" >United Kingdom</option><option value="US" >United States</option><option value="ZZ" >Unknown</option><option value="UY" >Uruguay</option><option value="UZ" >Uzbekistan</option><option value="VU" >Vanuatu</option><option value="VA" >Vatican City</option><option value="VE" >Venezuela</option><option value="VN" >Vietnam</option><option value="VG" >Virgin Islands (British)</option><option value="VI" >Virgin Islands (US)</option><option value="WF" >Wallis and Futuna</option><option value="EH" >Western Sahara</option><option value="YE" >Yemen</option><option value="ZM" >Zambia</option><option value="ZW" >Zimbabwe</option></select>
+						</p>
+						<p>
+							<label>City/state/province:</label> 
+							<input type="text" id="location" value="" name="location" maxlength="100"   />
+						</p>
+						<p>
+							<label>Label:</label> 
+							<input type="text" id="releaseLabelName" value="" name="releaseLabelName" maxlength="60" size="15"   /> 
+							<label class="checkbox" for="indieLabel">Indie? <input type="checkbox" id="indieLabel" name="indieLabel" value="1" />
+						</p>
+						<p>
+							<label>Catalog number:</label> 
+							<input type="text" id="releaseCatalogNumber" value="" name="releaseCatalogNumber"   />
+						</p>
+						<p>
+							<label>Identifier:<br/>(barcode, matrix, etc.)</label> 
+							<input type="text" id="releaseIdentifiers" value="" name="releaseIdentifiers"   />
+						</p>
+						<p class="block_spacer_top_20">
+							<label>Recording information:<br/>(studio, city, etc.)</label> 
+							<input type="text" id="releaseRecordingInfo" value="" name="releaseRecordingInfo"   />
+						</p>
+						<p class="block_spacer_top_20">
+							<label>Version description:<br/>(country, digipak, etc.)</label> 
+							<input type="text" id="releaseDescription" value="" name="releaseDescription"   />
+						</p>
+						<p class="block_spacer_top_20">
+							<label>Additional notes:</label> 
+							<input type="text" id="releaseNotes" value="" name="releaseNotes"   />
+						</p>
+					</div>
+					<div class="advancedSearchRight">
+						<p>
+							<label>Genre:</label> 
+							<input type="text" id="genre" value="" name="genre" maxlength="100"   />
+						</p>
+						<p>
+							<label>Release type:<br />(ctrl + click<br/>to select multiple)</label> 
+							<select name="releaseType[]" multiple id="releaseType" size="9"  ><option value="1" >Full-length</option><option value="2" >Live album</option><option value="3" >Demo</option><option value="4" >Single</option><option value="5" >EP</option><option value="6" >Video</option><option value="7" >Boxed set</option><option value="8" >Split</option><option value="10" >Compilation</option><option value="12" >Split video</option><option value="13" >Collaboration</option></select>
+						</p>
+						<p>
+							<label>Release format:<br />(ctrl + click<br/>to select multiple)</label> 
+							<select name="releaseFormat[]" multiple id="releaseFormat" size="9"  ><option value="CD" >CD</option><option value="Cassette*" >Cassette</option><option value="Vinyl*" >Vinyl</option><option value="VHS" >VHS</option><option value="DVD" >DVD</option><option value="Digital" >Digital</option><option value="Blu-ray*" >Blu-ray</option><option value="Other" >Other</option></select>
+						</p>
+					</div>
+					<div class="clear block_spacer_top_20">
+						<input type="submit" class="defaultButton" value="Perform search" />
+					</div>
+					<div class="clear"> </div>
+				</form>
+							</div>
+    	</div>
+    </div>
+    
+    <div id="songs" class="ui-tabs-hide">
+    	<div class="ui-tabs-panel-content searchFilterBox">
+    		<h3 class="searchFilterTitle">Search for songs</h3>
+    		<div class="advancedForm">
+    			<form class="advancedSearch" method="get" action="https://www.metal-archives.com/search/advanced/searching/songs#songs">
+					<div class="advancedSearchLeft">
+						<p>
+							<label>Song title:</label> 
+							<input type="text" id="songTitle" value="" name="songTitle" maxlength="255"   /> &nbsp; <label for="exactSongMatch" class="checkbox">Exact match?</label> <input type="checkbox" id="exactSongMatch" name="exactSongMatch" value="1" />
+						</p>
+						<p>
+							<label>Band name:</label> 
+							<input type="text" id="bandName" value="" name="bandName" maxlength="255"   /> &nbsp; <label for="exactBandSongMatch" class="checkbox">Exact match?</label> <input type="checkbox" id="exactBandSongMatch" name="exactBandMatch" value="1" />
+						</p>
+						<p>
+							<label>Release title:</label> 
+							<input type="text" id="releaseTitle" value="" name="releaseTitle" maxlength="200"   /> &nbsp; <label for="exactReleaseSongMatch" class="checkbox">Exact match?</label> <input type="checkbox" id="exactReleaseSongMatch" name="exactReleaseMatch" value="1" />
+						</p>
+						<p>
+							<label>Lyrics:</label> 
+							<input type="text" id="lyrics" value="" name="lyrics" maxlength="30000"   />
+						</p>
+						<p>
+							<label>Genre:</label> 
+							<input type="text" id="genre" value="" name="genre" maxlength="100"   />
+						</p>
+					</div>
+					<div class="advancedSearchRight">
+						<p>
+							<label>Release type: <br />(ctrl+click to select)</label> 
+							<select name="releaseType[]" multiple id="releaseType" size="9"  ><option value="1" >Full-length</option><option value="2" >Live album</option><option value="3" >Demo</option><option value="4" >Single</option><option value="5" >EP</option><option value="6" >Video</option><option value="7" >Boxed set</option><option value="8" >Split</option><option value="10" >Compilation</option><option value="12" >Split video</option><option value="13" >Collaboration</option></select>
+						</p>
+					</div>
+					<div class="clear block_spacer_top_20">
+						<input type="submit" class="defaultButton" value="Perform search" />
+					</div>
+					<div class="clear"> </div>
+				</form>
+							</div>
+    	</div>
+    </div>
+</div>
+	        </div>
+	    </div>
+	</body>
+</html>

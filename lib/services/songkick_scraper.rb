@@ -1,46 +1,17 @@
 require 'nokogiri'
 require 'open-uri'
+require 'mechanize'
 
-class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :update, :saved_event_create]
-  skip_before_action :authenticate_user!, only: [:index, :show]
+mechanize = Mechanize.new
 
-  def index
-    @events = Event.all
-  end
+# require_relative '../../app/models/event'
+# require_relative '../../app/models/venue'
+# class SongkickScraper
+#   def initialize(event_path)
+#     @event_path = event_path
+#   end
 
-  def show
-    @event = Event.find(params[:id])
-  end
-
-  def new
-    @event = Event.new
-  end
-
-  def create
-    @event = Event.create(event_params)
-    @event.user = current_user
-    if @event.save
-      redirect_to events_path, notice: 'event created'
-    else
-      render :new
-    end
-  end
-
-  def update
-  end
-
-  private
-
-  def find_event
-    @event = Event.find(params[:id])
-  end
-
-  def event_params
-    params.require(:event).permit(:title, :description, :date, :time, :venue)
-  end
-
-  def songkick_fetch_event_links
+  def songkick_fetch_band_results
     search_input = 'slayer'
     url = "https://www.songkick.com/search?page=1&per_page=10&query=#{search_input}&type=upcoming"
     html_file = open(url).read
@@ -68,10 +39,16 @@ class EventsController < ApplicationController
     end
     events
   end
+  #songkick_fetch_band_results
 
   def songkick_fetch_venue_details
-    songkick_fetch_event_links.each do
-    html_file = open(url).read
-    html = Nokogiri::HTML(html_file)
+    songkick_fetch_band_results.each do |item|
+      url = item[7]
+      html_file = open(url).read
+      html = Nokogiri::HTML(html_file)
+      p venue_name = html.search('.venue-info-details a').first.text.gsub("\n", '').strip
+      p address = html.search('.venue-hcard').text.gsub("\n", ' ').squeeze(' ').strip
+    end
   end
-end
+ songkick_fetch_venue_details
+# end

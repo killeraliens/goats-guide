@@ -11,10 +11,5 @@ class SavedEventsController < ApplicationController
     end
   end
 
-  def update
-    # @event = Event.find(params[:id])
-    # savex = current_user ? SavedEvent.where(event_id: @event.id, user_id: current_user.id) : nil
-    # @saved_event = savex ? savex : SavedEvent.new
-  end
 end
 
