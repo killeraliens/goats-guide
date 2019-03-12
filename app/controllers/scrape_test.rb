@@ -8,11 +8,11 @@ require "pry-byebug"
 def songkick_fetch_index(band_name)
   url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band_name}&type=upcoming"
 
-  # agent = Mechanize.new
-  # page = agent.get(url)
+  agent = Mechanize.new
+  page = agent.get(url)
 
-  html_file = open(url).read
-  page = Nokogiri::HTML(html_file)
+  # html_file = open(url).read
+  # page = Nokogiri::HTML(html_file)
   events = []
 
   another_page = true
@@ -37,11 +37,13 @@ def songkick_fetch_index(band_name)
       href = event.search('.summary a')
       href = href[0]['href']
       event_url = root + href
-      # page = agent.get(event_url)
-      # address = page.search('.venue-hcard').text.gsub("\n", ' ').squeeze(' ').strip
+
+      page = agent.get(event_url)
+      address = page.search('.venue-hcard').text.gsub("\n", ' ').squeeze(' ').strip
+      page = agent.back()
       # venue = Venue.create(name: venue, address: city+state+country)
       # events << Event.create(date: datetime, time: datetime, title: title, description: description, venue: venue)
-      events << [datetime, title, description, venue, city, state, country, event_url]
+      events << [datetime, title, description, venue, city, state, country, event_url, address]
     end
     events.each do |event|
       puts event
@@ -49,10 +51,11 @@ def songkick_fetch_index(band_name)
     end
 
     disabled_next_button = page.search('.next_page.disabled')
-    if disabled_next_button.text == ""
+    if disabled_next_button.text != ""
       url = "https://www.songkick.com/search?page=#{page_num + 1}&per_page=30&query=#{band_name}&type=upcoming" # "Youre on one of the previous pages"
-      html_file = open(url).read
-      page = Nokogiri::HTML(html_file)
+        # html_file = open(url).read
+        # page = Nokogiri::HTML(html_file) # "Youre on one of the previous pages"
+        page = agent.get(url)
     else
       another_page = false # "Youre on the last page"
     end

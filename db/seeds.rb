@@ -34,19 +34,31 @@ Venue.destroy_all
         description = event.css('.summary a').text
         location = event.css('.location').text.gsub("\n", '').strip
         location = location.split(/\s*,\s*/)
-        venue = location[0]
-        city = location[1]
-        state = location[2]
-        country = location[3]
+        venue_name = location[0]
         root = "https://www.songkick.com"
         href = event.search('.summary a')
         href = href[0]['href']
         event_url = root + href
-        address = "#{city} #{state} #{country}"
+
         # page = agent.get(event_url)
-        # address = page.search('.venue-hcard').text.gsub("\n", ' ').squeeze(' ').strip
-        venue = Venue.create(name: venue, address: address)
-        Event.create(date: datetime, time: datetime, title: title, description: description, venue: venue)
+        time = page.css('.additional-details-container p').text
+        raw_address = page.search('.venue-hcard').text.split("\n")
+        raw_address = raw_address.each { |line| line.strip! }
+        raw_address = raw_address.select { |item| item != "" }
+        street_address = raw_address[0]
+        zipcode = raw_address[1]
+        city_state_country = raw_address[2].split(',')
+        city = city_state_country[0]
+        state = city_state_country[1].strip
+        country = city_state_country[2].strip
+        # page = agent.back()
+        venue = Venue.new(name: venue_name, street_address: street_address, city: city, state: state, country: country)
+        if venue.save
+          Event.create(date: datetime, time: time, title: title, description: description, venue: venue, url_link: event_url)
+        else
+          venue = Venue.find_by(name: venue_name, street_address: street_address)
+          Event.create(date: datetime, time: time, title: title, description: description, venue: venue, url_link: event_url)
+        end
       end
       disabled_next_button = page.search('.next_page.disabled')
       if disabled_next_button.text == ""
@@ -62,7 +74,3 @@ Venue.destroy_all
   end
 songkick_fetch_index("obituary")
 puts "ending seed.."
-
-# puts "seeding events.."
-# Event.create(title: "Graveland Fest", description: "Hyperdontia, Spectral Voice, Asphyx, Necrowretch, Grave", date: "#{Date.new(2019,6,22)} - #{Date.new(2019,6,24)}", time: "doors at 6pm")
-# Event.create(title: "Mortuous", description: "Mortuous helps Tankcrimes and a ton of other sick label-mates take over the Oakland Metro tonight! This is their first show in five months. The full Carbonized Distro will also be available.", date: "#{Date.new(2019,9,11)}", time: "9pm")
