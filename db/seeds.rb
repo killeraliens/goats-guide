@@ -28,8 +28,12 @@ Venue.destroy_all
     while another_page == true
 
       page.search('.concert').each do |event|
+        p "NEW EVENT"
+        p page.search('h1').text.gsub("\n", ' ').squeeze(' ').strip
         datetime = event.search('time')
         datetime = datetime[0]['datetime']
+        time = DateTime.parse(datetime)
+        time = "#{time.hour}:#{time.min}"
         title = event.search('.summary a strong').text
         description = event.css('.summary a').text
         location = event.css('.location').text.gsub("\n", '').strip
@@ -40,8 +44,8 @@ Venue.destroy_all
         href = href[0]['href']
         event_url = root + href
 
-        # page = agent.get(event_url)
-        time = page.css('.additional-details-container p').text
+        page = agent.get(event_url)
+
         raw_address = page.search('.venue-hcard').text.split("\n")
         raw_address = raw_address.each { |line| line.strip! }
         raw_address = raw_address.select { |item| item != "" }
@@ -51,25 +55,41 @@ Venue.destroy_all
         city = city_state_country[0]
         state = city_state_country[1].strip
         country = city_state_country[2].strip
-        # page = agent.back()
+
+
+        # p "AFTER AGENTBACK"
+        # p page.search('h1').text.gsub("\n", ' ').squeeze(' ').strip
+
         venue = Venue.new(name: venue_name, street_address: street_address, city: city, state: state, country: country)
         if venue.save
-          Event.create(date: datetime, time: time, title: title, description: description, venue: venue, url_link: event_url)
+          event = Event.create(date: datetime, time: time, title: title, description: description, venue: venue, url_link: event_url)
+          puts "created #{event.date} at #{venue.name}"
+          # page = agent.back()
+          # return page
         else
           venue = Venue.find_by(name: venue_name, street_address: street_address)
-          Event.create(date: datetime, time: time, title: title, description: description, venue: venue, url_link: event_url)
+          event = Event.create(date: datetime, time: time, title: title, description: description, venue: venue, url_link: event_url)
+          puts "#{venue.name} already created, created this event #{event.date}"
+          # page = agent.back()
+          # return page
         end
       end
-      disabled_next_button = page.search('.next_page.disabled')
-      if disabled_next_button.text == ""
-        url = "https://www.songkick.com/search?page=#{page_num + 1}&per_page=30&query=#{band_name}&type=upcoming" # "Youre on one of the previous pages"
+      url = "https://www.songkick.com/search?page=#{page_num}&per_page=30&query=#{band_name}&type=upcoming"
+      page = agent.get(url)
+      disabled_next_button = page.search('div.pagination span')
+      p disabled_next_button.text
+      if disabled_next_button.text.include?("Next") == false
+        url = "https://www.songkick.com/search?page=#{page_num + 1}&per_page=30&query=#{band_name}&type=upcoming"
+        puts "next page buttonn is not disabled" # "Youre on one of the previous pages"
         # html_file = open(url).read
         # page = Nokogiri::HTML(html_file) # "Youre on one of the previous pages"
         page = agent.get(url)
       else
+        puts "last page"
         another_page = false # "Youre on the last page"
       end
       page_num += 1
+      puts "on to next page"
     end
   end
 songkick_fetch_index("obituary")

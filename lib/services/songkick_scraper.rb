@@ -31,12 +31,14 @@ def songkick_fetch_index
       href = event.search('.summary a')
       href = href[0]['href']
       event_url = root + href
+      puts disabled_next_button = page.search('.next_page ')
+
       events << [datetime, title, description, venue, city, state, country, event_url]
     end
     events
 
 end
-#songkick_fetch_index
+songkick_fetch_index
 
 
 def songkick_fetch_event

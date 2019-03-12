@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :venue
   has_many :saved_events
-  validates :title, :date, presence: true
+  #validates :title, :date, presence: true
   validates :title, :description, case_sensitive: false
 
   def date_format
