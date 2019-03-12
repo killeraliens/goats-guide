@@ -4,11 +4,15 @@ require 'mechanize'
 require "pry-byebug"
 # require 'fakeweb'
 
+
 def songkick_fetch_index(band_name)
   url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band_name}&type=upcoming"
 
-  agent = Mechanize.new
-  page = agent.get(url)
+  # agent = Mechanize.new
+  # page = agent.get(url)
+
+  html_file = open(url).read
+  page = Nokogiri::HTML(html_file)
   events = []
 
   another_page = true
@@ -32,7 +36,11 @@ def songkick_fetch_index(band_name)
       root = "https://www.songkick.com"
       href = event.search('.summary a')
       href = href[0]['href']
-       event_url = root + href
+      event_url = root + href
+      # page = agent.get(event_url)
+      # address = page.search('.venue-hcard').text.gsub("\n", ' ').squeeze(' ').strip
+      # venue = Venue.create(name: venue, address: city+state+country)
+      # events << Event.create(date: datetime, time: datetime, title: title, description: description, venue: venue)
       events << [datetime, title, description, venue, city, state, country, event_url]
     end
     events.each do |event|
@@ -42,7 +50,9 @@ def songkick_fetch_index(band_name)
 
     disabled_next_button = page.search('.next_page.disabled')
     if disabled_next_button.text == ""
-      page = agent.get("https://www.songkick.com/search?page=#{page_num + 1}&per_page=30&query=#{band_name}&type=upcoming") # "Youre on one of the previous pages"
+      url = "https://www.songkick.com/search?page=#{page_num + 1}&per_page=30&query=#{band_name}&type=upcoming" # "Youre on one of the previous pages"
+      html_file = open(url).read
+      page = Nokogiri::HTML(html_file)
     else
       another_page = false # "Youre on the last page"
     end

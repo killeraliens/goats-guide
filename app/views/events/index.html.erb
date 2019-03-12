@@ -1,5 +1,6 @@
 <div class="container">
   <%= link_to 'profiles', users_index_path %>
+  <p><%=  %></p>
   <% @events.each do |event| %>
     <div class="card">
       <%= link_to(event) do %>
@@ -7,7 +8,7 @@
           <h2><%= event.title %></h2>
           <p><%= event.descript_limit %></p>
           <p><%= event.date_format %> </p>
-          <p><%= event.time %></p>
+          <p>time:<%= event.time %></p>
           <p><%= event.venue.name %> </p>
         </div>
       <% end %>

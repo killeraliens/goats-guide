@@ -43,13 +43,14 @@ end
    page = agent.get("file:///#{html_dir}")
    page.search('.biography-container').text.gsub("\n", '').strip
    title = page.css('h1 a').text
+   time = page.css('.additional-details-container p').text
    venue_name = page.search('.venue-info-details a').first.text.gsub("\n", '').strip
    address = page.search('.venue-hcard').text.gsub("\n", ' ').squeeze(' ').strip
    lineup = page.search('.line-up').text.gsub("\n", ' ').squeeze(' ').strip
-   p event_details = [title, venue_name, address, lineup]
+   p event_details = [venue_name, address, time]
    songkick_fetch_index.each do |event|
-     puts event
-     puts "----------------"
+     event
+     "----------------"
    end
  end
  songkick_fetch_event

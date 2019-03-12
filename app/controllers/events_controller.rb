@@ -1,5 +1,3 @@
-require 'nokogiri'
-require 'open-uri'
 
 class EventsController < ApplicationController
   before_action :find_event, only: [:show, :update, :saved_event_create]
@@ -39,5 +37,4 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:title, :description, :date, :time, :venue)
   end
-
 end

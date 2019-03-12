@@ -20,7 +20,6 @@ gem 'mechanize', '~> 2.7', '>= 2.7.6'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
-  gem "fakeweb", "~> 1.3"
 end
 
 group :development, :test do
