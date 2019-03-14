@@ -2,6 +2,8 @@ require 'nokogiri'
 require 'open-uri'
 require 'mechanize'
 require 'chromedriver-helper'
+# https://github.com/watir/watir_meta/wiki/Cheat-Sheet
+# https://nicksardo.wordpress.com/2014/11/17/screen-scraping-in-ruby-with-watir-and-nokogiri/
 require 'watir'
 require 'pry-byebug'
 
@@ -9,14 +11,8 @@ puts "seeding .."
 #Venue.destroy_all
 #Band.destroy_all
 
-# 5.times do
-#   venue = Venue.create(name: Faker::Games::HalfLife.location, address: Faker::Address.full_address)
-#   3.times do
-#     Event.create(title: Faker::Music::RockBand.name, description: Faker::Movies::VForVendetta.speech, date: Faker::Date.forward(23), time: Faker::Superhero.descriptor, venue: venue)
-#   end
-# end
-
   def songkick_fetch_index(band_name)
+    # band_names = BnameScrapeJob.perform (if self.perform)
     #band_name = "obituary"
     url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band_name}&type=upcoming"
 
@@ -28,7 +24,6 @@ puts "seeding .."
     page_num = 1
 
     while another_page == true && pagination_with_link.text != ""
-      p url
       page.search('.concert').each do |event|
         page.search('h1').text.gsub("\n", ' ').squeeze(' ').strip
         datetime = event.search('time')
@@ -83,19 +78,20 @@ puts "seeding .."
       puts "on to next page"
     end
   end
-songkick_fetch_index("ultra silvam")
+#songkick_fetch_index("ultra silvam")
 
 
 def metallum_fetch_bands(genre)
+  Band.destroy_all
   #browser = Watir::Browser.start("https://www.metal-archives.com/search/advanced/searching/bands?bandName=&genre=&country=&yearCreationFrom=&yearCreationTo=&bandNotes=&status=1&themes=&location=&bandLabelName=#bands")
   browser = Watir::Browser.start("https://www.metal-archives.com/search/advanced/searching/bands?bandName=&genre=#{genre}+&country=&yearCreationFrom=&yearCreationTo=&bandNotes=&status=1&themes=&location=&bandLabelName=#bands")
   page = Nokogiri::HTML(browser.html)
 
-  bands = []
-    trs = page.search("tbody tr")
+    bands = []
     entry_count = page.search("div.dataTables_info").last.text.split(' ')
     current_page = entry_count[3]
     last_page = entry_count[5]
+    trs = page.search("tbody tr")
 
   until current_page == last_page
     page = Nokogiri::HTML(browser.html)
@@ -111,10 +107,10 @@ def metallum_fetch_bands(genre)
     browser.a(class: ["next", "paginate_button"], text: "Next").click
     sleep(2)
   end
+  bands.each do |band_arr|
+    Band.create(name: band_arr[0])
+  end
   browser.close
-  bands.uniq!
-  names_only = bands.map { |band_arr| band_arr[0] }
-  p names_only.uniq!
 end
-#metallum_fetch_bands("technical")
+metallum_fetch_bands("technical")
 puts "ending seed.."

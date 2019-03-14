@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'bands/create'
+  get 'bands/destroy'
   # get 'saved_events/create'
   # get 'users/index'
   # get 'users/show'

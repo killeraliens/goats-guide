@@ -5,18 +5,15 @@ require 'mechanize'
 class SkScrapeJob < ApplicationJob
   queue_as :default
 
-  def perform
-     # band_names = BnameScrapeJob.perform (if self.perform)
-    # ADD NAME INPUT FROM BAND CLASS ITERATION LOGIC
-    # band_instances = Band.all
-    Venue.destroy_all
-    band_name = "obituary"
-    url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band_name}&type=upcoming"
+  def perform(band_id)
+    band = Band.find(band_id)
+    bands = Band.all
+    url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band.name}&type=upcoming"
 
     agent = Mechanize.new
     page = agent.get(url)
 
-    pagination_with_link = page.search("div.pagination a" )
+    pagination_with_link = page.search("div.pagination a")
     another_page = true
     page_num = 1
 
