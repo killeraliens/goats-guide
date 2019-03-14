@@ -5,11 +5,6 @@ class BandsController < ApplicationController
     @band.save
   end
 
-  # def destroy
-  #   @band = Band.find(params[:id])
-  #   @band.destroy
-  # end
-
   private
 
   def band_params

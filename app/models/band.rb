@@ -1,11 +1,10 @@
 class Band < ApplicationRecord
   validates :name, uniqueness: true
+  after_save :async_search
 
-  # after_save :async_search
+  private
 
-  # private
-
-  # def async_search
-  #   SkScrapeJob.perform_later(self.id)
-  # end
+  def async_search
+    SkScrapeJob.perform_later(self.id)
+  end
 end
