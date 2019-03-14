@@ -1,15 +1,15 @@
 
-$ rails g job bname_scrape
+$ rails g job metallum_scrape
 $ rails g job sk_scrape
 
 #PERFORM NAME SCRAPE ONCE A WEEK
-class BnameScrapeJob
+class MetallumScrapeJob
   require 'nokogiri'
   require 'open-uri'
   require 'mechanize'
   require 'chromedriver-helper'
   require 'watir'
-  queue_as :default #??
+  queue_as :bname_scrape #??
 
 
   def perform
@@ -25,24 +25,23 @@ class BnameScrapeJob
       last_page = entry_count[5]
 
     until current_page == last_page
-      page = browser.html
-      page = Nokogiri::HTML(page)
+      page = Nokogiri::HTML(browser.html)
       entry_count = page.search("div.dataTables_info").last.text.strip.split(' ')
       current_page = entry_count[3]
       last_page = entry_count[5]
-      p current_page
-      p last_page
+      trs = page.search("tbody tr")
       trs.each do |tr|
         td = tr.search("td")
         band_arr = td.map { |i| i.text.strip }
-        #WILL CREATE BAND INSTANCES (DISCONNECTED TABLE FOR NOW)
         bands << band_arr
       end
       browser.a(class: ["next", "paginate_button"], text: "Next").click
       sleep(2)
     end
-    return bands
     browser.close
+    bands.uniq!
+    names_only = bands.map { |band_arr| band_arr[0] }
+    return names_only.uniq!
     #RETURN OF ARRAY WILL BE DELETED ONCE BAND CREATION CODE IS UPDATED
     #NEED TO ADD RESULTS LIMITING LOGIC STILL (.unique logic on name column validations)(where do i filter chinese characters)
   end
@@ -51,14 +50,16 @@ end
 
 
 
-#PERFORM NAME SCRAPE ONCE A WEEK
+#PERFORM SONGKICK SCRAPE TWICE A WEEK
 class SkScrapeJob
   require 'nokogiri'
   require 'open-uri'
   require 'mechanize'
-  queue_as :default #??????
+  queue_as :sk_scrape #??????
 
-  def perform(band_name) #TAKES BAND NAMES FROM BANDS TABLE AND EXECUTES SEARCH ON EACH NAME COLUMN
+  def perform #TAKES BAND NAMES FROM BANDS TABLE AND EXECUTES SEARCH ON EACH NAME COLUMN
+    # band_names = BnameScrapeJob.perform (if self.perform)
+    band_instances = Band.all
     band_name = "obituary"
     url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band_name}&type=upcoming"
 
@@ -124,7 +125,7 @@ class SkScrapeJob
       puts "on to next page"
     end
   end
-  #perform("obituary") #PERFORM ON ALL NAMES IN BANDS TABLE
+  #perform("obituary") #PERFORM ON ALL NAMES IN BANDS TABLE // STRINGS band.name
 end
 
 

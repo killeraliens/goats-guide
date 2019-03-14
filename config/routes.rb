@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
-  get 'saved_events/create'
-  get 'users/index'
-  get 'users/show'
+  # get 'saved_events/create'
+  # get 'users/index'
+  # get 'users/show'
   devise_for :users
   root to: 'events#index'
   resources :events, only: [:index, :show, :new] do
     resources :saved_events, only: [:create]
   end
   resources :users, only: [:index, :show]
+  require "sidekiq/web"
+  authenticate :user, lambda { |u| u.admin } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
 
 # as a visitor I can view all events
