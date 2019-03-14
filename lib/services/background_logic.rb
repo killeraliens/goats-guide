@@ -1,21 +1,64 @@
-require 'nokogiri'
-require 'open-uri'
-require 'mechanize'
-require 'watir'
-require 'pry-byebug'
 
-puts "seeding .."
-# Venue.destroy_all
-Band.destroy_all
+$ rails g job bname_scrape
+$ rails g job sk_scrape
 
-# 5.times do
-#   venue = Venue.create(name: Faker::Games::HalfLife.location, address: Faker::Address.full_address)
-#   3.times do
-#     Event.create(title: Faker::Music::RockBand.name, description: Faker::Movies::VForVendetta.speech, date: Faker::Date.forward(23), time: Faker::Superhero.descriptor, venue: venue)
-#   end
-# end
+#PERFORM NAME SCRAPE ONCE A WEEK
+class BnameScrapeJob
+  require 'nokogiri'
+  require 'open-uri'
+  require 'mechanize'
+  require 'chromedriver-helper'
+  require 'watir'
+  queue_as :default #??
 
-  def songkick_fetch_index(band_name)
+
+  def perform
+    #WILL DESTROY ALL BAND INSTANCES WHEN RAN
+    browser = Watir::Browser.start("https://www.metal-archives.com/search/advanced/searching/bands?bandName=&genre=&country=&yearCreationFrom=&yearCreationTo=&bandNotes=&status=1&themes=&location=&bandLabelName=#bands")
+    page = browser.html
+    page = Nokogiri::HTML(page)
+
+    bands = []
+      trs = page.search("tbody tr")
+      entry_count = page.search("div.dataTables_info").last.text.strip.split(' ')
+      current_page = entry_count[3]
+      last_page = entry_count[5]
+
+    until current_page == last_page
+      page = browser.html
+      page = Nokogiri::HTML(page)
+      entry_count = page.search("div.dataTables_info").last.text.strip.split(' ')
+      current_page = entry_count[3]
+      last_page = entry_count[5]
+      p current_page
+      p last_page
+      trs.each do |tr|
+        td = tr.search("td")
+        band_arr = td.map { |i| i.text.strip }
+        #WILL CREATE BAND INSTANCES (DISCONNECTED TABLE FOR NOW)
+        bands << band_arr
+      end
+      browser.a(class: ["next", "paginate_button"], text: "Next").click
+      sleep(2)
+    end
+    return bands
+    browser.close
+    #RETURN OF ARRAY WILL BE DELETED ONCE BAND CREATION CODE IS UPDATED
+    #NEED TO ADD RESULTS LIMITING LOGIC STILL (.unique logic on name column validations)(where do i filter chinese characters)
+  end
+end
+
+
+
+
+#PERFORM NAME SCRAPE ONCE A WEEK
+class SkScrapeJob
+  require 'nokogiri'
+  require 'open-uri'
+  require 'mechanize'
+  queue_as :default #??????
+
+  def perform(band_name) #TAKES BAND NAMES FROM BANDS TABLE AND EXECUTES SEARCH ON EACH NAME COLUMN
     band_name = "obituary"
     url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band_name}&type=upcoming"
 
@@ -81,5 +124,30 @@ Band.destroy_all
       puts "on to next page"
     end
   end
-# songkick_fetch_index("obituary")
-puts "ending seed.."
+  #perform("obituary") #PERFORM ON ALL NAMES IN BANDS TABLE
+end
+
+
+#REDIS SETUP
+#SIDEKICK SETUP
+
+#ADD CONFIG SIDECKICK TO application.rb
+# config/routes.rb
+# Rails.application.routes.draw do
+#   # Sidekiq Web UI, only for admins.
+#   require "sidekiq/web"
+#   authenticate :user, lambda { |u| u.admin } do
+#     mount Sidekiq::Web => '/sidekiq'
+#   end
+# end
+
+# config/sidekiq.yml
+# :concurrency: 3
+# :timeout: 60
+# :verbose: true
+# :queues:  # Queue priority: https://github.com/mperham/sidekiq/wiki/Advanced-Options
+#   - default
+#   - mailers
+
+
+

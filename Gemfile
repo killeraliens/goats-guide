@@ -17,6 +17,9 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'faker', '~> 1.9', '>= 1.9.3'
 gem 'mechanize', '~> 2.7', '>= 2.7.6'
+gem 'watir', '~> 6.16', '>= 6.16.5'
+gem 'chromedriver-helper', '~> 2.1'
+gem 'selenium-webdriver', '~> 3.141'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
