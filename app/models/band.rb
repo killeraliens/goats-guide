@@ -1,6 +1,6 @@
 class Band < ApplicationRecord
   validates :name, uniqueness: true
-  after_save :async_search
+  after_create :async_search
 
   private
 

@@ -20,12 +20,14 @@ puts "seeding .."
     page = agent.get(url)
 
     pagination_with_link = page.search("div.pagination a" )
+    no_results = page.search("div.no-results h2").text.split(' ').include?("Sorry,")
+
     another_page = true
     page_num = 1
 
-    while another_page == true && pagination_with_link.text != ""
+    while another_page == true && !no_results
       page.search('.concert').each do |event|
-        page.search('h1').text.gsub("\n", ' ').squeeze(' ').strip
+        # page.search('h1').text.gsub("\n", ' ').squeeze(' ').strip
         datetime = event.search('time')
         datetime = datetime[0]['datetime']
         time = DateTime.parse(datetime)
@@ -61,12 +63,13 @@ puts "seeding .."
           event = Event.create(date: datetime, time: time, title: title, description: description, venue: venue, url_link: event_url)
           puts "#{venue.name} already created, created this event #{event.date}"
         end
+        sleep(0.5)
       end
       url = "https://www.songkick.com/search?page=#{page_num}&per_page=30&query=#{band_name}&type=upcoming"
       page = agent.get(url)
       disabled_next_button = page.search('div.pagination span')
       p disabled_next_button.text
-      if disabled_next_button.text.include?("Next") == false
+      if disabled_next_button.text.include?("Next") == false && pagination_with_link.text != ""
         url = "https://www.songkick.com/search?page=#{page_num + 1}&per_page=30&query=#{band_name}&type=upcoming"
         puts "next page buttonn is not disabled"
         page = agent.get(url)
@@ -78,7 +81,7 @@ puts "seeding .."
       puts "on to next page"
     end
   end
-#songkick_fetch_index("ultra silvam")
+songkick_fetch_index("Old Witch")
 
 
 def metallum_fetch_bands(genre)
@@ -108,9 +111,14 @@ def metallum_fetch_bands(genre)
     sleep(2)
   end
   bands.each do |band_arr|
-    Band.create(name: band_arr[0])
+    band = Band.new(name: band_arr[0])
+    if band.save
+      puts "band saved"
+    else
+      puts "band not saved"
+    end
   end
   browser.close
 end
-metallum_fetch_bands("technical")
+# metallum_fetch_bands("doom/black")
 puts "ending seed.."

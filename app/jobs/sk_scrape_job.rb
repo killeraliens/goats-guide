@@ -7,17 +7,18 @@ class SkScrapeJob < ApplicationJob
 
   def perform(band_id)
     band = Band.find(band_id)
-    bands = Band.all
+    # bands = Band.all
     url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band.name}&type=upcoming"
 
     agent = Mechanize.new
     page = agent.get(url)
 
     pagination_with_link = page.search("div.pagination a")
+    no_results = page.search("div.no-results h2").text.split(' ').include?("Sorry,")
     another_page = true
     page_num = 1
 
-    while another_page == true && pagination_with_link.text != ""
+    while another_page == true && !no_results
       page.search('.concert').each do |event|
         page.search('h1').text.gsub("\n", ' ').squeeze(' ').strip
         datetime = event.search('time')
@@ -55,13 +56,14 @@ class SkScrapeJob < ApplicationJob
           event = Event.create(date: datetime, time: time, title: title, description: description, venue: venue, url_link: event_url)
           puts "#{venue.name} already created, created this event #{event.date}"
         end
+        sleep(1)
       end
-      url = "https://www.songkick.com/search?page=#{page_num}&per_page=30&query=#{band_name}&type=upcoming"
+      url = "https://www.songkick.com/search?page=#{page_num}&per_page=30&query=#{band.name}&type=upcoming"
       page = agent.get(url)
       disabled_next_button = page.search('div.pagination span')
       p disabled_next_button.text
-      if disabled_next_button.text.include?("Next") == false
-        url = "https://www.songkick.com/search?page=#{page_num + 1}&per_page=30&query=#{band_name}&type=upcoming"
+      if disabled_next_button.text.include?("Next") == false && pagination_with_link.text != ""
+        url = "https://www.songkick.com/search?page=#{page_num + 1}&per_page=30&query=#{band.name}&type=upcoming"
         puts "next page buttonn is not disabled"
         page = agent.get(url)
       else
