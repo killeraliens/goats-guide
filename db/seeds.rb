@@ -28,40 +28,41 @@ puts "seeding .."
     while another_page == true && !no_results
       page.search('.concert').each do |event|
         # page.search('h1').text.gsub("\n", ' ').squeeze(' ').strip
-        datetime = event.search('time')
-        datetime = datetime[0]['datetime']
+        datetime = event.search('time')[0]['datetime']
         time = DateTime.parse(datetime)
         time = "#{time.hour}:#{time.min}"
         title = event.search('.summary a strong').text
         description = event.css('.summary a').text
-        location = event.css('.location').text.gsub("\n", '').strip
-        location = location.split(/\s*,\s*/)
+        location = event.css('.location').text.gsub("\n", '').strip.split(/\s*,\s*/)
         venue_name = location[0]
         root = "https://www.songkick.com"
-        href = event.search('.summary a')
-        href = href[0]['href']
+        href = event.search('.summary a')[0]['href']
         event_url = root + href
 
         page = agent.get(event_url)
 
         raw_address = page.search('.venue-hcard').text.split("\n")
-        raw_address = raw_address.each { |line| line.strip! }
-        raw_address = raw_address.select { |item| item != "" }
+        raw_address = raw_address.each { |line| line.strip! }.select { |item| item != "" }.first(5)
+        # ["1515 Broadway", "10036", "New York, NY, US"]
+        # ["Houndsgate", "NG1 7AA", "Nottingham, UK"]
         street_address = raw_address[0]
         zipcode = raw_address[1]
         city_state_country = raw_address[2].split(',')
         city = city_state_country[0]
-        state = city_state_country[1].strip
-        country = city_state_country[2].strip
-
+        if raw_address.count == 5
+          state = city_state_country[1].strip
+          country = city_state_country[2].strip
+        else
+          country = city_state_country[1].strip
+        end
         venue = Venue.new(name: venue_name, street_address: street_address, city: city, state: state, country: country)
         if venue.save
           event = Event.create(date: datetime, time: time, title: title, description: description, venue: venue, url_link: event_url)
-          puts "created #{event.date} at #{venue.name}"
+          puts "created event for #{event.date} at #{venue.name}"
         else
           venue = Venue.find_by(name: venue_name, street_address: street_address)
           event = Event.create(date: datetime, time: time, title: title, description: description, venue: venue, url_link: event_url)
-          puts "#{venue.name} already created, created this event #{event.date}"
+          puts "#{venue.name} already created, created this event for #{event.date}"
         end
         sleep(0.5)
       end
@@ -81,7 +82,7 @@ puts "seeding .."
       puts "on to next page"
     end
   end
-songkick_fetch_index("Old Witch")
+songkick_fetch_index("Wyrd")
 
 
 def metallum_fetch_bands(genre)

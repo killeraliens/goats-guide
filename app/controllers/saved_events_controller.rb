@@ -5,9 +5,9 @@ class SavedEventsController < ApplicationController
     @saved_event.user = current_user
     @saved_event.event = Event.find(params[:event_id])
     if @saved_event.save
-      redirect_to root_path
+      redirect_to root_path, notice: 'Event saved.'
     else
-      puts "somethings up, event not saved"
+      redirect_to root_path, notice: "UH OH. Couldn't save."
     end
   end
 
