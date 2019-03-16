@@ -10,7 +10,9 @@
           <p><%= event.date %> <%= "- #{event.end_date}" if event.end_date.nil? == false %></p>
           <p>time: <%= event.time %></p>
           <p><%= event.venue.name %> </p>
-          <p><%= event.venue.city %>, <%= event.venue.state %> <%= event.venue.country %> </p>
+          <p><%= event.venue.city %>
+            <%= ", #{event.venue.state}" if event.venue.state.nil? == false %>
+            <%= ", #{event.venue.country}" %></p>
           <p><%= event.venue.info %> </p>
         </div>
       <% end %>
