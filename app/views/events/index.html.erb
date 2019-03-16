@@ -1,5 +1,6 @@
 <div class="container">
   <!-- <#%= link_to 'profiles', users_index_path %> -->
+  <% Event.order('created_at DESC') %>
   <% @events.each do |event| %>
     <div class="card">
       <%= link_to(event) do %>
