@@ -106,10 +106,21 @@ def songkick_fetch_index2(band_name)
     all_events.each do |event|
       card_summary = event.search('.summary').text.downcase
       if card_summary.include?(band_name.downcase) || card_summary.include?("metal")
+        time = "TBD"
+        p city_country = event.search('p.location').text.strip.split(', ').reverse
+        p country = city_country[0]
+        if country == "US" || country == "Canada"
+          p state = city_country[1]
+          p city = city_country[2]
+        else
+          p city = city_country[1]
+        end
         root = "https://www.songkick.com"
         href = event.search('.summary a')[0]['href']
         event_url = root + href
+
         page = agent.get(event_url)
+
         page.search('div.event-header').empty? ? event_type = "festival" : event_type = "concert"
         p event_type
         dates = page.search('div.date-and-name p')
@@ -123,44 +134,14 @@ def songkick_fetch_index2(band_name)
         p title = page.search('h1').text.strip
         venue = page.search('div.component.venue-info')
         if venue.empty?
-          # raise "expected venue component to be found"
           p venue_name = title + "(venue TBD)"
-          venue_banner_arr = page.search('p.first-location').text.split(', ')
-          if venue_banner_arr.count == 2
-            p city = venue_banner_arr[0]
-            p country = venue_banner_arr[1]
-          else
-            raise "extra element in the venue city/country alt route"
-          end
+          p location_details = page.search('p.first-location').text
         else
           venue_details = page.search('div.venue-info-details')
           p venue_name = venue_details.search('a.url').first.text.upcase
           raw_address = venue_details.search('.venue-hcard').text.split("\n")
-          p raw_address = raw_address.each { |line| line.strip! }.select { |item| item != "" }.first(5)
-          if raw_address.count == 5
-            p street_address = raw_address[0]
-            zipcode = raw_address[1]
-            city_state_country = raw_address[2].split(',')
-            p city = city_state_country[0]
-            p state = city_state_country[1].strip
-            p country = city_state_country[2].strip
-          elsif raw_address.count == 4
-            p street_address = raw_address[0]
-            zipcode = raw_address[1]
-            city_state_country = raw_address[2].split(',')
-            p city = city_state_country[0]
-            p country = city_state_country[1].strip
-          elsif raw_address.count == 2
-            p city = raw_address[1].split(', ')[0]
-            p country = raw_address[1].split(', ')[1]
-          elsif raw_address.count == 1
-            city_country = raw_address.join(",").split(', ')
-            p city = city_country[0]
-            p country = city_country[1]
-          else
-            city = "missing"
-            country = "missing"
-          end
+          raw_address = raw_address.each { |line| line.strip! }.select { |item| item != "" }.first(5)
+          p location_details = raw_address.join(', ')
         end
         if event_type == "concert"
           if page.search('div.line-up').empty?
@@ -173,8 +154,7 @@ def songkick_fetch_index2(band_name)
           # raise "expected fest details to be found" if page.search('div.component.festival-details ul').empty?
           p description = page.search('div.component.festival-details ul').text.strip.gsub("\n", ', ').squeeze(' ')
         end
-        time = "TBD"
-        venue = Venue.new(name: venue_name, street_address: street_address, city: city, state: state, country: country)
+        venue = Venue.new(name: venue_name, info: location_details, city: city, state: state, country: country)
         if venue.save
           event = Event.create(date: date, end_date: end_date, time: time, title: title, description: description, venue: venue, url_link: event_url)
           puts "created event for #{event.date} at #{venue.name}"
@@ -202,7 +182,7 @@ def songkick_fetch_index2(band_name)
     puts "on to next page"
   end
 end
-songkick_fetch_index2("obituary")
+songkick_fetch_index2("tomb mold")
 
 
 def metallum_fetch_bands(genre)
