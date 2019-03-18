@@ -27,7 +27,7 @@ def songkick_fetch_index(band_name)
         time = "TBD"
         p city_country = event.search('p.location').text.strip.split(', ').reverse
         p country = city_country[0]
-        if country == "US" || country == "Canada"
+        if country.include?("US") || country.include?("Canada") || country.include?("Australia")
           p state = city_country[1]
           p city = city_country[2]
         else
@@ -100,7 +100,7 @@ def songkick_fetch_index(band_name)
     puts "on to next page"
   end
 end
-#songkick_fetch_index("mortuous")
+ songkick_fetch_index("tomb mold")
 
 
 def metallum_fetch_bands(genre)
@@ -138,5 +138,5 @@ def metallum_fetch_bands(genre)
   end
   browser.close
 end
-#metallum_fetch_bands("doom/black")
+# metallum_fetch_bands("doom/black")
 puts "ending seed.."

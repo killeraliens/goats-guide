@@ -7,7 +7,7 @@ class SkScrapeJob < ApplicationJob
 
   def perform(band_id)
     band = Band.find(band_id)
-    # bands = Band.all
+    bands = Band.all
     url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band.name}&type=upcoming"
     agent = Mechanize.new
     page = agent.get(url)

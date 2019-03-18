@@ -6,11 +6,25 @@ class Event < ApplicationRecord
   validates :date, uniqueness: { scope: :venue }
 
   def date_format
-    self.date.strftime('%a, %m %d, %Y')
+    date.strftime('%a, %b %d,  %Y')
+  end
+
+  def end_date_format
+    end_date.strftime('%a, %b %d, %Y')
   end
 
   def descript_limit
-    self.description.truncate(122)
+    description.truncate(122)
   end
 
+  def past
+    if end_date.nil? && date < Date.today
+      past
+    elsif !end_date.nil? && end_date < Date.today
+      past
+    end
+  end
+
+  def country
+  end
 end
