@@ -17,12 +17,12 @@
             <%= ", #{event.venue.country}" %></p>
           <p><%= event.venue.info %> </p>
           <p><%= "This event is over" if event.past %></p>
-          <p><%= event.country %> </p>
         </div>
       <% end %>
       <%= link_to 'save event', event_saved_events_path(event), method: :post %>
     </div>
   <% end %>
+
 </div>
 
 

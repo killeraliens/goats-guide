@@ -4,17 +4,18 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    if params[:query].present?
-      sql_query = " \
-        events.title ILIKE :query \
-        OR events.description ILIKE :query \
-        OR venues.name ILIKE :query \
-        OR venues.info ILIKE :query \
-      "
-      @events = Event.joins(:venue).where(sql_query, query: "%#{params[:query]}%")
-    else
-      @events = Event.order(date: 'ASC')
-    end
+    @events = Event.upcoming_events
+    # if params[:query].present?
+    #   sql_query = " \
+    #     events.title ILIKE :query \
+    #     OR events.description ILIKE :query \
+    #     OR venues.name ILIKE :query \
+    #     OR venues.info ILIKE :query \
+    #   "
+    #   @events = Event.joins(:venue).where(sql_query, query: "%#{params[:query]}%")
+    # else
+    #   @events = Event.order(date: 'ASC')
+    # end
   end
 
   def show
