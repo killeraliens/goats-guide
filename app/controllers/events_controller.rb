@@ -5,7 +5,13 @@ class EventsController < ApplicationController
 
   def index
     if params[:query].present?
-      @events = Event.where("description ILIKE ?", "%#{params[:query]}%")
+      sql_query = " \
+        events.title ILIKE :query \
+        OR events.description ILIKE :query \
+        OR venues.name ILIKE :query \
+        OR venues.info ILIKE :query \
+      "
+      @events = Event.joins(:venue).where(sql_query, query: "%#{params[:query]}%")
     else
       @events = Event.order(date: 'ASC')
     end
