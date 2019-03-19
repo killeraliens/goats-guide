@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'bands/create'
-  get 'bands/destroy'
+  # get 'bands/create'
+  # get 'bands/destroy'
   # get 'saved_events/create'
   # get 'users/index'
   # get 'users/show'
@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :events, only: [:index, :show, :new] do
     resources :saved_events, only: [:create]
   end
+  get 'past_events', to: 'events#index_past'
   resources :users, only: [:index, :show]
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do

@@ -1,10 +1,8 @@
 <div class="container">
   <%= link_to 'profiles', users_path %>
-  <%= link_to 'past', past_events_path %>
-  <%= form_tag events_path, method: :get do %>
-    <%= text_field_tag :query, params[:query], class: "", placeholder: "Search Events" %>
-    <!-- <#%= submit_tag "events", class: "", name: "events" %> -->
-    <!-- <#%= submit_tag "past", class: "", name: "past" %> -->
+  <%= link_to 'event', events_path %>
+  <%= form_tag past_events_path, method: :get do %>
+    <%= text_field_tag :query, params[:query], class: "", placeholder: "Search Past Events" %>
   <% end %>
 
 
@@ -29,5 +27,3 @@
   <% end %>
 
 </div>
-
-
