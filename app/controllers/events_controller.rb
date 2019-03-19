@@ -34,7 +34,14 @@ class EventsController < ApplicationController
   end
 
   def update
-
+  # if @event.user == current_user
+    @event.title = params[:event][:title]
+    @event.description = params[:event][:description]
+    if @event.save
+      redirect_to event_path(@event), notice: 'updated'
+    else
+      render :show, notice: "couldn't save"
+    end
   end
 
   private
