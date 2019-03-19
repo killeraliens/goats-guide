@@ -3,6 +3,13 @@
   <%= form_tag events_path, method: :get do %>
     <%= text_field_tag :query, params[:query], class: "", placeholder: "Search Events" %>
   <% end %>
+  <%= form_tag events_path, method: :get do %>
+     <%= submit_tag "events", class: "", name: "events" %>
+  <% end %>
+    <%= form_tag events_path, method: :get do %>
+    <%= submit_tag "past", class: "", name: "past" %>
+  <% end %>
+
   <% @events.each do |event| %>
     <div class="card">
       <%= link_to(event) do %>
