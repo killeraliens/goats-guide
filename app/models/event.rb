@@ -10,7 +10,7 @@ class Event < ApplicationRecord
   end
 
   def end_date_format
-    end_date.strftime('%a, %b %d, %Y')
+    end_date.strftime('%a, %b %d, %Y') if end_date
   end
 
   def descript_limit
@@ -20,7 +20,7 @@ class Event < ApplicationRecord
   def past
     if end_date.nil? && date < Date.today
       past
-    elsif !end_date.nil? && end_date < Date.today
+    elsif end_date && end_date < Date.today
       past
     end
   end

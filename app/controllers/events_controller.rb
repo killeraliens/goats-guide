@@ -4,7 +4,11 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @events = Event.all
+    if params[:query].present?
+      @events = Event.where("description ILIKE ?", "%#{params[:query]}%")
+    else
+      @events = Event.order(date: 'ASC')
+    end
   end
 
   def show
