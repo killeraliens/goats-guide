@@ -4,8 +4,10 @@ class Event < ApplicationRecord
   validates :title, :date, presence: true
   validates :title, :description, case_sensitive: false
   validates :date, uniqueness: { scope: :venue }
-  # scope :past, ->(past) { where past: past }
+  # scope :past_events, where('past is not null')
+  # scope :upcoming_events, where('past is null')
   # scope :query, ->(query) { where("query like ?", "%#{query}%") }
+  # scope :query, lambda {|query| where(["query LIKE :term", {term: "%#{query}%"}]) }
 
   def date_format
     date.strftime('%a, %b %d,  %Y')
@@ -24,6 +26,8 @@ class Event < ApplicationRecord
       true
     elsif end_date && end_date < Date.today
       true
+    else
+      false
     end
   end
 
