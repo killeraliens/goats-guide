@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :venue
+  belongs_to :user
   has_many :saved_events
   validates :title, :date, presence: true
   validates :title, :description, case_sensitive: false
