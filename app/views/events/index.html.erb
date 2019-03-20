@@ -4,8 +4,7 @@
     <!-- <#%= submit_tag "events", class: "", name: "events" %> -->
     <!-- <#%= submit_tag "past", class: "", name: "past" %> -->
   <% end %>
-
-
+ <%= render 'shared/tabs' %>
   <% @events.each do |event| %>
     <div class="card">
       <%= link_to(event) do %>

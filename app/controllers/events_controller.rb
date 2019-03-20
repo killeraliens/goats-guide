@@ -34,7 +34,6 @@ class EventsController < ApplicationController
   end
 
   def update
-  # if @event.user == current_user
     @event.title = params[:event][:title]
     @event.description = params[:event][:description]
     if @event.save
@@ -60,6 +59,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :date, :end_date, :time, :venue, :username)
+    params.require(:event).permit(:title, :description, :date, :end_date, :time, :venue)
   end
 end

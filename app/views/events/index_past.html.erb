@@ -2,8 +2,7 @@
   <%= form_tag past_events_path, method: :get do %>
     <%= text_field_tag :query, params[:query], class: "", placeholder: "Search Past Events" %>
   <% end %>
-
-
+ <%= render 'shared/tabs' %>
   <% @events.each do |event| %>
     <div class="card">
       <%= link_to(event) do %>
