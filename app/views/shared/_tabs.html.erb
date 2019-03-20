@@ -1,14 +1,14 @@
 <!-- Tabs -->
-<div class="container">
+<div class="container mt-3">
   <div class="tabs">
-    <div class="tabs-item active">
-      <h5><%= link_to 'EVENTS', events_path, class: current_class?(events_path) %></h5>
+    <div class="tabs-item <%= current_class?(events_path) %>">
+      <h5><%= link_to 'EVENTS', events_path %></h5>
     </div>
-    <div class="tabs-item">
-      <h5><%= link_to 'PAST', past_events_path, class: current_class?(past_events_path) %></h5>
+    <div class="tabs-item <%= current_class?(past_events_path) %>">
+      <h5><%= link_to 'PAST', past_events_path %></h5>
     </div>
-    <div class="tabs-item">
-      <h5><%= link_to 'PROFILES', users_path, class: current_class?(users_path) %></h5>
+    <div class="tabs-item <%= current_class?(users_path) %>">
+      <h5><%= link_to 'PROFILES', users_path %></h5>
     </div>
   </div>
  <!--  <div class="tabs-display">
