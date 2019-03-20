@@ -1,6 +1,6 @@
 <div class="container">
   <%= form_tag events_path, method: :get do %>
-    <%= text_field_tag :query, params[:query], class: "", placeholder: "Search Events" %>
+    <%= text_field_tag :query, params[:query], class: "form-inline", placeholder: "Search Events" %>
   <% end %>
   <%= render 'shared/tabs' %>
   <%= render 'shared/event_card_listings' %>

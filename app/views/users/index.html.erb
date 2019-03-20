@@ -3,6 +3,16 @@
     <%= text_field_tag :query, params[:query], class: "", placeholder: "Search Profiles" %>
   <% end %>
   <%= render 'shared/tabs' %>
-
+  <% @users.each do |user| %>
+  <div class="card">
+    <%= link_to(user) do %>
+      <div class="card-text">
+        <h3><%= user.username %></h3>
+        <p><%= user.email %></p>
+        <p>admin: <%= user.admin %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 </div>
 
