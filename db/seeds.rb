@@ -10,10 +10,7 @@ require 'pry-byebug'
 puts "seeding .."
 #Venue.destroy_all
 #Band.destroy_all
-
-# 5.times do
-#   User.create(username: Faker::Internet.username(8), email: Faker::Internet.email, password: Faker::Internet.password(8))
-# end
+#ScrapeJob.destroy_all
 
 # 5.times do
 #   user = User.create(username: Faker::Internet.username(8), email: Faker::Internet.email, password: Faker::Internet.password(8))
@@ -25,6 +22,7 @@ puts "seeding .."
 
 def songkick_fetch_index(band_name)
   url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band_name}&type=upcoming"
+  scrape_job = ScrapeJob.create(name: "generated from Songkick")
   agent = Mechanize.new
   page = agent.get(url)
   another_page = true
@@ -85,7 +83,6 @@ def songkick_fetch_index(band_name)
           p description = page.search('div.component.festival-details ul').text.strip.gsub("\n", ', ').squeeze(' ')
         end
         venue = Venue.new(name: venue_name, info: location_details, city: city, state: state, country: country)
-        scrape_job = ScrapeJob.create(name: "gg generated")
         if venue.save
           event = Event.create(
             date: date,
@@ -96,7 +93,6 @@ def songkick_fetch_index(band_name)
             url_link: event_url,
             event_creator: scrape_job
           )
-          event.save ? event.event_creator = scrape_job : scrape_job.destroy
           puts "created event for #{event.date} at #{venue.name}"
         else
           venue = Venue.find_by(name: venue_name, city: city)
@@ -108,10 +104,9 @@ def songkick_fetch_index(band_name)
             venue: venue, url_link: event_url,
             event_creator: scrape_job
           )
-          event.save ? event.event_creator = scrape_job : scrape_job.destroy
           puts "#{venue.name} already created, created this event for #{event.date}"
         end
-        sleep(0.5)
+        sleep(2)
         p "--------------"
       end
     end
