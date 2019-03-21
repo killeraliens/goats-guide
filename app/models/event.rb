@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :venue
-  # belongs_to :user
+  # belongs_to :event_creator, polymorphic: true
   has_many :saved_events
   validates :title, :date, presence: true
   validates :title, :description, case_sensitive: false
