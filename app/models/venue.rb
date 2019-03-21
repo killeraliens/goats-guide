@@ -3,8 +3,10 @@ class Venue < ApplicationRecord
   validates :name, :city, :country, presence: true
   validates :name, :street_address, :city, :state, :country, case_sensitive: false
   validates :name, uniqueness: { scope: :city }
+  geocoded_by :address
+  after_validation :geocode
 
   def address
-    [street, city, state, country].compact.join(', ')
+    [city, state, country].compact.join(', ')
   end
 end

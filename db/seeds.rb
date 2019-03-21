@@ -104,7 +104,7 @@ def songkick_fetch_index(band_name)
     puts "on to next page"
   end
 end
-#songkick_fetch_index("slayer")
+songkick_fetch_index("slayer")
 
 
 def metallum_fetch_bands(genre)
