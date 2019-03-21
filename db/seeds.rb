@@ -11,14 +11,9 @@ puts "seeding .."
 #Venue.destroy_all
 #Band.destroy_all
 
-
-5.times do
-  user = User.create(username: Faker::Internet.username(8), email: Faker::Internet.email, password: Faker::Internet.password(8))
-  2.times do
-    venue = Venue.create(name: Faker::Games::HalfLife.location, city: 'los angeles', country: 'us')
-    Event.create(title: Faker::Music::RockBand.name, description: Faker::Movies::VForVendetta.speech, date: Faker::Date.forward(23), time: Faker::Superhero.descriptor, venue: venue, user: user)
-  end
-end
+# 5.times do
+#   User.create(username: Faker::Internet.username(8), email: Faker::Internet.email, password: Faker::Internet.password(8))
+# end
 
 def songkick_fetch_index(band_name)
   url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band_name}&type=upcoming"
@@ -109,7 +104,7 @@ def songkick_fetch_index(band_name)
     puts "on to next page"
   end
 end
-#songkick_fetch_index("slayer")
+songkick_fetch_index("wyrd")
 
 
 def metallum_fetch_bands(genre)

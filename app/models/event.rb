@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :venue
-  belongs_to :user
+  # belongs_to :user
   has_many :saved_events
   validates :title, :date, presence: true
   validates :title, :description, case_sensitive: false
@@ -19,7 +19,7 @@ class Event < ApplicationRecord
   end
 
   def descript_limit
-    description.truncate(122)
+    description.truncate(122) if description
   end
 
   def past
@@ -44,6 +44,5 @@ class Event < ApplicationRecord
     return events
   end
 end
-
 
 

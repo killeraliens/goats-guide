@@ -25,7 +25,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.create(event_params)
-    @event.user = current_user
+    # @event.user = current_user
     if @event.save
       redirect_to event_path(@event), notice: 'event created'
     else
@@ -34,13 +34,13 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event.title = params[:event][:title]
-    @event.description = params[:event][:description]
-    if @event.save
-      redirect_to event_path(@event), notice: 'updated'
-    else
-      render :show, notice: "couldn't save"
-    end
+    # @event.title = params[:event][:title]
+    # @event.description = params[:event][:description]
+    # if @event.save
+    #   redirect_to event_path(@event), notice: 'updated'
+    # else
+    #   render :show, notice: "couldn't save"
+    # end
   end
 
   private

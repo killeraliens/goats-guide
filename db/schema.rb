@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_21_011338) do
+ActiveRecord::Schema.define(version: 2019_03_21_115114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,8 +32,6 @@ ActiveRecord::Schema.define(version: 2019_03_21_011338) do
     t.bigint "venue_id"
     t.string "url_link"
     t.date "end_date"
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_events_on_user_id"
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
@@ -74,7 +72,6 @@ ActiveRecord::Schema.define(version: 2019_03_21_011338) do
     t.float "longitude"
   end
 
-  add_foreign_key "events", "users"
   add_foreign_key "events", "venues"
   add_foreign_key "saved_events", "events"
   add_foreign_key "saved_events", "users"

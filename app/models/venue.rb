@@ -7,6 +7,6 @@ class Venue < ApplicationRecord
   after_validation :geocode
 
   def address
-    [street_address, city, state, country].compact.join(', ')
+    [city, state, country].compact.join(', ')
   end
 end
