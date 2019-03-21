@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_21_115114) do
+ActiveRecord::Schema.define(version: 2019_03_21_155725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 2019_03_21_115114) do
     t.bigint "venue_id"
     t.string "url_link"
     t.date "end_date"
+    t.string "event_creator_type"
+    t.bigint "event_creator_id"
+    t.index ["event_creator_type", "event_creator_id"], name: "index_events_on_event_creator_type_and_event_creator_id"
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 
@@ -42,6 +45,12 @@ ActiveRecord::Schema.define(version: 2019_03_21_115114) do
     t.datetime "updated_at", null: false
     t.index ["event_id"], name: "index_saved_events_on_event_id"
     t.index ["user_id"], name: "index_saved_events_on_user_id"
+  end
+
+  create_table "scrape_jobs", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

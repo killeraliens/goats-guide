@@ -1,14 +1,12 @@
 class Event < ApplicationRecord
   belongs_to :venue
-  # belongs_to :event_creator, polymorphic: true
+  belongs_to :event_creator, polymorphic: true
   has_many :saved_events
   validates :title, :date, presence: true
   validates :title, :description, case_sensitive: false
   validates :date, uniqueness: { scope: :venue }
   # scope :past_events, where('past is not null')
   # scope :upcoming_events, where('past is null')
-  # scope :query, ->(query) { where("query like ?", "%#{query}%") }
-  # scope :query, lambda {|query| where(["query LIKE :term", {term: "%#{query}%"}]) }
 
   def date_format
     date.strftime('%a, %b %d,  %Y')

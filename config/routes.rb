@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   # get 'users/show'
   devise_for :users
   root to: 'events#index'
+  # resources :scrape_job do
+  #   resources :events, only: [:create]
+  # end
   resources :events, only: [:index, :show, :new] do
     resources :saved_events, only: [:create]
   end

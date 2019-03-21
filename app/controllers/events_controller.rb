@@ -24,20 +24,13 @@ class EventsController < ApplicationController
   end
 
   def create
-    #if params[:user_id]
-      @event = Event.new(event_params)
-      # @event.event_creator = current_user
-      if @event.save
-        redirect_to event_path(@event), notice: 'event created'
-      else
-        render :new
-      end
-    #elsif params[:scrape_job_id]
-      # ec = ScrapeJob.find(params[:scrape_job_id])
-      # @event = Event.new(event_params)
-      # @event.event_creator = ec
-      # @event.save
-    # end
+    @event = Event.new(event_params)
+    @event.event_creator = current_user
+    if @event.save
+      redirect_to event_path(@event), notice: 'event created'
+    else
+      render :new
+    end
   end
 
   def update
@@ -66,7 +59,7 @@ class EventsController < ApplicationController
   end
 
   # def find_event_creator
-  #   if !params[:user_id].nil?
+  #   if !params[:event_creator].nil?
   #     @event.event_creator = User.find(params[:user_id])
   #   else
   #     @event.event_creator = ScrapeJob.find(params[:scrape_job_id])
