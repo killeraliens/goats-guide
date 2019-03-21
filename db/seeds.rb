@@ -124,6 +124,7 @@ def songkick_fetch_index(band_name)
     page_num += 1
     puts "on to next page"
   end
+  scrape_job.events.count == 0 ? scrape_job.destroy : scrape_job
 end
 songkick_fetch_index("wyrd")
 
