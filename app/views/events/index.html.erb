@@ -3,7 +3,11 @@
     <%= text_field_tag :query, params[:query], class: "form-inline", placeholder: "Search Events" %>
   <% end %>
   <%= render 'shared/tabs' %>
+  <%= cl_image_tag("z6lulbtchddsdfnuoojf", responsive_breakpoints: {
+  create_derived: true, bytes_step: 20000, min_width: 200, max_width: 1000, transformation: {
+  crop: :fill, aspect_ratio: "16:9", gravity: :auto } } ) %>
   <%= render 'shared/event_card_listings' %>
+
 
 </div>
 

@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   validates :date, uniqueness: { scope: :venue }
   scope :past_events, -> { where("date < ?", Date.today) }
   scope :upcoming_events, -> { where("date >= ?", Date.today) }
+  mount_uploader :photo, PhotoUploader
 
   def date_format
     date.strftime('%a, %b %d,  %Y')

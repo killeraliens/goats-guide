@@ -1,7 +1,6 @@
-
 class EventsController < ApplicationController
-  before_action :find_event, only: [:show, :update, :saved_event_create]
-  skip_before_action :authenticate_user!, only: [:index, :index_past, :show]
+  before_action :find_event, only: %i[show update saved_event_create]
+  skip_before_action :authenticate_user!, only: %i[index index_past show]
 
   def index
     if params[:query].present?
@@ -59,7 +58,7 @@ class EventsController < ApplicationController
   end
 
   # def find_event_creator
-  #   if !params[:event_creator].nil?
+  #   if params[:event_creator_type] == "User"
   #     @event.event_creator = User.find(params[:user_id])
   #   else
   #     @event.event_creator = ScrapeJob.find(params[:scrape_job_id])
@@ -67,6 +66,6 @@ class EventsController < ApplicationController
   # end
 
   def event_params
-    params.require(:event).permit(:title, :description, :date, :end_date, :time, :venue)
+    params.require(:event).permit(:title, :description, :date, :end_date, :time, :venue, :photo)
   end
 end
