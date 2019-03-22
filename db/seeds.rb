@@ -8,17 +8,21 @@ require 'watir'
 require 'pry-byebug'
 
 puts "seeding .."
-#Venue.destroy_all
+Event.destroy_all
+Venue.destroy_all
 #Band.destroy_all
-#ScrapeJob.destroy_all
+ScrapeJob.destroy_all
+User.destroy_all
+puts "destroying all"
 
-# 5.times do
-#   user = User.create(username: Faker::Internet.username(8), email: Faker::Internet.email, password: Faker::Internet.password(8))
-#   2.times do
-#     venue = Venue.create(name: Faker::Games::HalfLife.location, city: 'los angeles', country: 'us')
-#     Event.create(title: Faker::Music::RockBand.name, description: Faker::Movies::VForVendetta.speech, date: Faker::Date.forward(23), time: Faker::Superhero.descriptor, venue: venue, user: user)
-#   end
-# end
+5.times do
+  user = User.create!(username: Faker::Internet.username(8), email: Faker::Internet.email, password: Faker::Internet.password(8))
+  venue = Venue.create!(name: Faker::Games::HalfLife.location, city: 'los angeles', country: 'us')
+    2.times do
+      Event.create!(title: Faker::Music::RockBand.name, description: Faker::Movies::VForVendetta.speech, date: Faker::Date.forward(23), end_date: Faker::Date.forward(23), time: Faker::Superhero.descriptor, venue: venue, event_creator: user)
+    end
+end
+
 
 def songkick_fetch_index(band_name)
   url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band_name}&type=upcoming"
@@ -59,6 +63,7 @@ def songkick_fetch_index(band_name)
           end_date_str = dates.text.split.last(4).join(', ')
           p end_date = Date.parse(end_date_str)
         end
+        p end_date.nil? ? end_date = date : end_date
         p title = page.search('h1').text.strip
         venue = page.search('div.component.venue-info')
         if venue.empty?

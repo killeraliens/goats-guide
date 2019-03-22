@@ -6,6 +6,7 @@
         <p><%= event.descript_limit %></p>
         <p><%= event.date_format %> <%= "- #{event.end_date_format}" if event.end_date.nil? == false %></p>
         <p>time: <%= event.time %></p>
+        <p><%= event.event_creator_type %>
         <p><%= event.venue.name %> </p>
         <p><%= event.venue.city %>
           <%= ", #{event.venue.state}" if event.venue.state.nil? == false %>
