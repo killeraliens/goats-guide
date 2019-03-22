@@ -5,8 +5,8 @@ class Event < ApplicationRecord
   validates :title, :date, presence: true
   validates :title, :description, case_sensitive: false
   validates :date, uniqueness: { scope: :venue }
-  # scope :past_events, where('past is not null')
-  # scope :upcoming_events, where('past is null')
+  scope :past_events, -> { where("date < ?", Date.today) }
+  scope :upcoming_events, -> { where("date >= ?", Date.today) }
 
   def date_format
     date.strftime('%a, %b %d,  %Y')
@@ -28,18 +28,6 @@ class Event < ApplicationRecord
     else
       false
     end
-  end
-
-  def self.past_events
-    events = []
-       Event.all.each { |event| events << event if event.past }
-    return events
-  end
-
-  def self.upcoming_events
-    events = []
-    Event.all.each { |event| events << event if !event.past }
-    return events
   end
 end
 

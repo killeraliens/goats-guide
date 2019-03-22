@@ -73,13 +73,11 @@ def songkick_fetch_index(band_name)
         end
         if event_type == "concert"
           if page.search('div.line-up').empty?
-            # raise "expected lineup to be found"
             p description = page.search('div.row.component.brief div.location').text.strip.gsub("\n", ' ').squeeze(' ')
           else
             p description = page.search('div.line-up span').text.strip.gsub("\n", ', ').squeeze(' ')
           end
         elsif event_type == "festival"
-          # raise "expected fest details to be found" if page.search('div.component.festival-details ul').empty?
           p description = page.search('div.component.festival-details ul').text.strip.gsub("\n", ', ').squeeze(' ')
         end
         venue = Venue.new(name: venue_name, info: location_details, city: city, state: state, country: country)
