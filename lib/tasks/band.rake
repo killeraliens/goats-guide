@@ -14,4 +14,21 @@ namespace :band do
     puts "Enqueuing search scrape for #{band.name} ..."
     SkScrapeJob.perform_now(band.id)
   end
+
+  desc "Seeding custom band names (async)"
+  task create: :environment do
+    custom_bands = [
+      "Slægt", "Obituary", "Wyrd", "Burial Invocation", "Mortuous", "Necrot", "MGLA", "Cult of Fire",
+      "Petrification", "Mortiferum", "Tormentor", "Ultra Silvam", "Asphyx", "Phrenelith", "Horrendous", "Mortal Wound",
+      "Deathtopia", "Hellripper", "Venefixion", "Incantation", "Hyperdontia", "Extremity", "Archgoat", "Genocide Pact",
+      "Croc Noir", "Inferno", "Witch Vomit", "Witch Haven", "Obliteration", "Horna", "Cadaveric Incubator", "Butcher ABC",
+      "Axeslasher", "Tomb Mold"
+    ]
+    puts "Creating #{custom_bands.size} bands with names ..."
+    custom_bands.each do |band_name|
+      band = Band.create(name: band_name)
+      p "#{band_name} created" if band.save
+    end
+    p "Total bands in db: #{Band.all.size}"
+  end
 end

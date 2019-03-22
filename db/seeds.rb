@@ -8,12 +8,12 @@ require 'watir'
 require 'pry-byebug'
 
 puts "seeding .."
-Event.destroy_all
-Venue.destroy_all
+# Event.destroy_all
+# Venue.destroy_all
 #Band.destroy_all
-ScrapeJob.destroy_all
-User.destroy_all
-puts "destroying all"
+# ScrapeJob.destroy_all
+# User.destroy_all
+# puts "destroying all"
 
 # 5.times do
 #   user = User.create!(username: Faker::Internet.username(8), email: Faker::Internet.email, password: Faker::Internet.password(8))
@@ -90,7 +90,7 @@ def songkick_fetch_index(band_name)
           event = Event.create(
             date: date,
             end_date: end_date,
-            time: time, title: title,
+            time: time,
             title: title,
             description: description,
             venue: venue,
@@ -132,7 +132,7 @@ def songkick_fetch_index(band_name)
   end
   scrape_job.events.count.zero? ? scrape_job.destroy : scrape_job
 end
-songkick_fetch_index("wyrd")
+songkick_fetch_index("Slægt")
 
 
 def metallum_fetch_bands(genre)
