@@ -17,7 +17,7 @@ namespace :band do
 
   desc "Seeding custom band names (async)"
   task create: :environment do
-    Band.destroy_all
+    # Band.destroy_all
     custom_bands = [
       "Slægt", "Obituary", "Wyrd", "Burial Invocation", "Mortuous", "Necrot", "MGLA", "Cult of Fire",
       "Petrification", "Mortiferum", "Tormentor", "Ultra Silvam", "Asphyx", "Phrenelith", "Horrendous", "Mortal Wound",
