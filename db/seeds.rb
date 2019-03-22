@@ -15,18 +15,18 @@ ScrapeJob.destroy_all
 User.destroy_all
 puts "destroying all"
 
-5.times do
-  user = User.create!(username: Faker::Internet.username(8), email: Faker::Internet.email, password: Faker::Internet.password(8))
-  venue = Venue.create!(name: Faker::Games::HalfLife.location, city: 'los angeles', country: 'us')
-    2.times do
-      Event.create!(title: Faker::Music::RockBand.name, description: Faker::Movies::VForVendetta.speech, date: Faker::Date.forward(23), end_date: Faker::Date.forward(23), time: Faker::Superhero.descriptor, venue: venue, event_creator: user)
-    end
-end
+# 5.times do
+#   user = User.create!(username: Faker::Internet.username(8), email: Faker::Internet.email, password: Faker::Internet.password(8))
+#   venue = Venue.create!(name: Faker::Games::HalfLife.location, city: 'los angeles', country: 'us')
+#     2.times do
+#       Event.create!(title: Faker::Music::RockBand.name, description: Faker::Movies::VForVendetta.speech, date: Faker::Date.forward(23), end_date: Faker::Date.forward(23), time: Faker::Superhero.descriptor, venue: venue, event_creator: user)
+#     end
+# end
 
 
 def songkick_fetch_index(band_name)
   url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band_name}&type=upcoming"
-  scrape_job = ScrapeJob.create(name: "generated from Songkick")
+  scrape_job = ScrapeJob.create(name: "Songkick")
   agent = Mechanize.new
   page = agent.get(url)
   another_page = true
@@ -61,7 +61,7 @@ def songkick_fetch_index(band_name)
         p date = Date.parse(date_str)
         if multi_date
           end_date_str = dates.text.split.last(4).join(', ')
-          p end_date = Date.parse(end_date_str)
+          end_date = Date.parse(end_date_str)
         end
         p end_date.nil? ? end_date = date : end_date
         p title = page.search('h1').text.strip
@@ -91,6 +91,7 @@ def songkick_fetch_index(band_name)
             date: date,
             end_date: end_date,
             time: time, title: title,
+            title: title,
             description: description,
             venue: venue,
             url_link: event_url,
@@ -102,9 +103,11 @@ def songkick_fetch_index(band_name)
           event = Event.create(
             date: date,
             end_date: end_date,
-            time: time, title: title,
+            time: time,
+            title: title,
             description: description,
-            venue: venue, url_link: event_url,
+            venue: venue,
+            url_link: event_url,
             event_creator: scrape_job
           )
           puts "#{venue.name} already created, created this event for #{event.date}"
@@ -127,7 +130,7 @@ def songkick_fetch_index(band_name)
     page_num += 1
     puts "on to next page"
   end
-  scrape_job.events.count == 0 ? scrape_job.destroy : scrape_job
+  scrape_job.events.count.zero? ? scrape_job.destroy : scrape_job
 end
 songkick_fetch_index("wyrd")
 

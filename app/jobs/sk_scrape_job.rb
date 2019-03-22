@@ -7,13 +7,13 @@ class SkScrapeJob < ApplicationJob
 
   def perform(band_id)
     band = Band.find(band_id)
-    bands = Band.all
     url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band.name}&type=upcoming"
+    scrape_job = ScrapeJob.create(name: "Songkick")
     agent = Mechanize.new
     page = agent.get(url)
     another_page = true
     page_num = 1
-    pagination_with_link = page.search("div.pagination a" )
+    pagination_with_link = page.search("div.pagination a")
     no_results = page.search("div.no-results h2")
     while another_page == true && no_results.empty?
       all_events = page.search('div.component.search.event-listings.events-summary ul li')
@@ -43,8 +43,9 @@ class SkScrapeJob < ApplicationJob
           p date = Date.parse(date_str)
           if multi_date
             end_date_str = dates.text.split.last(4).join(', ')
-            p end_date = Date.parse(end_date_str)
+            end_date = Date.parse(end_date_str)
           end
+          p end_date.nil? ? end_date = date : end_date
           p title = page.search('h1').text.strip
           venue = page.search('div.component.venue-info')
           if venue.empty?
@@ -77,7 +78,8 @@ class SkScrapeJob < ApplicationJob
               title: title,
               description: description,
               venue: venue,
-              url_link: event_url
+              url_link: event_url,
+              event_creator: scrape_job
             )
             puts "created event for #{event.date} at #{venue.name}"
           else
@@ -89,11 +91,12 @@ class SkScrapeJob < ApplicationJob
               title: title,
               description: description,
               venue: venue,
-              url_link: event_url
+              url_link: event_url,
+              event_creator: scrape_job
             )
             puts "#{venue.name} already created, created this event for #{event.date}"
           end
-          sleep(0.5)
+          sleep(2)
           p "--------------"
         end
       end
@@ -111,5 +114,6 @@ class SkScrapeJob < ApplicationJob
       page_num += 1
       puts "on to next page"
     end
+    scrape_job.events.count.zero? ? scrape_job.destroy : scrape_job
   end
 end
