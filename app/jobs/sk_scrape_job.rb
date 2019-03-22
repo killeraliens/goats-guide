@@ -21,7 +21,7 @@ class SkScrapeJob < ApplicationJob
         card_summary = event.search('.summary').text.downcase
         if card_summary.include?(band.name.downcase) || card_summary.include?("metal")
           time = "TBD"
-          p city_country = event.search('p.location').text.strip.split(', ').reverse
+          city_country = event.search('p.location').text.strip.split(', ').reverse
           p country = city_country[0]
           if country.include?("US") || country.include?("Canada") || country.include?("Australia")
             p state = city_country[1]

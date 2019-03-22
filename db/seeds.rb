@@ -2,15 +2,15 @@ require 'nokogiri'
 require 'open-uri'
 require 'mechanize'
 require 'chromedriver-helper'
-# https://github.com/watir/watir_meta/wiki/Cheat-Sheet
-# https://nicksardo.wordpress.com/2014/11/17/screen-scraping-in-ruby-with-watir-and-nokogiri/
 require 'watir'
 require 'pry-byebug'
+# https://github.com/watir/watir_meta/wiki/Cheat-Sheet
+# https://nicksardo.wordpress.com/2014/11/17/screen-scraping-in-ruby-with-watir-and-nokogiri/
 
 puts "seeding .."
 # Event.destroy_all
 # Venue.destroy_all
-#Band.destroy_all
+# Band.destroy_all
 # ScrapeJob.destroy_all
 # User.destroy_all
 # puts "destroying all"
@@ -132,7 +132,7 @@ def songkick_fetch_index(band_name)
   end
   scrape_job.events.count.zero? ? scrape_job.destroy : scrape_job
 end
-songkick_fetch_index("Slægt")
+#songkick_fetch_index("Slægt")
 
 
 def metallum_fetch_bands(genre)

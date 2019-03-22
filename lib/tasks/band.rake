@@ -17,6 +17,7 @@ namespace :band do
 
   desc "Seeding custom band names (async)"
   task create: :environment do
+    Band.destroy_all
     custom_bands = [
       "Slægt", "Obituary", "Wyrd", "Burial Invocation", "Mortuous", "Necrot", "MGLA", "Cult of Fire",
       "Petrification", "Mortiferum", "Tormentor", "Ultra Silvam", "Asphyx", "Phrenelith", "Horrendous", "Mortal Wound",
@@ -26,8 +27,7 @@ namespace :band do
     ]
     puts "Creating #{custom_bands.size} bands with names ..."
     custom_bands.each do |band_name|
-      band = Band.create(name: band_name)
-      p "#{band_name} created" if band.save
+      Band.create(name: band_name)
     end
     p "Total bands in db: #{Band.all.size}"
   end
