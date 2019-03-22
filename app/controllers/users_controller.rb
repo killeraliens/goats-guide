@@ -9,9 +9,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def update
+    @user = User.find(params[:id])
+    @user.username = [params][:user][:username]
+    @user.photo = [params][:user][:photo]
+    if @user.save
+      redirect_to user_path(@user), notice: "Updated profile."
+    else
+      render :show, notice: "Couldn't save. Try a different username."
+    end
+  end
+
   private
 
-  # def user_params
-  #   params.require(:user).permit(:username)
-  # end
+  def user_params
+    params.require(:user).permit(:username, :photo)
+  end
 end
