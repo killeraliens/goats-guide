@@ -1,7 +1,7 @@
 class PhotoUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
-  def default_url
-    ActionController::Base.helpers.asset_path("default_event.png")
+  def default_url(*args)
+    ActionController::Base.helpers.asset_path("fallback/2_default.png")
   end
 end
