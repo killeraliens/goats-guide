@@ -26,7 +26,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.event_creator = current_user
     @venue = Venue.new(venue_params)
-      render :new, notice: "Name, city, and country fields are required" if !@venue.save
+    render :new, notice: "Name, city, and country fields are required" if !@venue.save
     if @event.save
       redirect_to event_path(@event), notice: 'event created'
     else
