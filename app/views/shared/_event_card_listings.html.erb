@@ -1,12 +1,6 @@
 <% @events.each do |event| %>
   <div class="card" style="
-  background-image: linear-gradient(120deg, rgba(0,0,0,0.9), rgba(0,0,0,0.5)),
-  <% if event.photo.nil? %>
-    url('<%= event.photo %>');
-  <% else %>
-    url('<%= cl_image_path "z6lulbtchddsdfnuoojf" %>');
-  <% end %>
-  ">
+  background-image: linear-gradient(120deg, rgba(0,0,0,0.9), rgba(0,0,0,0.5)), url('<%= event.photo %>'); ">
     <%= link_to(event) do %>
       <div class="card-text">
         <h3><%= event.title %></h3>
