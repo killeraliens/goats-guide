@@ -1,2 +1,8 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="card card-text">
+  <h2><%= @user.username %></h2>
+  <%= simple_form_do %>
+  <%= submit_tag %>
+  <p><%= @user.end_date_format %></p>
+  <p><%= @user.venue.name %> </p>
+  <p> <%= @results %></p>
+</div>

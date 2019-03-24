@@ -1,4 +1,3 @@
-<div class="container">
   <%= form_tag users_path, method: :get do %>
     <%= text_field_tag :query, params[:query], class: "", placeholder: "Search Profiles" %>
   <% end %>
@@ -7,6 +6,11 @@
   <div class="card">
     <%= link_to(user) do %>
       <div class="card-text">
+        <div class="avatar-square" style="
+            background-image:
+            url('<%= user.photo %>');
+          ">
+        </div>
         <h3><%= user.username %></h3>
         <p><%= user.email %></p>
         <p>admin: <%= user.admin %></p>
@@ -15,4 +19,3 @@
   </div>
 <% end %>
 </div>
-
