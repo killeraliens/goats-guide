@@ -1,0 +1,2 @@
+class UserRight < ApplicationRecord
+end
