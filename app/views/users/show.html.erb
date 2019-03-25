@@ -1,8 +1,17 @@
 <div class="card card-text">
   <h2><%= @user.username %></h2>
-  <%= simple_form_do %>
-  <%= submit_tag %>
-  <p><%= @user.end_date_format %></p>
-  <p><%= @user.venue.name %> </p>
+  <div class="avatar-square" style="
+            background-image:
+            url('<%= @user.photo %>');
+          ">
+  </div>
+  <% if @user == current_user %>
+  <%= simple_form_for @user do |f| %>
+      <%= f.input :photo, label: 'Set Profile Image' %>
+      <%= f.input :photo_cache, as: :hidden %>
+      <%= f.submit "Submit" %>
+    <% end %>
+  <% end %>
   <p> <%= @results %></p>
 </div>
+
