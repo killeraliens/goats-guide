@@ -19,32 +19,33 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    # @venue = Venue.new
+    # @event = Event.new
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.event_creator = current_user
-    @venue = Venue.new(venue_params)
-    render :new, notice: "Name, city, and country fields are required" if !@venue.save
-    if @event.save
-      redirect_to event_path(@event), notice: 'event created'
-    else
-      render :new, notice: "Missing required fields"
-    end
+    # @venue = Venue.new(venue_params)
+    # @event = Event.new(event_params)
+    # @event.event_creator = current_user
+    # render :new, notice: "Name, city, and country fields are required" if !@venue.save
+    # if @event.save
+    #   redirect_to event_path(@event), notice: 'event created'
+    # else
+    #   render :new, notice: "Missing required fields"
+    # end
   end
 
   def update
-    @event.title = params[:event][:title]
-    @event.description = params[:event][:description]
-    @event.date = params[:event][:date]
-    @event.end_date = params[:event][:end_date]
-    @event.photo = params[:event][:photo]
-    if @event.save
-      redirect_to event_path(@event), notice: 'Updated'
-    else
-      render :show, notice: "Couldn't save"
-    end
+    # @event.title = params[:event][:title]
+    # @event.description = params[:event][:description]
+    # @event.date = params[:event][:date]
+    # @event.end_date = params[:event][:end_date]
+    # @event.photo = params[:event][:photo]
+    # if @event.save
+    #   redirect_to event_path(@event), notice: 'Updated'
+    # else
+    #   render :show, notice: "Couldn't save"
+    # end
   end
 
   private

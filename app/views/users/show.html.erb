@@ -1,7 +1,7 @@
 <div class="card card-text">
   <h2><%= @user.username %></h2>
-  <p><%= @user.country %></p>
-  <p><%= @user.city %></p>
+  <p><%= @user.address %></p>
+
 
   <div class="avatar-square" style="
             background-image:
@@ -10,18 +10,18 @@
   </div>
   <% if @user == current_user %>
 
-  <div>
-    <%= simple_form_for(@user, url: user_path(@user), html: { method: :put } ) do |f| %>
-      <%= f.input :username, required: false, class: "" %>
-      <%= f.input :city, label: "city" %>
-      <%= f.input :city, as: :string, label: "country" %>
-      <%= f.input :photo, label: 'Set Profile Image' %>
-      <%= f.input :photo_cache, as: :hidden %>
-      <%= f.submit "Submit" %>
-    <% end %>
-  </div>
+    <div>
+      <%= simple_form_for(@user, url: user_path(@user), html: { method: :patch } ) do |f| %>
+        <%= f.input :username, required: false, class: "" %>
+        <%= f.input :city, label: "city" %>
+        <%= f.input :country, as: :string, label: "country" %>
+        <%= f.input :photo, label: 'Set Profile Image' %>
+        <%= f.input :photo_cache, as: :hidden %>
+        <%= f.submit "Submit" %>
+      <% end %>
+    </div>
 
 
-<% end %>
+  <% end %>
 </div>
 

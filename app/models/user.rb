@@ -6,5 +6,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :username, presence: true, uniqueness: { case_sensitive: false }
+  # validates :city, :country, presence: true
   mount_uploader :photo, PhotoUploader
+
+  def address
+    [city, state, country].compact.join(', ')
+  end
 end
+

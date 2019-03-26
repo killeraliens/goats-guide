@@ -14,9 +14,6 @@ class UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    # @user.username = params[:user][:username]
-    # @user.country = params[:user][:country]
-    # @user.photo = params[:user][:photo]
     if @user.save
       redirect_to user_path(@user), notice: "Updated profile."
     else
@@ -31,6 +28,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :photo, :country, :city)
+    params.require(:user).permit(:username, :photo, :country, :city, :state)
   end
 end
