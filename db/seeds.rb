@@ -22,6 +22,9 @@ puts "seeding .."
 #       Event.create!(title: Faker::Music::RockBand.name, description: Faker::Movies::VForVendetta.speech, date: Faker::Date.forward(23), end_date: Faker::Date.forward(23), time: Faker::Superhero.descriptor, venue: venue, event_creator: user)
 #     end
 # end
+5.times do
+  User.create!(username: Faker::Internet.username(8), email: Faker::Internet.email, password: Faker::Internet.password(8))
+end
 
 
 def songkick_fetch_index(band_name)
