@@ -4,8 +4,8 @@ class EventsController < ApplicationController
 
   def index
     if params[:query].present?
-      @events = Event.joins(:venue).where(sql_query, query: "%#{params[:query]}%").upcoming_events
-      # @events = Event.search(params[:query]).upcoming_events
+      # @events = Event.joins(:venue, :creator).where(sql_query, query: "%#{params[:query]}%").upcoming_events
+      @events = Event.global_search(params[:query]).upcoming_events
     else
       @events = Event.order(date: 'ASC').upcoming_events
     end
@@ -13,8 +13,8 @@ class EventsController < ApplicationController
 
   def index_past
     if params[:query].present?
-      @events = Event.joins(:venue).where(sql_query, query: "%#{params[:query]}%").past_events
-      # @events = Event.search(params[:query]).past_events
+      # @events = Event.joins(:venue, :creator).where(sql_query, query: "%#{params[:query]}%").past_events
+      @events = Event.global_search(params[:query]).past_events
     else
       @events = Event.order(date: 'ASC').past_events
     end
@@ -26,56 +26,43 @@ class EventsController < ApplicationController
   end
 
   def create
-    # @venue = Venue.new(venue_params)
-    # @event = Event.new(event_params)
-    # @event.event_creator = current_user
-    # render :new, notice: "Name, city, and country fields are required" if !@venue.save
-    # if @event.save
-    #   redirect_to event_path(@event), notice: 'event created'
-    # else
-    #   render :new, notice: "Missing required fields"
-    # end
+    @event = Event.new(event_params)
+    @event.creator = current_user
+    render :new, notice: "Name, city, and country fields are required" if !@venue.save
+    if @event.save
+      redirect_to event_path(@event), notice: 'event created'
+    else
+      render :new, notice: "Missing required fields"
+    end
   end
 
   def update
-    # @event.title = params[:event][:title]
-    # @event.description = params[:event][:description]
-    # @event.date = params[:event][:date]
-    # @event.end_date = params[:event][:end_date]
-    # @event.photo = params[:event][:photo]
-    # if @event.save
-    #   redirect_to event_path(@event), notice: 'Updated'
-    # else
-    #   render :show, notice: "Couldn't save"
-    # end
+    @event.update(event_params)
+    if @event.save
+      redirect_to event_path(@event), notice: 'Updated'
+    else
+      render :show, notice: "Couldn't save"
+    end
   end
 
   private
 
-  def sql_query
-    " \
-        events.title ILIKE :query \
-        OR events.description ILIKE :query \
-        OR events.event_creator ILIKE :query \
-        OR venues.name ILIKE :query \
-        OR venues.info ILIKE :query \
-      "
-  end
+  # def sql_query
+  #   " \
+  #       events.title ILIKE :query \
+  #       OR events.description ILIKE :query \
+  #       OR venues.name ILIKE :query \
+  #       OR venues.info ILIKE :query \
+  #       OR users.username ILIKE :query \
+  #     "
+  # end
 
   def find_event
     @event = Event.find(params[:id])
   end
 
-  # def find_event_creator
-  #   if params[:event_creator_type] == "User"
-  #     @event.event_creator = User.find(params[:user_id])
-  #   else
-  #     @event.event_creator = ScrapeJob.find(params[:scrape_job_id])
-  #   end
-  # end
-
   def event_params
-    params.require(:event).permit(:title, :description, :date, :end_date, :time, :venue, :photo)
+    params.require(:event).permit(:title, :description, :date, :end_date, :time, :venue, :photo, :creator, :source)
   end
 
   def venue_params

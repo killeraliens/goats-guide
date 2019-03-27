@@ -1,13 +1,14 @@
 <h2>Create Event</h2>
-<%= render "venues/form" %>
-<%= simple_form_for @event, html: { method: :post } do |f| %>
-
+<%= simple_form_for @event do |f| %>
   <div class="form-inputs">
-     <%= f.association :venue %>
-
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :date %>
+    <%= f.association :venue %>
   </div>
-
-
+  <div id="new-venue">
+    <%= render "venues/form" %>
+  </div>
   <div class="form-actions">
     <%= f.button :submit, "Add Event" %>
   </div>

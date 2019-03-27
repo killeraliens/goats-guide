@@ -8,15 +8,16 @@ class Event < ApplicationRecord
   scope :past_events, -> { where("date < ?", Date.today) }
   scope :upcoming_events, -> { where("date >= ?", Date.today) }
   mount_uploader :photo, PhotoUploader
-  # include PgSearch
-  # pg_search_scope :global_search,
-  #   against: [:title, :description, :date],
-  #   associated_against: {
-  #     venue: [:name, :info],
-  #   },
-  #   using: {
-  #     tsearch: { prefix: true }
-  #   }
+  include PgSearch
+  pg_search_scope :global_search,
+    against: [:title, :description, :date],
+    associated_against: {
+      venue: [:name, :info, :city, :state, :country],
+      creator: [:username]
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
 
   def date_format
     date.strftime('%a, %b %d,  %Y')

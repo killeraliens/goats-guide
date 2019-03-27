@@ -8,7 +8,6 @@ class SkScrapeJob < ApplicationJob
   def perform(band_id)
     band = Band.find(band_id)
     url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band.name}&type=upcoming"
-    # scrape_job = ScrapeJob.create(name: "Songkick")
     agent = Mechanize.new
     page = agent.get(url)
     another_page = true
@@ -60,13 +59,11 @@ class SkScrapeJob < ApplicationJob
           end
           if event_type == "concert"
             if page.search('div.line-up').empty?
-              # raise "expected lineup to be found"
               p description = page.search('div.row.component.brief div.location').text.strip.gsub("\n", ' ').squeeze(' ')
             else
               p description = page.search('div.line-up span').text.strip.gsub("\n", ', ').squeeze(' ')
             end
           elsif event_type == "festival"
-            # raise "expected fest details to be found" if page.search('div.component.festival-details ul').empty?
             p description = page.search('div.component.festival-details ul').text.strip.gsub("\n", ', ').squeeze(' ')
           end
           venue = Venue.new(name: venue_name, info: location_details, city: city, state: state, country: country)
@@ -79,7 +76,7 @@ class SkScrapeJob < ApplicationJob
               description: description,
               venue: venue,
               url_link: event_url,
-              # event_creator: scrape_job
+              source: "Songkick"
             )
             puts "created event for #{event.date} at #{venue.name}"
           else
@@ -92,7 +89,7 @@ class SkScrapeJob < ApplicationJob
               description: description,
               venue: venue,
               url_link: event_url,
-              # event_creator: scrape_job
+              source: "Songkick"
             )
             puts "#{venue.name} already created, created this event for #{event.date}"
           end
@@ -114,6 +111,5 @@ class SkScrapeJob < ApplicationJob
       page_num += 1
       puts "on to next page"
     end
-    scrape_job.events.count.zero? ? scrape_job.destroy : scrape_job
   end
 end

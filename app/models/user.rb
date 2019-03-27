@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :events, as: :event_creator, dependent: :destroy
+  has_many :events, foreign_key: :creator_id, dependent: :destroy
   has_many :saved_events, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,4 +13,3 @@ class User < ApplicationRecord
     [city, state, country].compact.join(', ')
   end
 end
-
