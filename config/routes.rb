@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'events#index'
   resources :venues, only: [:create]
-  resources :events, only: [:index, :show, :new] do
+  resources :events, only: [:index, :show, :new, :create] do
     resources :saved_events, only: [:create]
   end
   get 'past_events', to: 'events#index_past'

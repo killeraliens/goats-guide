@@ -4,7 +4,6 @@ class EventsController < ApplicationController
 
   def index
     if params[:query].present?
-      # @events = Event.joins(:venue, :creator).where(sql_query, query: "%#{params[:query]}%").upcoming_events
       @events = Event.global_search(params[:query]).upcoming_events
     else
       @events = Event.order(date: 'ASC').upcoming_events
@@ -13,7 +12,6 @@ class EventsController < ApplicationController
 
   def index_past
     if params[:query].present?
-      # @events = Event.joins(:venue, :creator).where(sql_query, query: "%#{params[:query]}%").past_events
       @events = Event.global_search(params[:query]).past_events
     else
       @events = Event.order(date: 'ASC').past_events
@@ -26,13 +24,18 @@ class EventsController < ApplicationController
   end
 
   def create
+    @venue = Venue.new(venue_params)
     @event = Event.new(event_params)
     @event.creator = current_user
-    render :new, notice: "Name, city, and country fields are required" if !@venue.save
-    if @event.save
-      redirect_to event_path(@event), notice: 'event created'
+    if @venue.save
+      @event.venue = @venue
     else
-      render :new, notice: "Missing required fields"
+      @event.venue = Venue.find_by(name: params[:venue][:name], city: params[:venue][:city])
+    end
+    if @event.save
+      redirect_to event_path(@event), notice: 'Event created.'
+    else
+      render :new, notice: "Missing required fields."
     end
   end
 
@@ -47,16 +50,6 @@ class EventsController < ApplicationController
 
   private
 
-  # def sql_query
-  #   " \
-  #       events.title ILIKE :query \
-  #       OR events.description ILIKE :query \
-  #       OR venues.name ILIKE :query \
-  #       OR venues.info ILIKE :query \
-  #       OR users.username ILIKE :query \
-  #     "
-  # end
-
   def find_event
     @event = Event.find(params[:id])
   end
@@ -66,6 +59,6 @@ class EventsController < ApplicationController
   end
 
   def venue_params
-    params.require(:venue).permit(:name, :country, :state, :city, :street_address, :info)
+    params.require(:venue).permit(:name, :country, :state, :city, :street, :info)
   end
 end

@@ -10,9 +10,9 @@ class Event < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   include PgSearch
   pg_search_scope :global_search,
-    against: [:title, :description, :date],
+    against: %i[title description date],
     associated_against: {
-      venue: [:name, :info, :city, :state, :country],
+      venue: %i[name info city state country],
       creator: [:username]
     },
     using: {
@@ -24,11 +24,11 @@ class Event < ApplicationRecord
   end
 
   def end_date_format
-    end_date.strftime('%a, %b %d, %Y') if end_date
+    end_date&.strftime('%a, %b %d, %Y')
   end
 
   def descript_limit
-    description.truncate(122) if description
+    description&.truncate(122)
   end
 
   def past
