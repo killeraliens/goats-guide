@@ -9,19 +9,11 @@
           ">
   </div>
   <% if @user == current_user %>
-
-    <div>
-      <%= simple_form_for(@user, url: user_path(@user), html: { method: :patch } ) do |f| %>
-        <%= f.input :username, required: false, class: "" %>
-        <%= f.input :city, label: "city" %>
-        <%= f.input :country, as: :string, label: "country" %>
-        <%= f.input :photo, label: 'Set Profile Image' %>
-        <%= f.input :photo_cache, as: :hidden %>
-        <%= f.submit "Submit" %>
-      <% end %>
-    </div>
-
-
+    <%= link_to "Edit Profile", edit_user_path(@user) %>
   <% end %>
+
+  <h5>Saved Events <%= @user.saved_events.count %></h5>
+  <h5>Created Events <%= @user.events.count %></h5>
+
 </div>
 

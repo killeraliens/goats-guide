@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # get 'users/show'
   devise_for :users
   root to: 'events#index'
-
+  resources :venues, only: [:create]
   resources :events, only: [:index, :show, :new] do
     resources :saved_events, only: [:create]
   end

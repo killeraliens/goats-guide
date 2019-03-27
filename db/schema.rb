@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_26_105504) do
+ActiveRecord::Schema.define(version: 2019_03_27_105016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,10 +32,9 @@ ActiveRecord::Schema.define(version: 2019_03_26_105504) do
     t.bigint "venue_id"
     t.string "url_link"
     t.date "end_date"
-    t.string "event_creator_type"
-    t.bigint "event_creator_id"
     t.string "photo"
-    t.index ["event_creator_type", "event_creator_id"], name: "index_events_on_event_creator_type_and_event_creator_id"
+    t.integer "creator_id"
+    t.string "source"
     t.index ["venue_id"], name: "index_events_on_venue_id"
   end
 

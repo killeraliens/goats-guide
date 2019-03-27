@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :venue
-  belongs_to :event_creator, polymorphic: true
+  belongs_to :creator, foreign_key: "creator_id", class_name: "User", optional: true
   has_many :saved_events
   validates :title, :date, presence: true
   validates :title, :description, case_sensitive: false
@@ -8,6 +8,15 @@ class Event < ApplicationRecord
   scope :past_events, -> { where("date < ?", Date.today) }
   scope :upcoming_events, -> { where("date >= ?", Date.today) }
   mount_uploader :photo, PhotoUploader
+  # include PgSearch
+  # pg_search_scope :global_search,
+  #   against: [:title, :description, :date],
+  #   associated_against: {
+  #     venue: [:name, :info],
+  #   },
+  #   using: {
+  #     tsearch: { prefix: true }
+  #   }
 
   def date_format
     date.strftime('%a, %b %d,  %Y')

@@ -1,0 +1,18 @@
+<h2>Create Venue</h2>
+
+<%= simple_form_for @venue do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :city %>
+    <%= f.input :state %>
+    <%= f.input :country, as: :string %>
+
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.button :submit, "Add Venue" %>
+  </div>
+<% end %>
+

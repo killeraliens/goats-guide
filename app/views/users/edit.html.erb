@@ -1,0 +1,10 @@
+<div>
+  <%= simple_form_for(@user, url: user_path(@user), html: { method: :patch } ) do |f| %>
+    <%= f.input :photo, label: 'Set Profile Image' %>
+    <%= f.input :photo_cache, as: :hidden %>
+    <%= f.input :username, required: false, class: "" %>
+    <%= f.input :city, label: "city" %>
+    <%= f.input :country, as: :string, label: "country" %>
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>

@@ -8,7 +8,7 @@ class SkScrapeJob < ApplicationJob
   def perform(band_id)
     band = Band.find(band_id)
     url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band.name}&type=upcoming"
-    scrape_job = ScrapeJob.create(name: "Songkick")
+    # scrape_job = ScrapeJob.create(name: "Songkick")
     agent = Mechanize.new
     page = agent.get(url)
     another_page = true
@@ -79,7 +79,7 @@ class SkScrapeJob < ApplicationJob
               description: description,
               venue: venue,
               url_link: event_url,
-              event_creator: scrape_job
+              # event_creator: scrape_job
             )
             puts "created event for #{event.date} at #{venue.name}"
           else
@@ -92,7 +92,7 @@ class SkScrapeJob < ApplicationJob
               description: description,
               venue: venue,
               url_link: event_url,
-              event_creator: scrape_job
+              # event_creator: scrape_job
             )
             puts "#{venue.name} already created, created this event for #{event.date}"
           end

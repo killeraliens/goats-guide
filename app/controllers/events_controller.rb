@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   def index
     if params[:query].present?
       @events = Event.joins(:venue).where(sql_query, query: "%#{params[:query]}%").upcoming_events
+      # @events = Event.search(params[:query]).upcoming_events
     else
       @events = Event.order(date: 'ASC').upcoming_events
     end
@@ -13,14 +14,15 @@ class EventsController < ApplicationController
   def index_past
     if params[:query].present?
       @events = Event.joins(:venue).where(sql_query, query: "%#{params[:query]}%").past_events
+      # @events = Event.search(params[:query]).past_events
     else
       @events = Event.order(date: 'ASC').past_events
     end
   end
 
   def new
-    # @venue = Venue.new
-    # @event = Event.new
+    @event = Event.new
+    @venue = Venue.new
   end
 
   def create
@@ -54,6 +56,7 @@ class EventsController < ApplicationController
     " \
         events.title ILIKE :query \
         OR events.description ILIKE :query \
+        OR events.event_creator ILIKE :query \
         OR venues.name ILIKE :query \
         OR venues.info ILIKE :query \
       "

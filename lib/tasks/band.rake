@@ -15,7 +15,7 @@ namespace :band do
     SkScrapeJob.perform_now(band.id)
   end
 
-  desc "Seeding custom band names (async)"
+  desc "Seeding custom band names (sync)"
   task create: :environment do
     # Band.destroy_all
     custom_bands = [
