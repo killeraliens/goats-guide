@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to user_path(@user), notice: "Updated profile."
     else
-      render :show, notice: "Couldn't save."
+      render :edit, notice: "Couldn't save."
     end
   end
 
@@ -33,10 +33,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :photo, :country, :city, :state)
+    params.require(:user).permit(:username, :photo, :country, :city, :state, :quote)
   end
 
-  def url_link_params
-    params.require(:url_link).permit(:url)
-  end
 end

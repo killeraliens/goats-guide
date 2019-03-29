@@ -12,8 +12,10 @@
   <% end %>
 
   <% @user.url_links.each do |link| %>
-    <a href="#{link}"><%= link %></a>
+    <a href="#{link}"><%= link.url %></a>
   <% end %>
+
+  <h5>"<%= @user.quote %>"</h5>
 
   <h5>Saved Events <%= @user.saved_events.count %></h5>
   <h5>Created Events <%= @user.events.count %></h5>
