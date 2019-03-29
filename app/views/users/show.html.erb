@@ -11,6 +11,10 @@
     <%= link_to "Edit Profile", edit_user_path(@user) %>
   <% end %>
 
+  <% @user.url_links.each do |link| %>
+    <a href="#{link}"><%= link %></a>
+  <% end %>
+
   <h5>Saved Events <%= @user.saved_events.count %></h5>
   <h5>Created Events <%= @user.events.count %></h5>
 

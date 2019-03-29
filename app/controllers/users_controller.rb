@@ -7,14 +7,18 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
   end
 
   def edit
+    @url_link = UrlLink.new(url: params[:url], user_id: params[:id])
   end
 
   def update
-    @user.update(user_params)
+    if params[:url_link].present?
+      @url_link = UrlLink.new(url: params[:url_link][:url], user_id: params[:id])
+      @url_link.save
+    end
+    @user.update(user_params) if params[:user].present?
     if @user.save
       redirect_to user_path(@user), notice: "Updated profile."
     else
@@ -30,5 +34,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :photo, :country, :city, :state)
+  end
+
+  def url_link_params
+    params.require(:url_link).permit(:url)
   end
 end

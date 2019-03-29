@@ -5,6 +5,17 @@
     <%= f.input :username, required: false, class: "" %>
     <%= f.input :city, label: "city" %>
     <%= f.input :country, as: :string, label: "country" %>
+    <!-- for.each @url_links -->
     <%= f.submit "Submit" %>
   <% end %>
+
+    <% if @user.url_links.count <= 150 %>
+      <%= simple_form_for(@url_link, url: user_path(@user), html: { method: :put}) do |f| %>
+      <%= f.input :url, label: "add site link" %>
+      <%= f.submit "Submit" %>
+      <% end %>
+    <% end %>
+
+
+
 </div>
