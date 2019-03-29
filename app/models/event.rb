@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   validates :title, :date, presence: true
   validates :title, :description, case_sensitive: false
   validates :date, uniqueness: { scope: :venue }
-  scope :past_events, -> { where("date < ?", Date.today) }
+  scope :past_events, -> { where("end_date < ?", Date.today) }
   scope :upcoming_events, -> { where("date >= ?", Date.today) }
   mount_uploader :photo, PhotoUploader
   include PgSearch

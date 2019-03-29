@@ -1,5 +1,8 @@
 <%= form_tag events_path, method: :get, class: "form-inline" do %>
   <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Events" %>
+  <%= date_field_tag :date %>
+  <%= date_field_tag :end_date %>
+  <%= submit_tag %>
 <% end %>
 
 <%= render 'shared/tabs' %>
