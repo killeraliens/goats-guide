@@ -5,14 +5,15 @@ class EventsController < ApplicationController
   def index
     startdate = Date.today
     enddate = (Date.today + 100.year)
-    query = ""
-
     startdate = params[:date] if params[:date].present?
     enddate = params[:end_date] if params[:end_date].present?
-    query = params[:query] if params[:query].present?
 
-    @events = Event.where("date >= ? AND end_date <= ?", startdate, enddate)
-                   .order(date: 'ASC').global_search(query).upcoming_events
+    query = params[:query] if params[:query].present?
+    if params[:query].present?
+      @events = Event.where("date >= ? AND date <= ?", startdate, enddate).order(date: 'ASC').global_search(query).upcoming_events
+    else
+      @events = Event.where("date >= ? AND date <= ?", startdate, enddate).order(date: 'ASC').upcoming_events
+    end
   end
 
   def index_past
