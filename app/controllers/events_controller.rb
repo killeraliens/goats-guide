@@ -3,12 +3,10 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index index_past show]
 
   def index
-    startdate = Date.today
-    enddate = (Date.today + 100.year)
-    startdate = params[:date] if params[:date].present?
-    enddate = params[:end_date] if params[:end_date].present?
-
+    params[:date].present? ? startdate = params[:date] : startdate = Date.today
+    params[:end_date].present? ? enddate = params[:end_date] : enddate = (Date.today + 100.year)
     query = params[:query] if params[:query].present?
+
     if params[:query].present?
       @events = Event.where("date >= ? AND date <= ?", startdate, enddate).order(date: 'ASC').global_search(query).upcoming_events
     else
