@@ -1,9 +1,12 @@
-<%= form_tag events_path, method: :get, class: "form-inline" do %>
-  <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Events" %>
-  <%= date_field_tag :date %>
-  <%= date_field_tag :end_date %>
-  <%= submit_tag %>
+<%= simple_form_for events_path, method: :get do |f| %>
+  <div class="form-inline">
+    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Events" %>
+    <%= f.date_field :date, class: "form-control" %>
+    <%= f.date_field :end_date, class: "form-control" %>
+    <%= f.submit "Submit", class: "form-control" %>
+  </div>
 <% end %>
 
 <%= render 'shared/tabs' %>
-<%= render 'shared/event_card_listings' %>
+<%= render 'event_card_listings' %>
+

@@ -3,12 +3,13 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index index_past show]
 
   def index
-    params[:date].present? ? startdate = params[:date] : startdate = Date.today
-    params[:end_date].present? ? enddate = params[:end_date] : enddate = (Date.today + 100.year)
+    params["/events"][:date].present? ? startdate = params["/events"][:date] : startdate = Date.today
+    params["/events"][:end_date].present? ? enddate = params["/events"][:end_date] : enddate = (Date.today + 100.year)
     query = params[:query] if params[:query].present?
 
     if params[:query].present?
-      @events = Event.where("date >= ? AND date <= ?", startdate, enddate).order(date: 'ASC').global_search(query).upcoming_events
+      @events = Event.where("date >= ? AND date <= ?", startdate, enddate).order(date: 'ASC')
+                     .global_search(query).upcoming_events
     else
       @events = Event.where("date >= ? AND date <= ?", startdate, enddate).order(date: 'ASC').upcoming_events
     end
@@ -23,13 +24,14 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
     @venue = Venue.new
+    @event = Event.new
   end
 
   def create
     @venue = Venue.new(venue_params)
     @event = Event.new(event_params)
+    # raise
     @event.creator = current_user
     if @venue.save
       @event.venue = @venue
@@ -59,7 +61,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :date, :end_date, :time, :venue, :photo, :creator, :source)
+    params.require(:event).permit(:title, :description, :date, :end_date, :time, :photo, :source)
   end
 
   def venue_params
