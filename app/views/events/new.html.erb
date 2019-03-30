@@ -4,12 +4,25 @@
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :description %>
-    <%= f.input :date %>
+    <%= f.date_field :date %>
     <!-- <#%= f.association :venue %> -->
   </div>
-  <div class="form-actions">
-    <%= f.button :submit, "Add Event", class: "btn btn-gg" %>
-  </div>
-  <%= render "venues/form" %>
+  <!-- <div class="form-actions">
+    <#%= f.button :submit, "Add Event", class: "btn btn-gg" %>
+  </div> -->
+
+  <%= simple_form_for @venue do |f| %>
+    <div class="form-inputs">
+      <%= f.input :name, error: "This venue has an event for your date already" %>
+      <%= f.input :country, as: :string, id: "goats"  %>
+      <%= f.input :state %>
+      <%= f.input :city %>
+      <%= f.input :street %>
+      <%= f.input :info %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Create Event" %>
+    </div>
+  <% end %>
 <% end %>
 

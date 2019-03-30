@@ -3,8 +3,8 @@ class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index index_past show]
 
   def index
-    params["/events"][:date].present? ? startdate = params["/events"][:date] : startdate = Date.today
-    params["/events"][:end_date].present? ? enddate = params["/events"][:end_date] : enddate = (Date.today + 100.year)
+    params[:date].present? ? startdate = params[:date] : startdate = Date.today
+    params[:end_date].present? ? enddate = params[:end_date] : enddate = (Date.today + 100.year)
     query = params[:query] if params[:query].present?
 
     if params[:query].present?
@@ -31,7 +31,6 @@ class EventsController < ApplicationController
   def create
     @venue = Venue.new(venue_params)
     @event = Event.new(event_params)
-    # raise
     @event.creator = current_user
     if @venue.save
       @event.venue = @venue
