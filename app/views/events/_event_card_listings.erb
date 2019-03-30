@@ -34,7 +34,17 @@
           </div>
         </div>
       </div>
+
     <% end %>
-    <%= link_to 'save event', event_saved_events_path(event), method: :post %>
+
+    <% saved_event_ids = current_user.saved_events.map {|event| event.event_id } %>
+    <% saved_events = Event.find(saved_event_ids) %>
+    <% if !saved_events.map(&:id).include?(event.id) %>
+      <%= link_to 'save event', event_saved_events_path(event), method: :post %>
+    <% else %>
+      <% saved_event = SavedEvent.find_by(user_id: current_user, event_id: event[:id]) %>
+      <%= link_to 'remove from saved', event_saved_event_path(event_id: event.id, id: saved_event.id ), method: :delete %>
+
+    <% end %>
   </div>
 <% end %>

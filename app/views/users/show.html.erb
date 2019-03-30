@@ -17,7 +17,8 @@
 
   <h5>"<%= @user.quote %>"</h5>
 
-  <h5>Saved Events <%= @user.saved_events.count %></h5>
+  <h5>Saved Events </h5>
+  <%= render "events/event_card_listings" %>
   <h5>Created Events <%= @user.events.count %></h5>
 
 </div>

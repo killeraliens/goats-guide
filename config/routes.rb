@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   root to: 'events#index'
   resources :venues, only: [:create]
   resources :events, only: [:index, :show, :new, :create] do
-    resources :saved_events, only: [:create]
+    resources :saved_events, only: [:create, :destroy]
   end
   get 'past_events', to: 'events#index_past'
   resources :users, only: [:index, :show, :edit, :update]

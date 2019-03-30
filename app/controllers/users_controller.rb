@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    saved_event_ids = @user.saved_events.map {|event| event.event_id }
+    @events = Event.find(saved_event_ids)
   end
 
   def edit
@@ -35,5 +37,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:username, :photo, :country, :city, :state, :quote)
   end
-
 end
