@@ -1,4 +1,9 @@
 <div>
+  <div class="avatar-square profile" style="
+            background-image:
+            url(<%= @user.photo %>);
+          ">
+  </div>
   <!-- updating user fields -->
   <%= simple_form_for(@user, url: user_path(@user), html: { method: :patch } ) do |f| %>
     <%= f.input :photo, label: 'Set Profile Image' %>
@@ -8,14 +13,13 @@
     <%= f.input :state, label: "State" %>
     <%= f.input :country, as: :string, label: "Country" %>
     <%= f.input :quote, label: "Quote" %>
-    <%= f.submit "Submit" %>
-  <% end %>
 
 <!-- adding a new url_link -->
-  <% if @user.url_links.count <= 150 %>
-    <%= simple_form_for(@url_link, url: user_path(@user), html: { method: :patch }) do |f| %>
-      <%= f.input :url, label: "Add Site Link" %>
-      <%= f.submit "Submit" %>
+    <% if @user.url_links.count <= 150 %>
+      <%= simple_form_for(@url_link, url: user_path(@user), html: { method: :patch }) do |f| %>
+        <%= f.input :url, label: "Add Site Link" %>
+        <%= f.submit "Submit" %>
+      <% end %>
     <% end %>
   <% end %>
 </div>

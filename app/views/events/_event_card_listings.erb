@@ -6,6 +6,7 @@
     <%= link_to(event) do %>
       <div class="card-text">
         <div class="d-flex">
+        </div>
           <div class="cal">
             <div class="cal-month">
               <p><%= event.date.strftime("%b") %></p>
@@ -30,21 +31,23 @@
               <%= ", #{event.venue.country}" %></p>
             <p><%= event.venue.info %> </p>
             <p><%= "This event is over" if event.past %></p>
+            <% if current_user  %>
+              <% saved_event_ids = current_user.saved_events.map {|event| event.event_id } %>
+              <% saved_events = Event.find(saved_event_ids) %>
+              <% if !saved_events.map(&:id).include?(event.id) %>
+                <%= link_to 'save event', event_saved_events_path(event), method: :post %>
+              <% else %>
+                <% saved_event = SavedEvent.find_by(user_id: current_user, event_id: event[:id]) %>
+                <%= link_to 'remove saved',
+                event_saved_event_path(event_id: event.id, id: saved_event.id ), method: :delete %>
+              <% end %>
+            <% end %>
 
           </div>
-        </div>
       </div>
 
     <% end %>
 
-    <% saved_event_ids = current_user.saved_events.map {|event| event.event_id } %>
-    <% saved_events = Event.find(saved_event_ids) %>
-    <% if !saved_events.map(&:id).include?(event.id) %>
-      <%= link_to 'save event', event_saved_events_path(event), method: :post %>
-    <% else %>
-      <% saved_event = SavedEvent.find_by(user_id: current_user, event_id: event[:id]) %>
-      <%= link_to 'remove from saved', event_saved_event_path(event_id: event.id, id: saved_event.id ), method: :delete %>
 
-    <% end %>
   </div>
 <% end %>
