@@ -1,8 +1,8 @@
-<div class="container">
   <%= form_tag past_events_path, method: :get do %>
     <%= text_field_tag :query, params[:query], class: "", placeholder: "Search Past Events" %>
   <% end %>
- <%= render 'shared/tabs' %>
- <%= render 'event_card_listings' %>
+<div class="">
+  <%= render 'shared/tabs' %>
+  <%= render 'event_card_listings' %>
 
 </div>

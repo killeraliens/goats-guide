@@ -1,47 +1,55 @@
 <% @events.each do |event| %>
-  <div class="card mt-3" style="
-    background-image: linear-gradient(120deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)),
-    url('<%= event.photo %>');
-  ">
+  <div class="card mt-3" >
     <%= link_to(event) do %>
-      <div class="card-text">
-        <div class="d-flex">
+    <div class="card-banner">
+      <div class="card-banner-image" style="
+      background-image: linear-gradient(120deg, rgba(0,0,0,0.8), rgba(0,0,0,0.6)),
+      url('<%= event.photo %>');"></div>
+      <div class="cal">
+        <div class="cal-month">
+          <p><%= event.date.strftime("%b") %></p>
         </div>
-          <div class="cal">
-            <div class="cal-month">
-              <p><%= event.date.strftime("%b") %></p>
-            </div>
-            <div class="cal-day">
-              <h1><%= event.date.day %></h1>
-            </div>
-            <div class="cal-weekday">
-              <p><%= event.date.strftime("%A") %></p>
-            </div>
-          </div>
+        <div class="cal-day">
+          <h1><%= event.date.day %></h1>
+        </div>
+        <div class="cal-weekday">
+          <p><%= event.date.strftime("%A") %></p>
+        </div>
+      </div>
+    </div>
 
+      <div class="card-text">
           <div class="card-details">
-            <h1><%= event.title %></h1>
-            <p><%= event.descript_limit %></p>
-            <p><%= event.date_format %> <%= "- #{event.end_date_format}" if event.end_date.nil? == false %></p>
-            <p>time: <%= event.time %></p>
-            <p><%= event.creator %>
-            <p><%= event.venue.name %> </p>
-            <p><%= event.venue.city %>
-              <%= ", #{event.venue.state}" if event.venue.state.nil? == false %>
-              <%= ", #{event.venue.country}" %></p>
-            <p><%= event.venue.info %> </p>
-            <p><%= "This event is over" if event.past %></p>
-            <% if current_user  %>
-              <% saved_event_ids = current_user.saved_events.map {|event| event.event_id } %>
-              <% saved_events = Event.find(saved_event_ids) %>
-              <% if !saved_events.map(&:id).include?(event.id) %>
-                <%= link_to 'save event', event_saved_events_path(event), method: :post %>
-              <% else %>
-                <% saved_event = SavedEvent.find_by(user_id: current_user, event_id: event[:id]) %>
-                <%= link_to 'remove saved',
-                event_saved_event_path(event_id: event.id, id: saved_event.id ), method: :delete %>
+            <div class="card-date-row">
+              <span class ="card-date"><%= event.date_format %>
+                <%= "- #{event.end_date_format}" if !event.end_date.nil? && event.end_date != event.date %>
+              </span>
+              <% if current_user  %>
+                <div class="card-save-link">
+                  <% saved_event_ids = current_user.saved_events.map {|event| event.event_id } %>
+                  <% saved_events = Event.find(saved_event_ids) %>
+                  <% if !saved_events.map(&:id).include?(event.id) %>
+                    <%= link_to 'save', event_saved_events_path(event), method: :post %>
+                  <% else %>
+                    <% saved_event = SavedEvent.find_by(user_id: current_user, event_id: event[:id]) %>
+                    <%= link_to 'unsave',
+                    event_saved_event_path(event_id: event.id, id: saved_event.id ), method: :delete %>
+                  <% end %>
+                </div>
               <% end %>
-            <% end %>
+
+            </div>
+            <h1><%= event.title %></h1>
+            <p><%= event.description.present? ? event.descript_limit : "" %></p>
+
+            <div class="card-location-row">
+              <span><i class="fas fa-map-marker"></i></span>
+              <p><%= event.venue.city %><%= ", #{event.venue.state}" if !event.venue.state.nil? %>
+                <%= "- #{event.venue.country} -" %>
+                <%= event.venue.name %>
+              </p>
+            </div>
+
 
           </div>
       </div>

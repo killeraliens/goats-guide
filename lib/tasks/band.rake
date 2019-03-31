@@ -23,7 +23,9 @@ namespace :band do
       "Petrification", "Mortiferum", "Tormentor", "Ultra Silvam", "Asphyx", "Phrenelith", "Horrendous", "Mortal Wound",
       "Deathtopia", "Hellripper", "Venefixion", "Incantation", "Hyperdontia", "Extremity", "Archgoat", "Genocide Pact",
       "Croc Noir", "Inferno", "Witch Vomit", "Witch Haven", "Obliteration", "Horna", "Cadaveric Incubator", "Butcher ABC",
-      "Axeslasher", "Tomb Mold"
+      "Axeslasher", "Tomb Mold", "Teethgrinder", "Graceless", "Soulburn", "Fabulous Desaster", "Suffocation", "Vastum",
+      "Demilich", "Korpse", "Wormrot", "Disma", "Cancer", "Entrails", "Dismember", "Nokturnal Mortum", "Kroda", "Slayer",
+      "Agoraphobic Nosebleed", "Abhorrence", "Demigod", "White Death", "Gorgoroth", "B"
     ]
     puts "Creating #{custom_bands.size} bands with names ..."
     custom_bands.each do |band_name|

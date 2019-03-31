@@ -1,30 +1,30 @@
 .tabs {
   /*padding: 5px 5px 0 5px;*/
-  color:#4A4A4A;
+  color: $inactive-text-gray;
   display: flex;
 }
 
 
 .tabs h5 {
-  color:#4A4A4A;
+  color: $inactive-text-gray;
   font-size: 12px;
   letter-spacing: 1px;
   margin: 16px;
   a {
-    color:#4A4A4A;
+    color: $inactive-text-gray;
   }
 }
 .tabs-item {
   flex: 1 0 auto;
   text-align: center;
-  border-bottom: 1px solid #4A4A4A;
+  border-bottom: 1px solid $border-gray;
   justify-content: center;
   /*margin: 5px 5px 0 5px;*/
 }
 
 
 .tabs-item.active {
-  border: 1px solid #4A4A4A;
+  border: 1px solid $border-gray;
   border-bottom: none;
   // background-color: rgbA(0,0,0,.2);
   a {
@@ -34,7 +34,7 @@
 
 .tabs-display {
   height: 500px;
-  border: 1px solid #4A4A4A;
+  border: 1px solid $border-gray;
   border-top: none;
   /*background:  rgb(12,12,12) linear-gradient(180deg,
     rgba(12,12,12,.6) 0%,

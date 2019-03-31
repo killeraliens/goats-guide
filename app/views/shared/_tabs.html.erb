@@ -1,8 +1,8 @@
 <!-- Tabs -->
-<div class="container mt-3">
+<div class="mt-3">
   <div class="tabs">
-    <div class="tabs-item <%= current_class?(root_path) %>">
-      <h5><%= link_to 'EVENTS', root_path %></h5>
+    <div class="tabs-item <%= current_class?(events_path) %>">
+      <h5><%= link_to 'EVENTS', events_path %></h5>
     </div>
     <div class="tabs-item <%= current_class?(past_events_path) %>">
       <h5><%= link_to 'PAST', past_events_path %></h5>
