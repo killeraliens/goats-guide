@@ -22,10 +22,11 @@ namespace :band do
       "Slægt", "Obituary", "Wyrd", "Burial Invocation", "Mortuous", "Necrot", "MGLA", "Cult of Fire",
       "Petrification", "Mortiferum", "Tormentor", "Ultra Silvam", "Asphyx", "Phrenelith", "Horrendous", "Mortal Wound",
       "Deathtopia", "Hellripper", "Venefixion", "Incantation", "Hyperdontia", "Extremity", "Archgoat", "Genocide Pact",
-      "Croc Noir", "Inferno", "Witch Vomit", "Witch Haven", "Obliteration", "Horna", "Cadaveric Incubator", "Butcher ABC",
+      "Croc Noir", "Inferno", "Witch Vomit", "Witch Haven", "Horna", "Cadaveric Incubator", "Butcher ABC",
       "Axeslasher", "Tomb Mold", "Teethgrinder", "Graceless", "Soulburn", "Fabulous Desaster", "Suffocation", "Vastum",
       "Demilich", "Korpse", "Wormrot", "Disma", "Cancer", "Entrails", "Dismember", "Nokturnal Mortum", "Kroda", "Slayer",
-      "Agoraphobic Nosebleed", "Abhorrence", "Demigod", "White Death", "Gorgoroth", "B"
+      "Agoraphobic Nosebleed", "Abhorrence", "Demigod", "White Death", "Gorgoroth", "Vanhelgd", "Mass Grave", "Necrovation",
+      "Tsjuder"
     ]
     puts "Creating #{custom_bands.size} bands with names ..."
     custom_bands.each do |band_name|

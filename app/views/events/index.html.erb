@@ -1,16 +1,17 @@
-<%= form_tag events_path, method: :get, class: "form-inline" do %>
+<%= form_tag events_path, method: :get, class: "" do %>
 
-<div class="form-inputs">
-  <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Events" %>
-</div>
-<div class="form-inputs">
-  <%= date_field_tag :date, "", class: "form-control"  %>
-  <%= date_field_tag :end_date, "", class: "form-control" %>
-</div>
-<div class="form-actions">
-  <%= submit_tag  "Submit", class: "form-control"%>
-</div>
+  <div class="form-inputs">
+    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Events" %>
+  </div>
+  <div class="form-inputs ">
+    <%= date_field_tag :date, "", class: "form-control"  %>
+    <%= date_field_tag :end_date, "", class: "form-control" %>
+  </div>
+  <div class="form-actions">
+    <%= submit_tag  "Submit", class: "form-control"%>
+  </div>
 <% end %>
+
 <!-- <#%= simple_form_for events_path, method: :get do |f| %>
   <div class="form-inline">
     <#%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Events" %>
@@ -28,4 +29,6 @@
  -->
 <%= render 'shared/tabs' %>
 <%= render 'event_card_listings' %>
+
+
 

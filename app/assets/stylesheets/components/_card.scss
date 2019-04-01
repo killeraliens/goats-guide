@@ -1,6 +1,7 @@
 .card {
   // @include gradient-horizontal(rgba(255,255,255,.06), rgba(255,255,255,.02));
   background: linear-gradient(45deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  // background: $black;
   // background-repeat: no-repeat;
   // background-size: cover;
   // background-position: center;
@@ -9,6 +10,7 @@
   border: none;
   border-radius: 0;
   display: flex;
+  margin-top: 20px;
   // justify-content: center;
   // align-items: center;
   a {
