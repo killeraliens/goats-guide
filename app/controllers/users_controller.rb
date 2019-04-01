@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    params[:query].present? ? @users = User.search_by_username_country_state_city(params[:query]) : @users
   end
 
   def show

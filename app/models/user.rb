@@ -9,6 +9,12 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   # validates :city, :country, presence: true
   mount_uploader :photo, PhotoUploader
+  include PgSearch
+  pg_search_scope :search_by_username_country_state_city,
+    against: [:username, :country, :state, :city],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
 
   def address
     [city, state, country].compact.join(', ')
