@@ -21,7 +21,10 @@
               <div
                 class="avatar-square dropdown-toggle"
                 style="background-image: url(<%= current_user.photo %>);"
-                id="navbarDropdown" data-toggle="dropdown"=>
+                id="navbarDropdown"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false" =>
               </div>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <%= link_to "Settings", edit_user_registration_path(current_user), class: "dropdown-item" %>
@@ -32,7 +35,7 @@
             </li>
           </ul>
         <% else %>
-          <li class="nav-item">
+          <li class="nav-item" style="list-style: none;">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
         <% end %>
