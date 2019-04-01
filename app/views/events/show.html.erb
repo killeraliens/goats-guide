@@ -8,12 +8,12 @@
   </div>
   <div class="col-sm-12 col-md-8">
     <div class="card-show-text text-center">
+      <span class ="card-date"><%= @event.date_format %>
+        <%= "- #{@event.end_date_format}" if !@event.end_date.nil? && @event.end_date != @event.date %>
+      </span>
       <h2><%= @event.title %></h2>
       <p><%= @event.description %></p>
 
-      <span class ="card-date"><%= @event.date_format %>
-                    <%= "- #{event.end_date_format}" if !@event.end_date.nil? && @event.end_date != @event.date %>
-                  </span>
       <p><%= @event.creator.username if @event.creator %>
       <p><%= @event.venue.name %> </p>
       <p><%= @results %></p>

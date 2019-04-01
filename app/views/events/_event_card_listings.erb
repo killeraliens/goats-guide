@@ -46,7 +46,7 @@
               <span><i class="fas fa-map-marker"></i></span>
               <p><%= event.venue.city %><%= ", #{event.venue.state}" if !event.venue.state.nil? %>
                 <%= "- #{event.venue.country} -" %>
-                <%= event.venue.name %>
+                <%= event.venue.name&.truncate(14) %>
               </p>
             </div>
 
