@@ -24,9 +24,9 @@ namespace :band do
       "Deathtopia", "Hellripper", "Venefixion", "Incantation", "Hyperdontia", "Extremity", "Archgoat", "Genocide Pact",
       "Croc Noir", "Entombed A.D.", "Witch Vomit", "Witch Haven", "Horna", "Cadaveric Incubator", "Butcher ABC",
       "Axeslasher", "Tomb Mold", "Teethgrinder", "Graceless", "Soulburn", "Fabulous Desaster", "Suffocation", "Vastum",
-      "Demilich", "Korpse", "Wormrot", "Disma", "Cancer", "Entrails", "Dismember", "Nokturnal Mortum", "Kroda", "Slayer",
+      "Demilich", "Korpse", "Wormrot", "Disma", "Entrails", "Dismember", "Nokturnal Mortum", "Kroda", "Slayer",
       "Agoraphobic Nosebleed", "Abhorrence", "Demigod", "White Death", "Gorgoroth", "Vanhelgd", "Mass Grave", "Necrovation",
-      "Tsjuder", "Winterfylleth"
+      "Tsjuder", "Winterfylleth", "Hypocrisy"
     ]
     puts "Creating #{custom_bands.size} bands with names ..."
     custom_bands.each do |band_name|
