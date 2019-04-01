@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :venue
   belongs_to :creator, foreign_key: "creator_id", class_name: "User", optional: true
-  has_many :saved_events
+  has_many :saved_events, dependent: :destroy
   validates :title, :date, presence: true
   validates :title, :description, case_sensitive: false
   validates :date, uniqueness: { scope: :venue }
