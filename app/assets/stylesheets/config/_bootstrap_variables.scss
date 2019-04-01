@@ -46,10 +46,10 @@ $brand-danger:          #d9534f !default;
 //** Background color for `<body>`.
 $body-bg:               #fff !default;
 //** Global text color on `<body>`.
-$text-color:            $gray-dark !default;
+$text-color:            $inactive-text-gray !default;
 
 //** Global textual link color.
-$link-color:            $brand-primary !default;
+$link-color:            $inactive-text-gray !default;
 //** Link hover color set via `darken()` function.
 $link-hover-color:      darken($link-color, 15%) !default;
 //** Link hover decoration.
@@ -84,7 +84,7 @@ $font-size-h6:            ceil(($font-size-base * .85)) !default; // ~12px
 //** `<input>` background color
 $input-bg:                       $black !default;
 //** `<input disabled>` background color
-$input-bg-disabled:              $light-gray !default;
+$input-bg-disabled:              $black !default;
 
 //** Text color for `<input>`s
 $input-color:                    $bone-white !default;
@@ -104,7 +104,7 @@ $input-border-radius-small:      $border-radius-small !default;
 $input-border-focus:             #66afe9 !default;
 
 //** Placeholder text color
-$input-color-placeholder:        #999 !default;
+$input-text-placeholder:        $inactive-text-gray !default;
 
 //** Default `.form-control` height
 // $input-height-base:              ($line-height-computed + ($padding-base-vertical * 2) + 2) !default;

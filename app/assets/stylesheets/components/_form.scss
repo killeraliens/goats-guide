@@ -10,13 +10,26 @@
 //   box-shadow: none;
 // }
 
-// .input:-internal-autofill-selected {
-//   background-color: $black !important;
-// }
-
 // .form-inputs-custom {
 //   background-color: $black;
 //   border-radius: none;
 // }
 
+.form-control {
+  border-color: $inactive-text-gray;
+  color: $inactive-text-gray;
+  margin-top: 8px;
+  &:focus {
+    border-color: $bone_white;
+    box-shadow: none;
+  }
+}
+
+
+.form-actions > input {
+  color: $inactive-text-gray;
+  &:focus {
+    box-shadow: none;
+  }
+}
 
