@@ -14,6 +14,8 @@ select:-webkit-autofill:focus {
   border-radius: none;
 }
 
+
+
 ::-webkit-input-placeholder {
  // font-size: 14px;
   color: $inactive-text-gray;
@@ -71,6 +73,9 @@ select:-webkit-autofill:focus {
 ::placeholder { /* Most modern browsers support this now. */
    color: $inactive-text-gray !important;
 }
+
+
+
 
 
 
