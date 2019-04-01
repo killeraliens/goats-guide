@@ -3,9 +3,10 @@
   flex-grow: 0;
   text-align: center;
   h1 {
-    font-size: 24px;
+    font-size: 26px;
     margin: 0px;
     padding: 0px;
+    padding-top: 2px;
     line-height: 30px;
   }
   p {
@@ -21,10 +22,9 @@
 }
 .cal-day, .cal-weekday {
   background-color: $bone-white;
+  box-shadow: inset 0px 0px 14px $light-gray;
   color: black;
 }
-.cal-day {
 
-}
 
 

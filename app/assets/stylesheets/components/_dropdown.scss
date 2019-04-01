@@ -3,7 +3,7 @@
   border-radius: 0;
   border: none;
   background-color: #D8D8D8;
-  margin: 8px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   padding: 0;
   right: 0;
   left: auto;
@@ -12,7 +12,6 @@
 
 .dropdown-menu > li > a {
   font-weight: bold ;
-  line-height: 40px ;
   color: rgb(62,62,62);
   text-align: center;
 
@@ -23,3 +22,6 @@
   color: black;
 }
 
+.dropdown-item {
+  line-height: 40px ;
+}
