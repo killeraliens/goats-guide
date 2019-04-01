@@ -3,9 +3,9 @@
          <%= show_svg "pentagram-icon.svg"  %>
     <% end %>
 
-   <!--  <div class="navbar-toggler" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   <!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
-    </div> -->
+    </button> -->
 
 
         <% if user_signed_in? %>
@@ -23,6 +23,8 @@
                 style="background-image: url(<%= current_user.photo %>);"
                 id="navbarDropdown"
                 data-toggle="dropdown"
+                type="button"
+                aria-controls="navbarDropdown"
                 aria-haspopup="true"
                 aria-expanded="false" =>
               </div>
