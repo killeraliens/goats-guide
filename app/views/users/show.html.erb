@@ -1,3 +1,5 @@
+<div class="profile-text">
+
 
   <div class="profile-row-avatar">
     <div class="avatar-square profile-avatar" style="
@@ -18,6 +20,7 @@
     <% end %>
   </div>
   <div class="profile-location-text">
+    <span><i class="fas fa-map-marker"></i></span>
     <%= @user.city %><%= ', ' + @user&.state %><%= ' - ' + @user.country %>
   </div>
 
@@ -37,8 +40,16 @@
   </div>
   <% end %>
 
+  <div class="tabs">
+    <div class="tabs-item <%= current_class?(user_path) %>">
+      <h5 ><%= link_to 'SAVED', user_path(@user) %> </h5>
+    </div>
+   <!--  <div class="tabs-item <#%= current_class?(user_created_path) %>">
+      <h5><%#= link_to 'CREATED', user_created_path(@user) %></h5>
+    </div> -->
+  </div>
 
-  <h5>Saved Events </h5>
+</div>
   <%= render "events/event_card_listings" %>
 
 

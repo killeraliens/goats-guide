@@ -1,3 +1,9 @@
+.profile-text {
+  color: $bone-white;
+
+}
+
+
 .url-list {
   margin-top: 16px;
 }
@@ -7,6 +13,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 16px;
   span {
     font-size: 14px;
   }
@@ -14,10 +21,12 @@
 
 .profile-row-username {
   display: flex;
+  margin-top: 16px;
   h3, a {
     margin: 0px;
     margin-right: 8px;
     margin-top: auto;
+    font-size: 20px
   }
 }
 
@@ -29,11 +38,16 @@
 
 .profile-location-text {
   font-size: 14px;
+  margin-top: 8px;
+  span {
+    color: $electric-blue;
+    margin-right: 3px;
+  }
 }
 .url-list p {
     margin-bottom: 4px;
     padding: 0px;
     font-size: 14px;
-    color: $medium-gray;
+    color: $inactive-text-gray;
     // text-transform: uppercase;
 }
