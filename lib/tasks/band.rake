@@ -26,7 +26,8 @@ namespace :band do
       "Axeslasher", "Tomb Mold", "Teethgrinder", "Graceless", "Soulburn", "Fabulous Desaster", "Suffocation", "Vastum",
       "Demilich", "Korpse", "Wormrot", "Disma", "Entrails", "Dismember", "Nokturnal Mortum", "Kroda", "Slayer",
       "Agoraphobic Nosebleed", "Abhorrence", "Demigod", "White Death", "Gorgoroth", "Vanhelgd", "Mass Grave", "Necrovation",
-      "Tsjuder", "Winterfylleth", "Hypocrisy", "Watain", "At The Gates"
+      "Tsjuder", "Winterfylleth", "Hypocrisy", "Watain", "At The Gates", "Cruciamentum", "Dead Congregation", "Sepulcher",
+      "Necromaniac", "Galvanizer", "Funebrarum", "Anatomia", "Spectral Voice"
     ]
     puts "Creating #{custom_bands.size} bands with names ..."
     custom_bands.each do |band_name|

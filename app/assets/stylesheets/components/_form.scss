@@ -18,18 +18,23 @@
 .form-control {
   border-color: $inactive-text-gray;
   color: $inactive-text-gray;
-  margin-top: 8px;
+  margin-bottom: 8px;
   &:focus {
     border-color: $bone_white;
     box-shadow: none;
   }
 }
 
-
 .form-actions > input {
   color: $inactive-text-gray;
   &:focus {
     box-shadow: none;
   }
+}
+
+.form-control-label {
+    color: $bone-white;
+    margin-bottom: 4px;
+    font-size: 14px;
 }
 

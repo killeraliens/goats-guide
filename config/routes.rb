@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   get 'past_events', to: 'events#index_past'
   resources :users, only: [:index, :show, :edit, :update]
+  resources :url_links, only: [:create, :destroy]
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
