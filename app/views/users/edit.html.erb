@@ -14,7 +14,7 @@
     <%= f.input :country, as: :string, label: "Country" %>
     <%= f.input :quote, label: "Quote" %>
     <!-- existing urls -->
-    <% @user.url_links.each do |url_link| %>
+    <% current_user.url_links.each do |url_link| %>
     <ul>
       <li>
         <%= url_link.link %>
