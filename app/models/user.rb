@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
   def capitalize_fields
     city.capitalize!
-    state&.capitalize!
+    state&.upcase!
     country.capitalize!
   end
 

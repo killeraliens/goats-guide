@@ -2,16 +2,25 @@
 .form-control {
   border-color: $inactive-text-gray;
   color: $bone-white;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   &:focus {
     border-color: $bone-white;
     box-shadow: none;
   }
 }
 
+.form-actions {
+  margin-top: 8px !important;
+}
 
 .form-actions > input {
-  color: $inactive-text-gray;
+
+  width: auto;
+  color: $black;
+  border: none;
+  background-color: $light-gray;
+  font-size: 14px;
+  border-radius: none;
   &:focus {
     box-shadow: none;
   }
@@ -19,7 +28,7 @@
 
 .form-control-label {
     color: $inactive-text-gray;
-    margin-bottom: 4px;
+    margin-bottom: 0px;
     font-size: 14px;
 }
 .form-label-image > .form-group > label, input {

@@ -9,14 +9,14 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "country" }%>
-    <%= f.input :state,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "country" }%>
     <%= f.input :city,
                 required: true,
                 autofocus: true,
-                input_html: { autocomplete: "country" }%>
+                input_html: { autocomplete: "city" }%>
+    <%= f.input :state,
+                required: false,
+                autofocus: true,
+                input_html: { autocomplete: "state" }%>
     <%= f.input :username,
                 required: true,
                 autofocus: true,

@@ -26,21 +26,22 @@
     <%= ' - ' + @user.country unless !@user.country.present? %>
   </div>
 
-  <% @user.url_links.each do |url_link| %>
-  <div class="url-list">
-    <ul>
-      <li>
-        <p>
-          <%= url_link.link %>
-        </p>
-        <p>
-          <%= link_to url_link.url, url_link.url, target: "_blank" %>
-
-        </p>
-      </li>
-    </ul>
+  <div class="url-row">
+    <% @user.url_links.each do |url_link| %>
+    <div class="url-list">
+      <ul>
+        <li>
+          <p>
+            <%= url_link.link %>
+          </p>
+          <p>
+            <%= link_to url_link.url, url_link.url, target: "_blank" %>
+          </p>
+        </li>
+      </ul>
+    </div>
+    <% end %>
   </div>
-  <% end %>
 
   <div class="tabs">
     <div class="tabs-item <%= current_class?(user_path) %>">

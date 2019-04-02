@@ -2,7 +2,7 @@
   <!-- updating all user fields -->
   <%= simple_form_for(@user, url: user_path(@user), html: { method: :patch } ) do |f| %>
   <div class="d-flex">
-    <div class="avatar-square profile" style="
+    <div class="avatar-square profile-avatar" style="
               background-image:
               url(<%= @user.photo %>);
               margin-right: 16px;
@@ -26,10 +26,14 @@
         <ul>
           <li>
             <p>
-            <%= url_link.link %>
+              <%= url_link.link %>
             </p>
-            <%= link_to url_link.url, url_link.url, target: "_blank"%>
-            <%= link_to "delete", url_link_path(url_link), method: :delete, style: "margin: 4px ", class: "orange-links"  %>
+            <p>
+              <%= link_to url_link.url, url_link.url, target: "_blank"%>
+              <%= link_to "delete", url_link_path(url_link), method: :delete, style: "margin: 4px ", class: "orange-links"  %>
+            </p>
+
+
           </li>
         </ul>
       </div>
