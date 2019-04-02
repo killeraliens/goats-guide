@@ -27,11 +27,16 @@
                   <% saved_event_ids = current_user.saved_events.map {|event| event.event_id } %>
                   <% saved_events = Event.find(saved_event_ids) %>
                   <% if !saved_events.map(&:id).include?(event.id) %>
-                    <%= link_to 'save', event_saved_events_path(event), method: :post %>
+                    <div class="orange-links">
+                      <%= link_to 'save', event_saved_events_path(event), method: :post %>
+                    </div>
                   <% else %>
                     <% saved_event = SavedEvent.find_by(user_id: current_user, event_id: event[:id]) %>
-                    <%= link_to 'saved',
-                    event_saved_event_path(event_id: event.id, id: saved_event.id ), method: :delete %>
+                    <div class="grey-links">
+                      <%= link_to 'saved',
+                        event_saved_event_path(event_id: event.id, id: saved_event.id ), method: :delete
+                      %>
+                    </div>
                   <% end %>
                 </div>
               <% end %>

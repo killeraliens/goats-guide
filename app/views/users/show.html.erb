@@ -1,25 +1,37 @@
-<div class="">
+<div class="profile-text">
   <h1><%= @user.username %></h1>
-  <p><%= @user.address %></p>
-
-  <div class="avatar-square profile" style="
-            background-image:
-            url(<%= @user.photo %>);
-          ">
+  <p><%= @user.city %><%= ', ' + @user&.state %><%= ' - ' + @user.country %></p>
+  <div class="profile-row-avatar">
+    <div class="avatar-square profile-avatar" style="
+              background-image:
+              url(<%= @user.photo %>);
+            ">
+    </div>
+    <div class="quote-col">
+      <h5>"<%= @user.quote %>"</h5>
+      <% if @user == current_user %>
+        <%= link_to "Edit Profile", edit_user_path(@user) %>
+      <% end %>
+    </div>
+    <h5>Created Events <%= @user.events.count %></h5>
   </div>
-  <% if @user == current_user %>
-    <%= link_to "Edit Profile", edit_user_path(@user) %>
+
+  <% @user.url_links.each do |url_link| %>
+  <div class="url-list">
+    <ul>
+      <li>
+        <p>
+          <%= url_link.link %>
+        </p>
+        <%= link_to url_link.url, url_link.url, target: "_blank" %>
+      </li>
+    </ul>
+  </div>
   <% end %>
 
-  <% @user.url_links.each do |link| %>
-    <a href="#{link}"><%= link.url %></a>
-  <% end %>
-
-  <h5>"<%= @user.quote %>"</h5>
 
   <h5>Saved Events </h5>
   <%= render "events/event_card_listings" %>
-  <h5>Created Events <%= @user.events.count %></h5>
 
 </div>
 

@@ -1,0 +1,34 @@
+// .btn-gg {
+//   color: $medium-gray;
+//   border-color: $medium-gray;
+// }
+
+.orange-links {
+  color: $orange;
+  a {
+    color: $orange;
+    &:hover {
+      opacity: .8;
+    }
+  }
+}
+
+
+
+.grey-links {
+  color: $inactive-text-gray;
+  a {
+    color: $inactive-text-gray;
+    &:hover {
+      opacity: .8;
+    }
+  }
+}
+
+// .orange-links{
+//   color: $orange
+// }
+
+// .grey-links {
+//   color: $inactive-text-gray;
+// }

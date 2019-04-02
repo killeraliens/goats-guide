@@ -1,35 +1,50 @@
 <div>
-  <div class="avatar-square profile" style="
-            background-image:
-            url(<%= @user.photo %>);
-          ">
-  </div>
-  <!-- updating user fields -->
+  <!-- updating all user fields -->
   <%= simple_form_for(@user, url: user_path(@user), html: { method: :patch } ) do |f| %>
-    <%= f.input :photo, label: 'Set Profile Image' %>
-    <%= f.input :photo_cache, as: :hidden %>
-    <%= f.input :username, required: false, class: "" %>
+  <div class="d-flex">
+    <div class="avatar-square profile" style="
+              background-image:
+              url(<%= @user.photo %>);
+              margin-right: 16px;
+            ">
+    </div>
+    <!-- updating user table info -->
+    <div class="form-label-image">
+      <%= f.input :photo, label: 'Set Profile Image' %>
+      <%= f.input :photo_cache, as: :hidden %>
+    </div>
+  </div>
+    <%= f.input :username, required: false %>
     <%= f.input :city, label: "City" %>
     <%= f.input :state, label: "State" %>
     <%= f.input :country, as: :string, label: "Country" %>
     <%= f.input :quote, label: "Quote" %>
-    <!-- existing urls -->
+
+    <!-- delete existing urls -->
     <% current_user.url_links.each do |url_link| %>
-    <ul>
-      <li>
-        <%= url_link.link %>
-        <a class="mr-1" href="<% url_link.url %> "><%= url_link.url %></a>
-        <%= link_to "delete", url_link_path(url_link), method: :delete, style: "margin: 4px ", class: "delete-links"  %>
-      </li>
-    </ul>
+      <div class="url-list">
+        <ul>
+          <li>
+            <p>
+            <%= url_link.link %>
+            </p>
+            <%= link_to url_link.url, url_link.url, target: "_blank"%>
+            <%= link_to "delete", url_link_path(url_link), method: :delete, style: "margin: 4px ", class: "orange-links"  %>
+          </li>
+        </ul>
+      </div>
     <% end %>
+
     <!-- adding a new url_link -->
     <% if @user.url_links.count <= 15 %>
       <%= simple_form_for(@url_link, url: user_path(@user), html: { method: :patch }) do |f| %>
         <%= f.input :link, label: "Name of link" %>
         <%= f.input :url, label: "Url for link" %>
-        <%= f.submit "Submit" %>
+        <div class="form-actions">
+          <%= f.submit "Submit", class: "form-control" %>
+        </div>
       <% end %>
     <% end %>
+
   <% end %>
 </div>

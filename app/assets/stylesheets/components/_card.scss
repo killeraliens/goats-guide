@@ -21,7 +21,7 @@
 
 .card-text {
   margin: 8px;
-  opacity: .9;
+
 }
 
 .card-details {
@@ -44,16 +44,16 @@
       }
        a {
         text-decoration: none;
-        color: $inactive-text-gray;
+        // color: $inactive-text-gray;
       }
     }
     .card-location-row {
       display: flex;
-    }
-    span {
-      font-size: 14px;
-      margin-right: 8px;
-      color: $orange;
+      span {
+        font-size: 14px;
+        margin-right: 8px;
+        color: $orange;
+      }
     }
   }
 

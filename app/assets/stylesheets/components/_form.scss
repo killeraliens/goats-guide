@@ -1,32 +1,12 @@
-// .form-control {
-//   background-color: $black;
-//   color: $bone_white;
-// }
-
-// .form-control:focus {
-//   background-color: $black !important;
-//   border-color: $bone_white;
-//   color: $bone_white;
-//   box-shadow: none;
-// }
-
-// .form-inputs-custom {
-//   background-color: $black;
-//   border-radius: none;
-// }
 
 .form-control {
   border-color: $inactive-text-gray;
   color: $bone-white;
   margin-bottom: 8px;
   &:focus {
-    border-color: $bone_white;
+    border-color: $bone-white;
     box-shadow: none;
   }
-}
-
-.form-control-date {
-  color: $inactive-text-gray;
 }
 
 
@@ -41,6 +21,17 @@
     color: $inactive-text-gray;
     margin-bottom: 4px;
     font-size: 14px;
+}
+.form-label-image > .form-group > label, input {
+  color: $inactive-text-gray;
+  -webkit-appearance: none;
+  font-size: 14px;
+}
+
+input[type="hidden"] {
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  background-color: $inactive-text-gray;
 }
 
 .form-control.is-valid {
