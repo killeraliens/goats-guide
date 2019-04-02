@@ -5,6 +5,20 @@
 
 .profile-row-avatar {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  span {
+    font-size: 14px;
+  }
+}
+
+.profile-row-username {
+  display: flex;
+  h3, a {
+    margin: 0px;
+    margin-right: 8px;
+    margin-top: auto;
+  }
 }
 
 .profile-avatar {
