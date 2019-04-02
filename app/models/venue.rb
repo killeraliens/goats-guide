@@ -5,8 +5,15 @@ class Venue < ApplicationRecord
   validates :name, uniqueness: { scope: :city }
   geocoded_by :address
   after_validation :geocode
+  before_save :capitalize_fields
+
+  def capitalize_fields
+    city.capitalize!
+    state&.capitalize!
+    country.capitalize!
+  end
 
   def address
-    [city, state, country].compact.join(', ')
+    [street, city, state, country].compact.join(' ')
   end
 end

@@ -15,8 +15,21 @@ class User < ApplicationRecord
     using: {
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
+  geocoded_by :address
+  after_validation :geocode #, if: :will_save_change_to_address?
+  before_save :capitalize_fields #, :downcase_fields,
+
+  # def downcase_fields
+  #   username.downcase!
+  # end
+
+  def capitalize_fields
+    city.capitalize!
+    state&.capitalize!
+    country.capitalize!
+  end
 
   def address
-    [city, state, country].compact.join(', ')
+    [city, state, country].compact.join(' ')
   end
 end
