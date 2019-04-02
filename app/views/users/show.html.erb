@@ -21,7 +21,9 @@
   </div>
   <div class="profile-location-text">
     <span><i class="fas fa-map-marker"></i></span>
-    <%= @user.city %><%= ', ' + @user&.state %><%= ' - ' + @user.country %>
+    <%= @user.city unless !@user.city.present? %>
+    <%= ', ' + @user.state unless !@user.state.present?  %>
+    <%= ' - ' + @user.country unless !@user.country.present? %>
   </div>
 
   <% @user.url_links.each do |url_link| %>
