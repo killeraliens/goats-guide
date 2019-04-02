@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
   def update
     if params[:url_link].present?
-      @url_link = UrlLink.new(url: params[:url_link][:url], user_id: params[:id])
+      @url_link = UrlLink.new(url: params[:url_link][:url], link: params[:url_link][:link], user_id: params[:id])
       @url_link.save
     end
     @user.update(user_params) if params[:user].present?

@@ -16,15 +16,18 @@
     <!-- existing urls -->
     <% @user.url_links.each do |url_link| %>
     <ul>
-      <li><%= url_link.url %>
-        <%= link_to "delete", url_link_path(url_link), method: :delete, style: "margin: 4px ", class: ""  %>
+      <li>
+        <%= url_link.link %>
+        <a class="mr-1" href="<% url_link.url %> "><%= url_link.url %></a>
+        <%= link_to "delete", url_link_path(url_link), method: :delete, style: "margin: 4px ", class: "delete-links"  %>
       </li>
     </ul>
     <% end %>
     <!-- adding a new url_link -->
     <% if @user.url_links.count <= 15 %>
       <%= simple_form_for(@url_link, url: user_path(@user), html: { method: :patch }) do |f| %>
-        <%= f.input :url, label: "Add Site Link" %>
+        <%= f.input :link, label: "Name of link" %>
+        <%= f.input :url, label: "Url for link" %>
         <%= f.submit "Submit" %>
       <% end %>
     <% end %>
