@@ -1,6 +1,4 @@
-<div class="profile-text">
-  <h1><%= @user.username %></h1>
-  <p><%= @user.city %><%= ', ' + @user&.state %><%= ' - ' + @user.country %></p>
+
   <div class="profile-row-avatar">
     <div class="avatar-square profile-avatar" style="
               background-image:
@@ -10,11 +8,15 @@
     <div class="quote-col">
       <h5>"<%= @user.quote %>"</h5>
       <% if @user == current_user %>
-        <%= link_to "Edit Profile", edit_user_path(@user) %>
+        <%= link_to "Edit Profile", edit_user_path(@user), style: "font-size: 14px;" %>
       <% end %>
+      <div class="profile-location-text">
+        <%= @user.city %><%= ', ' + @user&.state %><%= ' - ' + @user.country %>
+      </div>
     </div>
     <h5>Created Events <%= @user.events.count %></h5>
   </div>
+  <h3><%= @user.username %></h3>
 
   <% @user.url_links.each do |url_link| %>
   <div class="url-list">
@@ -33,5 +35,5 @@
   <h5>Saved Events </h5>
   <%= render "events/event_card_listings" %>
 
-</div>
+
 

@@ -29,6 +29,10 @@ ul {
   margin-top: 80px;
 }
 
+a > h1:hover {
+  opacity: .8;
+}
+
 
 // // Small devices (landscape phones, 576px and up)
 // @media (max-width: 576px) {
