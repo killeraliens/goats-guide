@@ -17,13 +17,18 @@
 
 .form-control {
   border-color: $inactive-text-gray;
-  color: $inactive-text-gray;
+  color: $bone-white;
   margin-bottom: 8px;
   &:focus {
     border-color: $bone_white;
     box-shadow: none;
   }
 }
+
+.form-control-date {
+  color: $inactive-text-gray;
+}
+
 
 .form-actions > input {
   color: $inactive-text-gray;
@@ -43,4 +48,8 @@
     color: $bone-white;
     // background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8… 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e);
     background-image: none;
+    &:focus {
+      border-color: $bone-white;
+      box-shadow: none;
+    }
 }

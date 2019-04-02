@@ -4,8 +4,8 @@
     <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Events" %>
   </div>
   <div class="form-inputs ">
-    <%= date_field_tag :date, "", class: "form-control"  %>
-    <%= date_field_tag :end_date, "", class: "form-control" %>
+    <%= date_field_tag :date, "", class: "form-control form-control-date"  %>
+    <%= date_field_tag :end_date, "", class: "form-control form-control-date" %>
   </div>
   <div class="form-actions">
     <%= submit_tag  "Submit", class: "form-control"%>
