@@ -1,8 +1,17 @@
-  <%= form_tag past_events_path, method: :get do %>
-    <%= text_field_tag :query, params[:query], class: "", placeholder: "Search Past Events" %>
-  <% end %>
-<div class="">
-  <%= render 'shared/tabs' %>
-  <%= render 'event_card_listings' %>
+<%= form_tag past_events_path, method: :get do %>
 
-</div>
+  <div class="form-inputs">
+    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Past Events" %>
+  </div>
+  <div class="form-inputs ">
+    <%= date_field_tag :date, "", class: "form-control"  %>
+    <%= date_field_tag :end_date, "", class: "form-control" %>
+  </div>
+  <div class="form-actions">
+    <%= submit_tag  "Submit", class: "form-control"%>
+  </div>
+<% end %>
+<%= render 'shared/tabs' %>
+<%= render 'event_card_listings' %>
+
+

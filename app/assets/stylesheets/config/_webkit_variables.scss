@@ -16,38 +16,7 @@ select:-webkit-autofill:focus {
 
 
 
-::-webkit-input-placeholder {
- // font-size: 14px;
-  color: $inactive-text-gray;
- // text-transform: uppercase;
- // text-transform: uppercase;
- // text-align: center;
- // font-weight: bold;
-}
-
-:-moz-placeholder { /* older Firefox*/
-//  font-size:14px;
-  color: $inactive-text-gray;
-//  text-transform: uppercase;
-//  text-align: center;
-//  font-weight: bold;
-}
-::-moz-placeholder { /* Firefox 19+ */
-//  font-size: 14px;
-  color: $inactive-text-gray;
-//  text-transform: uppercase;
-//  text-align: center;
-//  font-weight: bold;
-}
-:-ms-input-placeholder {
-//  font-size: 14px;
-  color: $inactive-text-gray;
-//  text-transform: uppercase;
-//  text-align: center;
-//  font-weight: bold;
-}
-
-
+// PLACEHOLDER TEXT
 ::placeholder {
   color: $inactive-text-gray !important;
 }

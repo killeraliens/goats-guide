@@ -1,8 +1,8 @@
-  <%= form_tag users_path, method: :get do %>
-    <%= text_field_tag :query, params[:query], class: "", placeholder: "Search Profiles" %>
-  <% end %>
-  <%= render 'shared/tabs' %>
-  <% @users.each do |user| %>
+<%= form_tag users_path, method: :get do %>
+  <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Profiles" %>
+<% end %>
+<%= render 'shared/tabs' %>
+<% @users.each do |user| %>
   <div class="card mt-3">
     <%= link_to(user) do %>
       <div class="card-text">
