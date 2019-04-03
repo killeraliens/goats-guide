@@ -22,14 +22,14 @@ puts "seeding .."
 #       Event.create!(title: Faker::Music::RockBand.name, description: Faker::Movies::VForVendetta.speech, date: Faker::Date.forward(23), end_date: Faker::Date.forward(23), time: Faker::Superhero.descriptor, venue: venue, event_creator: user)
 #     end
 # end
-5.times do
-  User.create!(username: Faker::Internet.username(8), email: Faker::Internet.email, password: Faker::Internet.password(8))
-end
+# 5.times do
+#   User.create!(username: Faker::Internet.username(8), email: Faker::Internet.email, password: Faker::Internet.password(8))
+# end
 
 
 def songkick_fetch_index(band_name)
   url = "https://www.songkick.com/search?page=1&per_page=30&query=#{band_name}&type=upcoming"
-  scrape_job = ScrapeJob.create(name: "Songkick")
+  # scrape_job = ScrapeJob.create(name: "Songkick")
   agent = Mechanize.new
   page = agent.get(url)
   another_page = true
@@ -98,7 +98,7 @@ def songkick_fetch_index(band_name)
             description: description,
             venue: venue,
             url_link: event_url,
-            event_creator: scrape_job
+            # event_creator: scrape_job
           )
           puts "created event for #{event.date} at #{venue.name}"
         else
@@ -111,7 +111,7 @@ def songkick_fetch_index(band_name)
             description: description,
             venue: venue,
             url_link: event_url,
-            event_creator: scrape_job
+            # event_creator: scrape_job
           )
           puts "#{venue.name} already created, created this event for #{event.date}"
         end
@@ -133,9 +133,9 @@ def songkick_fetch_index(band_name)
     page_num += 1
     puts "on to next page"
   end
-  scrape_job.events.count.zero? ? scrape_job.destroy : scrape_job
+  # scrape_job.events.count.zero? ? scrape_job.destroy : scrape_job
 end
-#songkick_fetch_index("Slægt")
+songkick_fetch_index("Slægt")
 
 
 def metallum_fetch_bands(genre)
