@@ -57,6 +57,26 @@ def songkick_fetch_index(band_name)
         page = agent.get(event_url)
 
         page.search('div.event-header').empty? ? event_type = "festival" : event_type = "concert"
+        # IMAGE GETTING
+        img_url = page.search('div.profile-picture-wrap img')[0]['src']
+        img_alt = page.search('div.profile-picture-wrap img')[0]['alt']
+        poster_section = page.search('div.media-group.posters')
+        if img_url.nil?
+          puts "the profile image is nil"
+          puts img_url
+        end
+        if img_url.present?
+          puts "the profile image is present"
+          puts img_url
+        end
+        if poster_section.nil?
+          puts "this section is nil"
+        end
+        if poster_section.present?
+          puts "this section is present"
+          puts poster_section.page_search('div.media-element a')[0]['href'] #first?
+        end
+        ######
         p event_type
         dates = page.search('div.date-and-name p')
         multi_date = true if dates.text.split.count > 4
