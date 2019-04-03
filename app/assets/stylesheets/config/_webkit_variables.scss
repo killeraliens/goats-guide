@@ -45,7 +45,12 @@ select:-webkit-autofill:focus {
 
 
 
+::selection{
+  background: $light-gray;
+}
 
-
+::-moz-selection{
+  background: $light-gray;
+}
 
 

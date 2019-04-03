@@ -17,11 +17,12 @@
   display: inline-block;
 }
 
-.form-actions, .btn > input {
+.form-actions > input {
   width: auto;
   color: $black;
   border: none;
-  background-color: $light-gray;
+  background: $light-gray !important;
+  background-color: $light-gray !important;
   font-size: 14px;
   border-radius: none;
   &:focus {
