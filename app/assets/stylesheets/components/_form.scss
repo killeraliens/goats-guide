@@ -1,8 +1,11 @@
+.form-group {
+  margin-bottom: 14px;
+}
 
 .form-control {
   border-color: $inactive-text-gray;
   color: $bone-white;
-  margin-bottom: 2px;
+  height: calc(1.5em + 0.75rem);
   &:focus {
     border-color: $bone-white;
     box-shadow: none;
@@ -10,11 +13,11 @@
 }
 
 .form-actions {
-  margin-top: 8px !important;
+  // margin-top: 8px !important;
+  display: inline-block;
 }
 
-.form-actions > input {
-
+.form-actions, .btn > input {
   width: auto;
   color: $black;
   border: none;
@@ -37,11 +40,11 @@
   font-size: 14px;
 }
 
-input[type="hidden"] {
-  box-sizing: border-box;
-  -webkit-appearance: none;
-  background-color: $inactive-text-gray;
-}
+// input[type="hidden"] {
+//   box-sizing: border-box;
+//   -webkit-appearance: none;
+//   background-color: $inactive-text-gray;
+// }
 
 .form-control.is-valid {
     border-color: $inactive-text-gray;
@@ -52,4 +55,13 @@ input[type="hidden"] {
       border-color: $bone-white;
       box-shadow: none;
     }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (max-width: 576px) {
+  .form-control-label {
+    color: $inactive-text-gray;
+    margin-bottom: 0px;
+    font-size: 12px;
+  }
 }

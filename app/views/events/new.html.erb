@@ -1,23 +1,35 @@
-<h2>Create Event</h2>
+<h3>Create Event</h3>
 <%= simple_form_for @event do |f| %>
 
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :description %>
-    <%= f.date_field :date %>
+    <div class="form-inline mb-3">
+      <div class="mr-3">
+        <label for="" class="form-control-label justify-content-start">Start Date</label>
+        <%= f.date_field :date, class: "form-control"%>
+
+      </div>
+      <div>
+        <label for="" class="form-control-label justify-content-start">End Date</label>
+        <%= f.date_field :end_date, class: "form-control" %>
+
+      </div>
+    </div>
   </div>
 
   <%= simple_form_for @venue do |f| %>
     <div class="form-inputs">
-      <%= f.input :name, error: "This venue has an event for your date already" %>
-      <%= f.input :country, as: :string, id: "goats"  %>
+      <label for="" class="mt-2" style="font-size: 20px">Venue Information</label>
+      <%= f.input :name, label: "Venue Name",error: "This venue has an event for your date already" %>
+      <%= f.input :country, as: :string  %>
       <%= f.input :state %>
       <%= f.input :city %>
       <%= f.input :street %>
       <%= f.input :info %>
     </div>
-    <div class="form-actions">
-      <%= f.button :submit, "Create Event" %>
+    <div class="form-actions mt-2">
+      <%= f.button :submit, "Create Event", class: "form-actions", style: "border-radius: none" %>
     </div>
   <% end %>
 <% end %>
