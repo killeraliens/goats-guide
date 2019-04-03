@@ -32,6 +32,7 @@ class EventsController < ApplicationController
     @venue = Venue.new(venue_params)
     @event = Event.new(event_params)
     @event.creator = current_user
+
     if @venue.save
       @event.venue = @venue
     else

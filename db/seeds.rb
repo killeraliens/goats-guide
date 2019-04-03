@@ -57,11 +57,22 @@ def songkick_fetch_index(band_name)
         page = agent.get(event_url)
 
         page.search('div.event-header').empty? ? event_type = "festival" : event_type = "concert"
+
         # IMAGE GETTING
-        image = page&.search('img.profile-picture.event')[0]['src']
+        if page.search('img.profile-picture.event').present?
+          p imageurl = 'http:' + page.search('img.profile-picture.event')[0]['src']
+        end
+
         #img_alt = page.search('img.profile-picture.event')#[0]['alt']
-        puts page.search('div.media-group.posters div.media-element img')[0]
-        page&.search('div.media-element a img')[0]['src']
+        if page.search('div.posters div.media-element a').present?
+          poster = page.search('div.posters div.media-element a')[0]['href']
+          p imageurl = "https://www.songkick.com" + poster
+        end
+
+        # if page.search('div.posters div.media-element a').present?
+        # end
+
+
         ######
         p event_type
         dates = page.search('div.date-and-name p')
@@ -104,12 +115,13 @@ def songkick_fetch_index(band_name)
             description: description,
             venue: venue,
             url_link: event_url,
+            fetch_photo: imageurl
             # event_creator: scrape_job
           )
           puts "created event for #{event.date} at #{venue.name}"
         else
           venue = Venue.find_by(name: venue_name, city: city)
-          event = Event.create(
+          event = Event.new(
             date: date,
             end_date: end_date,
             time: time,
@@ -117,9 +129,27 @@ def songkick_fetch_index(band_name)
             description: description,
             venue: venue,
             url_link: event_url,
+            fetch_photo: imageurl
             # event_creator: scrape_job
           )
-          puts "#{venue.name} already created, created this event for #{event.date}"
+          puts "#{venue.name} already created"
+          if event.save
+            puts "This is a new event"
+          else
+            puts "This event was already made and should be updated. Updating.."
+            event = Event.find_by(date: event.date, venue: event.venue)
+            event.update(
+              date: date,
+              end_date: end_date,
+              time: time,
+              title: title,
+              description: description,
+              venue: venue,
+              url_link: event_url,
+              fetch_photo: imageurl
+            )
+            puts "updated #{event.title}-#{event.id}"
+          end
         end
         sleep(2)
         p "--------------"
@@ -141,7 +171,7 @@ def songkick_fetch_index(band_name)
   end
   # scrape_job.events.count.zero? ? scrape_job.destroy : scrape_job
 end
-songkick_fetch_index("Slægt")
+songkick_fetch_index("incantation")
 
 
 def metallum_fetch_bands(genre)
