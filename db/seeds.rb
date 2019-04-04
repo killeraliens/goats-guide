@@ -98,11 +98,17 @@ def songkick_fetch_index(band_name)
             links = all.select { |link| link['href'].include?('images') || link['href'].include?('posters') }
             p image_link = "https://www.songkick.com" + links.first['href']
           end
+
           page = agent.get(image_link)
+
           if page.search('div.image img').present?
             tail =  page.search('div.image img').first['src']
             p fetch_photo = "https:" + tail
+            if page.search('div.attribution').present?
+              p credit = page.search('div.attribution').text.gsub("\n", "").squeeze(" ").strip
+            end
           end
+
         end
         ######
         venue = Venue.new(name: venue_name, info: location_details, city: city, state: state, country: country)
@@ -115,7 +121,9 @@ def songkick_fetch_index(band_name)
             description: description,
             venue: venue,
             url_link: event_url,
-            fetch_photo: fetch_photo
+            fetch_photo: fetch_photo,
+            photo_credit: credit,
+            source: "Songkick"
             # event_creator: scrape_job
           )
           puts "created event for #{event.date} at #{venue.name}"
@@ -130,7 +138,9 @@ def songkick_fetch_index(band_name)
             description: description,
             venue: venue,
             url_link: event_url,
-            fetch_photo: fetch_photo
+            fetch_photo: fetch_photo,
+            photo_credit: credit,
+            source: "Songkick"
             # event_creator: scrape_job
           )
           if event.save
@@ -146,7 +156,9 @@ def songkick_fetch_index(band_name)
               # description: description,
               # venue: venue,
               # url_link: event_url,
-              fetch_photo: fetch_photo
+              fetch_photo: fetch_photo,
+              photo_credit: credit,
+              source: "Songkick"
             )
             puts "updated #{event.title}-#{event.id}"
           end
@@ -171,7 +183,7 @@ def songkick_fetch_index(band_name)
   end
   # scrape_job.events.count.zero? ? scrape_job.destroy : scrape_job
 end
-songkick_fetch_index("obituary")
+songkick_fetch_index("hypocrisy")
 
 
 def metallum_fetch_bands(genre)
