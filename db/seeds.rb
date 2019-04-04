@@ -58,26 +58,6 @@ def songkick_fetch_index(band_name)
 
         page.search('div.event-header').empty? ? event_type = "festival" : event_type = "concert"
 
-        # IMAGE GETTING
-        # if page.search('img.profile-picture.event').present?
-        #   p imageurl = 'http:' + page.search('img.profile-picture.event')[0]['src']
-        # end
-        # if page.search('div.posters div.media-element a').present?
-        #   poster = page.search('div.posters div.media-element a')[0]['href']
-        #   p imageurl = "https://www.songkick.com" + poster
-        # end
-
-        if page.search('div.media-group').present?
-          media = page.search('div.media-group')
-          if media.text.include?('Photos') || media.text.include?('Posters')
-            all = media.search('div.media-element a')
-            links = all.select { |link| link['href'].include?('images') || link['href'].include?('posters') }
-            p image_link = "https://www.songkick.com" + links.first['href']
-          end
-        end
-
-
-        ######
         p event_type
         dates = page.search('div.date-and-name p')
         multi_date = true if dates.text.split.count > 4
@@ -109,6 +89,22 @@ def songkick_fetch_index(band_name)
         elsif event_type == "festival"
           p description = page.search('div.component.festival-details ul').text.strip.gsub("\n", ', ').squeeze(' ')
         end
+
+        # IMAGE GETTING
+        if page.search('div.media-group').present?
+          media = page.search('div.media-group')
+          if media.text.include?('Photos') || media.text.include?('Posters')
+            all = media.search('div.media-element a')
+            links = all.select { |link| link['href'].include?('images') || link['href'].include?('posters') }
+            p image_link = "https://www.songkick.com" + links.first['href']
+          end
+          page = agent.get(image_link)
+          if page.search('div.image img').present?
+            tail =  page.search('div.image img').first['src']
+            p fetch_photo = "https:" + tail
+          end
+        end
+        ######
         venue = Venue.new(name: venue_name, info: location_details, city: city, state: state, country: country)
         if venue.save
           event = Event.create(
@@ -119,7 +115,7 @@ def songkick_fetch_index(band_name)
             description: description,
             venue: venue,
             url_link: event_url,
-            fetch_photo: nil
+            fetch_photo: fetch_photo
             # event_creator: scrape_job
           )
           puts "created event for #{event.date} at #{venue.name}"
@@ -134,7 +130,7 @@ def songkick_fetch_index(band_name)
             description: description,
             venue: venue,
             url_link: event_url,
-            fetch_photo: nil
+            fetch_photo: fetch_photo
             # event_creator: scrape_job
           )
           if event.save
@@ -143,14 +139,14 @@ def songkick_fetch_index(band_name)
             puts "This event was already made and should be updated. Updating.."
             event = Event.find_by(date: event.date, venue: event.venue)
             event&.update(
-              date: date,
-              end_date: end_date,
-              time: time,
-              title: title,
-              description: description,
-              venue: venue,
-              url_link: event_url,
-              fetch_photo: nil
+              # date: date,
+              # end_date: end_date,
+              # time: time,
+              # title: title,
+              # description: description,
+              # venue: venue,
+              # url_link: event_url,
+              fetch_photo: fetch_photo
             )
             puts "updated #{event.title}-#{event.id}"
           end
@@ -175,7 +171,7 @@ def songkick_fetch_index(band_name)
   end
   # scrape_job.events.count.zero? ? scrape_job.destroy : scrape_job
 end
-songkick_fetch_index("wyrd")
+songkick_fetch_index("obituary")
 
 
 def metallum_fetch_bands(genre)
