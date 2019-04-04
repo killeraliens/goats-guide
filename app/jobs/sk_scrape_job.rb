@@ -66,33 +66,77 @@ class SkScrapeJob < ApplicationJob
           elsif event_type == "festival"
             p description = page.search('div.component.festival-details ul').text.strip.gsub("\n", ', ').squeeze(' ')
           end
-          venue = Venue.new(name: venue_name, info: location_details, city: city, state: state, country: country)
-          if venue.save
-            event = Event.create(
-              date: date,
-              end_date: end_date,
-              time: time,
-              title: title,
-              description: description,
-              venue: venue,
-              url_link: event_url,
-              source: "Songkick"
-            )
-            puts "created event for #{event.date} at #{venue.name}"
-          else
-            venue = Venue.find_by(name: venue_name, city: city)
-            event = Event.create(
-              date: date,
-              end_date: end_date,
-              time: time,
-              title: title,
-              description: description,
-              venue: venue,
-              url_link: event_url,
-              source: "Songkick"
-            )
-            puts "#{venue.name} already created, created this event for #{event.date}"
+          # IMAGE GETTING
+          if page.search('div.media-group').present?
+            media = page.search('div.media-group')
+            if media.text.include?('Photos') || media.text.include?('Posters')
+              all = media.search('div.media-element a')
+              links = all.select { |link| link['href'].include?('images') || link['href'].include?('posters') }
+              p image_link = "https://www.songkick.com" + links.first['href']
+            end
+
+            page = agent.get(image_link)
+
+            if page.search('div.image img').present?
+              tail =  page.search('div.image img').first['src']
+              p fetch_photo = "https:" + tail
+              if page.search('div.attribution').present?
+                p credit = page.search('div.attribution').text.gsub("\n", "").squeeze(" ").strip
+              end
+            end
+
           end
+          ######
+          venue = Venue.new(name: venue_name, info: location_details, city: city, state: state, country: country)
+            if venue.save
+              event = Event.create(
+                date: date,
+                end_date: end_date,
+                time: time,
+                title: title,
+                description: description,
+                venue: venue,
+                url_link: event_url,
+                fetch_photo: fetch_photo,
+                photo_credit: credit,
+                source: "Songkick"
+              )
+              puts "created event for #{event.date} at #{venue.name}"
+            else
+              puts "#{venue.name} already created"
+              venue = Venue.find_by(name: venue_name, city: city)
+              event = Event.new(
+                date: date,
+                end_date: end_date,
+                time: time,
+                title: title,
+                description: description,
+                venue: venue,
+                url_link: event_url,
+                fetch_photo: fetch_photo,
+                photo_credit: credit,
+                source: "Songkick"
+              )
+              if event.save
+                puts "This is a new event"
+              else
+                puts "This event was already made and should be updated. Updating.."
+                event = Event.find_by(date: event.date, venue: event.venue)
+                event&.update(
+                  # date: date,
+                  # end_date: end_date,
+                  # time: time,
+                  # title: title,
+                  # description: description,
+                  # venue: venue,
+                  # url_link: event_url,
+                  fetch_photo: fetch_photo,
+                  photo_credit: credit,
+                  source: "Songkick"
+                )
+                puts "updated #{event.title}-#{event.id}"
+              end
+            end
           sleep(2)
           p "--------------"
         end

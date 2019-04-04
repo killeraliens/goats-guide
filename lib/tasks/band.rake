@@ -17,7 +17,7 @@ namespace :band do
 
   desc "Seeding custom band names (sync)"
   task create: :environment do
-    # Band.destroy_all
+    #Band.destroy_all
     custom_bands = [
       "Slægt", "Obituary", "Wyrd", "Burial Invocation", "Mortuous", "Necrot", "MGLA", "Cult of Fire",
       "Petrification", "Mortiferum", "Tormentor", "Ultra Silvam", "Asphyx", "Phrenelith", "Horrendous", "Mortal Wound",
@@ -25,7 +25,7 @@ namespace :band do
       "Croc Noir", "Entombed A.D.", "Witch Vomit", "Witch Haven", "Horna", "Cadaveric Incubator", "Butcher ABC",
       "Axeslasher", "Tomb Mold", "Teethgrinder", "Graceless", "Soulburn", "Fabulous Desaster", "Suffocation", "Vastum",
       "Demilich", "Korpse", "Wormrot", "Disma", "Entrails", "Dismember", "Nokturnal Mortum", "Kroda", "Slayer",
-      "Agoraphobic Nosebleed", "Abhorrence", "Demigod", "White Death", "Gorgoroth", "Vanhelgd", "Mass Grave", "Necrovation",
+      "Agoraphobic Nosebleed", "Abhorrence", "Demigod", "Gorgoroth", "Vanhelgd", "Mass Grave", "Necrovation", "Deströyer 666",
       "Tsjuder", "Winterfylleth", "Hypocrisy", "Watain", "At The Gates", "Cruciamentum", "Dead Congregation", "Sepulcher",
       "Necromaniac", "Galvanizer", "Funebrarum", "Anatomia", "Spectral Voice"
     ]
