@@ -41,11 +41,17 @@
   font-size: 14px;
 }
 
-// input[type="hidden"] {
-//   box-sizing: border-box;
-//   -webkit-appearance: none;
-//   background-color: $inactive-text-gray;
-// }
+.label-headers {
+  color: $bone-white;
+  margin: 16px 0px 8px 0px;
+  text-align: center;
+  display: block;
+  font-size: 20px;
+}
+
+.left-date {
+  margin-right: 16px;
+}
 
 .form-control.is-valid {
     border-color: $inactive-text-gray;
@@ -60,9 +66,16 @@
 
 // Small devices (landscape phones, 576px and up)
 @media (max-width: 576px) {
-  .form-control-label {
-    color: $inactive-text-gray;
-    margin-bottom: 0px;
-    font-size: 12px;
+  .form-group, .left-date {
+    margin-bottom: 12px;
+  }
+  .form-inputs {
+    line-height: 0px;
+    .form-control-label {
+      color: $inactive-text-gray;
+      margin-bottom: 6px;
+      font-size: 12px;
+      line-height: 8px;
+    }
   }
 }

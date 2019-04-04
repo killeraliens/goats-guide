@@ -1,26 +1,26 @@
-<h3>Create Event</h3>
+
+  <label class="form-control-label label-headers">Create Event</label>
+
 <%= simple_form_for @event do |f| %>
 
   <div class="form-inputs">
     <%= f.input :title %>
     <%= f.input :description %>
-    <div class="form-inline mb-3">
-      <div class="mr-3">
+    <div class="form-inline form-group">
+      <div class="left-date">
         <label for="" class="form-control-label justify-content-start">Start Date</label>
         <%= f.date_field :date, class: "form-control"%>
-
       </div>
       <div>
         <label for="" class="form-control-label justify-content-start">End Date</label>
         <%= f.date_field :end_date, class: "form-control" %>
-
       </div>
     </div>
   </div>
 
   <%= simple_form_for @venue do |f| %>
+    <label for="" class="form-control-label label-headers" >Venue Information*</label>
     <div class="form-inputs">
-      <label for="" class="mt-2" style="font-size: 20px">Venue Information</label>
       <%= f.input :name, label: "Venue Name",error: "This venue has an event for your date already" %>
       <%= f.input :country, as: :string  %>
       <%= f.input :state %>
