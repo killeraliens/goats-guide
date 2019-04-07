@@ -14,7 +14,6 @@ class UsersController < ApplicationController
 
   def created
     @events = Event.where(creator_id: @user)
-
   end
 
   def edit
