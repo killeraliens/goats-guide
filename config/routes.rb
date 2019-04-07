@@ -11,7 +11,9 @@ Rails.application.routes.draw do
     resources :saved_events, only: [:create, :destroy]
   end
   get 'past_events', to: 'events#index_past'
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+  end
+  get 'users/:id/created', to: 'users#created', as: 'user_created'
   resources :url_links, only: [:create, :destroy]
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do

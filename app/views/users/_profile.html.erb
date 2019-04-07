@@ -1,0 +1,47 @@
+<div class="profile-text">
+
+
+  <div class="profile-row-avatar">
+    <div class="avatar-square profile-avatar" style="
+                background-image:
+                url(<%= @user.photo %>);
+                ">
+    </div>
+    <div class="quote-col">
+      <h5>"<%= @user.quote %>"</h5>
+    </div>
+    <span>Created Events <%= @user.events.count %></span>
+  </div>
+
+  <div class="profile-row-username">
+    <h3><%= @user.username %></h3>
+    <% if @user == current_user %>
+      <%= link_to "Edit Profile", edit_user_path(@user), style: "font-size: 14px;" %>
+    <% end %>
+  </div>
+  <div class="profile-location-text">
+    <span><i class="fas fa-map-marker"></i></span>
+    <%= @user.city unless !@user.city.present? %>
+    <%= ', ' + @user.state unless !@user.state.present?  %>
+    <%= ' - ' + @user.country unless !@user.country.present? %>
+  </div>
+
+  <div class="url-row">
+    <% @user.url_links.each do |url_link| %>
+    <div class="url-list">
+      <ul>
+        <li>
+          <p>
+            <%= url_link.link %>
+          </p>
+          <p>
+            <%= link_to url_link.url, url_link.url, target: "_blank" %>
+          </p>
+        </li>
+      </ul>
+    </div>
+    <% end %>
+  </div>
+
+
+</div>

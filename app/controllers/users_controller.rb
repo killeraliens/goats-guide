@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :find_user, only: %i[show edit update]
+  skip_before_action :authenticate_user!, only: %i[index show created]
+  before_action :find_user, only: %i[show edit update created]
 
   def index
     @users = User.all
@@ -10,6 +10,11 @@ class UsersController < ApplicationController
   def show
     saved_event_ids = @user.saved_events.map {|event| event.event_id }
     @events = Event.find(saved_event_ids)
+  end
+
+  def created
+    @events = Event.where(creator_id: @user)
+
   end
 
   def edit

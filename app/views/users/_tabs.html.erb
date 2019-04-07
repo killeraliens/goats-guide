@@ -1,0 +1,8 @@
+<div class="tabs">
+  <div class="tabs-item <%= current_class?(user_path) %>">
+    <h5 ><%= link_to 'SAVED', user_path(@user) %> </h5>
+  </div>
+  <div class="tabs-item <%= current_class?(user_created_path) %>">
+    <h5><%= link_to 'CREATED', user_created_path %></h5>
+  </div>
+</div>
