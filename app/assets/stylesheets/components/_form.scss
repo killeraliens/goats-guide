@@ -15,6 +15,7 @@
 .form-actions {
   // margin-top: 8px !important;
   display: inline-block;
+  border-radius: none;
 }
 
 .form-actions > input {
@@ -24,6 +25,7 @@
   background: $light-gray !important;
   background-color: $light-gray !important;
   font-size: 14px;
+  -webkit-appearance: none;
   border-radius: none;
   &:focus {
     box-shadow: none;
@@ -37,13 +39,13 @@
 }
 .form-label-image > .form-group > label, input {
   color: $inactive-text-gray;
-  -webkit-appearance: none;
+  //-webkit-appearance: none; //removes checkbox
   font-size: 14px;
 }
 
 .label-headers {
   color: $bone-white;
-  margin: 16px 0px 8px 0px;
+  margin: 24px 0px 0px 0px;
   text-align: center;
   display: block;
   font-size: 20px;
@@ -64,13 +66,24 @@
     }
 }
 
+.devise-link-container {
+  margin-top: 12px;
+  a {
+    // line-height: 24px;
+  }
+}
+
+.form-group > .text-muted {
+  color: $inactive-text-gray !important;
+}
+
 // Small devices (landscape phones, 576px and up)
 @media (max-width: 576px) {
   .form-group, .left-date {
     margin-bottom: 12px;
   }
   .form-inputs {
-    line-height: 0px;
+    //line-height: 0px; //fucks up checkboxes
     .form-control-label {
       color: $inactive-text-gray;
       margin-bottom: 6px;

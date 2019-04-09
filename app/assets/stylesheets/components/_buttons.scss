@@ -1,3 +1,6 @@
-input > .btn {
-  border-radius: none !important;
+
+input[type="button"],
+input[type="submit"] {
+     -webkit-border-radius: 0;
+     border-radius: 0;
 }

@@ -1,12 +1,12 @@
 .card {
   // @include gradient-horizontal(rgba(255,255,255,.06), rgba(255,255,255,.02));
-  background: linear-gradient(45deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+  background: linear-gradient(45deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
   // background: $black;
   // background-repeat: no-repeat;
   // background-size: cover;
   // background-position: center;
   padding: 0px;
-  box-shadow: 0px 0px 8px black;
+  box-shadow: 0px 0px 8px #070707;
   border: none;
   border-radius: 0;
   display: flex;
@@ -75,6 +75,14 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  h1 {
+    font-size: 20px;
+    color: $inactive-text-gray;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+    margin-top: 16px;
+  }
 }
 
 .card-show-image {

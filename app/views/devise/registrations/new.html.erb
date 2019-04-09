@@ -19,6 +19,7 @@
                 input_html: { autocomplete: "state" }%>
     <%= f.input :username,
                 required: true,
+                hint: "15 characters max",
                 autofocus: true,
                 input_html: { autocomplete: "username" }%>
     <%= f.input :email,
@@ -38,5 +39,6 @@
     <%= f.button :submit, "Sign up" %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+<div class="devise-link-container">
+  <%= render "devise/shared/links" %>
+</div>
