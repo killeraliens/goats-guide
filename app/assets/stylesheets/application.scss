@@ -50,12 +50,14 @@ a > h1:hover {
 //   }
 // }
 
-// // Medium devices (tablets, 768px and up)
-// @media (min-width: 768px) {
-//   .card {
-//     grid-template-columns: 1fr;
-//   }
-// }
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .contain-this {
+    width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
 
 // // Large devices (desktops, 992px and up)
 // @media (min-width: 992px) {
