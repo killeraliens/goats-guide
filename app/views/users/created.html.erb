@@ -13,4 +13,11 @@
   </div>
 <% else %>
   <%= render "events/event_card_listings" %>
+  <div class="tabs mt-5">
+    <div class="tabs-item active">
+      <h5>PAST</h5>
+    </div>
+  </div>
+  <% @events = @past_created %>
+  <%= render "events/event_card_listings" %>
 <% end %>
