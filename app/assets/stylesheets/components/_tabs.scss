@@ -11,9 +11,9 @@
   font-size: 12px;
   letter-spacing: 1px;
   margin: 16px;
-  a {
-    color: $inactive-text-gray;
-  }
+  // a {
+  //   color: $inactive-text-gray;
+  // }
 }
 .tabs-item {
   flex: 1 0 auto;
@@ -28,7 +28,7 @@
   border: 1px solid $border-gray;
   border-bottom: none;
   // background-color: rgbA(0,0,0,.2);
-  a {
+  h5, a {
     color: $bone-white;
   }
 }

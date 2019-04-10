@@ -1,6 +1,12 @@
 <%= render "users/profile" %>
 <%= render "users/tabs" %>
 <%= render "events/event_card_listings" %>
+<% @events = @past_saved %>
 
-
+<div class="tabs mt-5">
+  <div class="tabs-item active">
+    <h5>PAST</h5>
+  </div>
+</div>
+<%= render "events/event_card_listings" %>
 

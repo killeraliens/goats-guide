@@ -9,7 +9,10 @@ class UsersController < ApplicationController
 
   def show
     saved_event_ids = @user.saved_events.map {|event| event.event_id }
-    @events = Event.find(saved_event_ids)
+    saved_events = Event.find(saved_event_ids)
+    @events = saved_events.select{|event| event.date >= Date.today}.sort_by{|event| event.date}
+    @past_saved = saved_events.select{|event| event.date < Date.today}.sort_by{|event| event.date}
+
   end
 
   def created
