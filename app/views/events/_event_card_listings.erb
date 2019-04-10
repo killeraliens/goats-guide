@@ -47,7 +47,7 @@
               <p><%= event.description.present? ? event.descript_limit : "" %></p>
 
               <div class="card-location-row">
-                <span><i class="fas fa-map-marker"></i></span>
+                <span><i class="fas fa-map-marker orange"></i></span>
                 <p><%= event.venue.city %><%= ", #{event.venue.state}" if !event.venue.state.nil? %>
                   <%= "- #{event.venue.country} -" %>
                   <%= event.venue.name&.truncate(14) %>

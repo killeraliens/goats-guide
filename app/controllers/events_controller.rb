@@ -32,7 +32,12 @@ class EventsController < ApplicationController
     @venue = Venue.new(venue_params)
     @event = Event.new(event_params)
     @event.creator = current_user
-    @event.date = Date.today if params[:event][:date] == ""
+    if @event.date.nil? || (@event.date.instance_of?(Date) && @event.date < Date.today)
+      @event.date = Date.today
+    end
+    if @event.end_date.nil? || (@event.end_date.instance_of?(Date) && @event.end_date < @event.date)
+      @event.end_date = @event.date
+    end
     if @venue.save
       @event.venue = @venue
     else

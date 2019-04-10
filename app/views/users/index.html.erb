@@ -5,26 +5,35 @@
 <% @users.each do |user| %>
   <%= link_to(user) do %>
     <div class="card">
-      <div class="card-banner">
+      <!-- <div class="card-banner">
         <div class="card-banner-image">
-          <h1 class="ml-3 align-content-center"><%= user.quote %></h1>
+          <h1 class="align-content-center"><#%= user.quote %></h1>
         </div>
         <div class="avatar-square avatar-large" style="
           background-image:
-          url('<%= user.photo %>');
+          url('<#%= user.photo %>');
         ">
         </div>
-      </div>
+      </div> -->
 
       <div class="card-text">
-        <div class="card-details">
-          <%= link_to(user) do %>
-            <h1><%= user.username %></h1>
-            <div class="card-location-row">
-              <span><i class="fas fa-map-marker"></i></span>
-              <p><%= user.city %>, <%= user.country %></p>
-            </div>
-          <% end %>
+        <div class="d-flex">
+
+          <div class="avatar-square avatar-large" style="
+            background-image:
+            url('<%= user.photo %>');
+          ">
+          </div>
+          <div class="card-details ml-3">
+            <%= link_to(user) do %>
+              <h1><%= user.username %></h1>
+              <div class="card-location-row">
+                <span><i class="fas fa-map-marker electric-blue"></i></span>
+                <p><%= user.city %>, <%= user.country %></p>
+              </div>
+            <% end %>
+          </div>
+
         </div>
       </div>
 
