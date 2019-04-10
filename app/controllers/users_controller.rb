@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def created
-    @events = Event.where(creator_id: @user)
+    @events = Event.where(creator_id: @user).order(date: 'ASC')
   end
 
   def edit

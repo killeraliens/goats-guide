@@ -1,3 +1,16 @@
 <%= render "users/profile" %>
 <%= render "users/tabs" %>
-<%= render "events/event_card_listings" %>
+
+<% if @events.count == 0 %>
+  <div class="no-results-notice">
+    <p>
+      <% if @user == current_user %>
+        You haven't added any events yet.
+      <% else %>
+        <%= @user.username %> hasn't added any events yet.
+      <% end %>
+    </p>
+  </div>
+<% else %>
+  <%= render "events/event_card_listings" %>
+<% end %>

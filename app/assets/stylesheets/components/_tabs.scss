@@ -45,7 +45,20 @@
 }
 
 .display-content {
-max-width:100%;
-height: auto;
+  max-width:100%;
+  height: auto;
+}
 
+.no-results-notice {
+  text-align: center;
+  margin-top: 64px;
+  color: $inactive-text-gray;
+  font-size: 14px;
+}
+
+@media (max-width: 576px) {
+  .tabs h5 {
+    font-size: 11px;
+    margin: 14px;
+  }
 }

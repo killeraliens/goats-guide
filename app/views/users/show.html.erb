@@ -1,12 +1,24 @@
 <%= render "users/profile" %>
 <%= render "users/tabs" %>
-<%= render "events/event_card_listings" %>
-<% @events = @past_saved %>
-
-<div class="tabs mt-5">
-  <div class="tabs-item active">
-    <h5>PAST</h5>
+<% if @user.saved_events.count == 0 %>
+  <div class="no-results-notice">
+    <p>
+      <% if @user == current_user %>
+        You haven't saved any events yet.
+      <% else %>
+        <%= @user.username %> hasn't saved any events yet.
+      <% end %>
+    </p>
   </div>
-</div>
-<%= render "events/event_card_listings" %>
+<% else %>
+  <%= render "events/event_card_listings" %>
+  <div class="tabs mt-5">
+    <div class="tabs-item active">
+      <h5>PAST</h5>
+    </div>
+  </div>
+  <% @events = @past_saved %>
+  <%= render "events/event_card_listings" %>
+<% end %>
+
 

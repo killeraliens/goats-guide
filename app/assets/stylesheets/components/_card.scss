@@ -1,6 +1,6 @@
 .card {
   // @include gradient-horizontal(rgba(255,255,255,.06), rgba(255,255,255,.02));
-  background: linear-gradient(45deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  background: linear-gradient(45deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
   // background: $black;
   // background-repeat: no-repeat;
   // background-size: cover;
@@ -38,6 +38,7 @@
       justify-content: space-between;
       font-size: 14px;
       margin-bottom: 8px;
+      margin-top: 2px;
       .card-date {
         color: $bone-white;
         font-size: 12px;
