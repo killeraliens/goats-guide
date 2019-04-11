@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   before_action :find_event, only: %i[show update edit destroy]
-  # before_action :find_venue, only: %i[edit]
   skip_before_action :authenticate_user!, only: %i[index index_past show]
 
   def index
@@ -33,12 +32,7 @@ class EventsController < ApplicationController
     @venue = Venue.new(venue_params)
     @event = Event.new(event_params)
     @event.creator = current_user
-    if @event.date.nil? || (@event.date.instance_of?(Date) && @event.date < Date.today)
-      @event.date = Date.today
-    end
-    if @event.end_date.nil? || (@event.end_date.instance_of?(Date) && @event.end_date < @event.date)
-      @event.end_date = @event.date
-    end
+    date_validate
     if @venue.save
       @event.venue = @venue
     else
@@ -53,21 +47,16 @@ class EventsController < ApplicationController
 
   def update
     @event.update(event_params)
-    if @event.date.nil? || (@event.date.instance_of?(Date) && @event.date < Date.today)
-      @event.date = Date.today
-    end
-    if @event.end_date.nil? || (@event.end_date.instance_of?(Date) && @event.end_date < @event.date)
-      @event.end_date = @event.date
-    end
+    date_validate
     if params[:venue][:name].present?
       @venue = Venue.new(venue_params)
       if @venue.save
         @event.venue = @venue
         @event.update(event_params)
+      elsif Venue.exists?(name: params[:venue][:name], city: params[:venue][:city])
+        @event.venue = Venue.find_by(name: params[:venue][:name], city: params[:venue][:city])
       else
         @event.venue
-         #Venue.find_by(name: params[:venue][:name], city: params[:venue][:city])
-        # @event.update(event_params)
       end
     end
     if @event.save
@@ -95,9 +84,14 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  # def find_venue
-  #   @venue = Venue.find_by(id: @event.venue)
-  # end
+  def date_validate
+    if @event.date.nil? || (@event.date.instance_of?(Date) && @event.date < Date.today)
+      @event.date = Date.today
+    end
+    if @event.end_date.nil? || (@event.end_date.instance_of?(Date) && @event.end_date < @event.date)
+      @event.end_date = @event.date
+    end
+  end
 
   def event_params
     params.require(:event).permit(:title, :description, :date, :end_date, :time, :photo, :source)
