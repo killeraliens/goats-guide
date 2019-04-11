@@ -57,7 +57,7 @@
 
           </div>
       </div>
-      <% if current_user == event.creator %>
+      <% if current_user && current_user == event.creator %>
         <div class="card-creator-row">
           <div class="orange-links">
             <%= link_to 'delete', event_path(event), method: :delete %>
