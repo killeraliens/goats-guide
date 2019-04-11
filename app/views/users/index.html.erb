@@ -29,7 +29,7 @@
               <h1><%= user.username %></h1>
               <div class="card-location-row">
                 <span><i class="fas fa-map-marker electric-blue"></i></span>
-                <p><%= user.city %>, <%= user.country %></p>
+                <p><%= user.city %>, <%= "#{user.state}," if !user.state.nil? %> <%= user.country %></p>
               </div>
             <% end %>
           </div>

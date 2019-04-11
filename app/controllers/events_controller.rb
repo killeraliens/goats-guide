@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_action :find_event, only: %i[show update saved_event_create]
+  before_action :find_event, only: %i[show update edit destroy]
+  # before_action :find_venue, only: %i[edit]
   skip_before_action :authenticate_user!, only: %i[index index_past show]
 
   def index
@@ -52,10 +53,39 @@ class EventsController < ApplicationController
 
   def update
     @event.update(event_params)
+    if @event.date.nil? || (@event.date.instance_of?(Date) && @event.date < Date.today)
+      @event.date = Date.today
+    end
+    if @event.end_date.nil? || (@event.end_date.instance_of?(Date) && @event.end_date < @event.date)
+      @event.end_date = @event.date
+    end
+    if params[:venue][:name].present?
+      @venue = Venue.new(venue_params)
+      if @venue.save
+        @event.venue = @venue
+        @event.update(event_params)
+      else
+        @event.venue
+         #Venue.find_by(name: params[:venue][:name], city: params[:venue][:city])
+        # @event.update(event_params)
+      end
+    end
     if @event.save
       redirect_to event_path(@event), notice: 'Updated'
     else
       render :show, notice: "Couldn't save"
+    end
+  end
+
+  def edit
+    @venue = Venue.new
+  end
+
+  def destroy
+    if @event.destroy
+      redirect_to request.referrer, notice: "Removed #{@event.title}"
+    else
+      redirect_to request.referrer, notice: "Could not delete #{@event.title}"
     end
   end
 
@@ -64,6 +94,10 @@ class EventsController < ApplicationController
   def find_event
     @event = Event.find(params[:id])
   end
+
+  # def find_venue
+  #   @venue = Venue.find_by(id: @event.venue)
+  # end
 
   def event_params
     params.require(:event).permit(:title, :description, :date, :end_date, :time, :photo, :source)

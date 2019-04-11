@@ -1,0 +1,37 @@
+<%= render "shared/tabs" %>
+
+<h2 class="">Edit Event</h2>
+
+<%= simple_form_for @event do |f| %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <div class="form-inline form-group">
+      <div class="left-date">
+        <label for="" class="form-control-label justify-content-start">Start Date*</label>
+        <%= f.date_field :date, class: "form-control"%>
+       <!-- <#%= f.input :date, as: :date, label: "start date", class: "form-control" %> -->
+      </div>
+      <div>
+        <label for="" class="form-control-label justify-content-start">End Date</label>
+        <%= f.date_field :end_date, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <%= simple_form_for @venue do |f| %>
+    <label for="" class="form-control-label label-headers" >Venue Information</label>
+    <div class="form-inputs">
+      <%= f.input :name, label: "Venue Name",error: "This venue has an event for your date already" %>
+      <%= f.input :country, as: :string  %>
+      <%= f.input :state %>
+      <%= f.input :city %>
+      <%= f.input :street %>
+      <%= f.input :info %>
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Submit", class: "form-control form-actions", style: "border-radius: none" %>
+    </div>
+  <% end %>
+<% end %>
