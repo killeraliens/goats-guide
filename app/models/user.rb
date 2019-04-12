@@ -19,17 +19,17 @@ class User < ApplicationRecord
     }
   geocoded_by :address
   after_validation :geocode #, if: :will_save_change_to_address?
-  before_save :capitalize_fields #, :downcase_fields,
+  # before_save :capitalize_fields #, :downcase_fields,
 
   # def downcase_fields
   #   username.downcase!
   # end
 
-  def capitalize_fields
-    city.capitalize!
-    state&.upcase!
-    country.capitalize!
-  end
+  # def capitalize_fields
+  #   city.capitalize!
+  #   state&.upcase!
+  #   country.capitalize!
+  # end
 
   def address
     [city, state, country].compact.join(' ')

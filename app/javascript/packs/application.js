@@ -1,5 +1,4 @@
 import "bootstrap";
-
-import { userAutocomplete } from '../plugins/user_autocomplete';
+import { userAutocomplete } from '../plugins/init_autocomplete';
 
 userAutocomplete();
