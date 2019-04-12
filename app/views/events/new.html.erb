@@ -24,10 +24,12 @@
       <label for="" class="form-control-label label-headers" >Venue Information</label>
       <div class="form-inputs">
         <%= f.input :name, label: "Venue Name",error: "This venue has an event for your date already" %>
-        <%= f.input :country, as: :string  %>
-        <%= f.input :state %>
+        <%= f.input :street,
+                    autofocus: true,
+                    input_html: { autocomplete: "street" } %>
         <%= f.input :city %>
-        <%= f.input :street %>
+        <%= f.input :state %>
+        <%= f.input :country, as: :string  %>
         <%= f.input :info %>
       </div>
       <div class="form-actions">
@@ -36,5 +38,3 @@
     <% end %>
   <% end %>
 </div>
-
-

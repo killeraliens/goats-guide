@@ -1,5 +1,6 @@
 import places from 'places.js';
 
+
 const userAutocomplete = () => {
   const cityInstance = places({
     container: document.getElementById('user_city'),
@@ -12,9 +13,9 @@ const userAutocomplete = () => {
   });
 
   cityInstance.on('change', function resultSelected(e) {
-    document.getElementById('user_city').value = e.suggestion.name;
+    document.getElementById('user_city').value = e.suggestion.name || '';
     document.getElementById('user_state').value = e.suggestion.administrative || '';
-    document.getElementById('user_country').value = e.suggestion.countryCode.toUpperCase();
+    document.getElementById('user_country').value = e.suggestion.countryCode.toUpperCase() || '';
   });
 };
 
@@ -80,5 +81,4 @@ const userAutocomplete = () => {
 //     });
 //   }
 // };
-
 export { userAutocomplete };
