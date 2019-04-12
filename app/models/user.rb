@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :username, presence: true, uniqueness: { case_sensitive: false }
-  validates :city, :state, :country, presence: true
+  validates :city, :country, presence: true
   validates :username, length: {
     maximum: 15,
     too_long: "%{count} characters is the maximum allowed"
