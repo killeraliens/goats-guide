@@ -7,31 +7,26 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :username, presence: true, uniqueness: { case_sensitive: false }
-  validates :city, :country, presence: true
-  validates :username, length: { maximum: 15,
-    too_long: "%{count} characters is the maximum allowed" }
+  validates :city, :state, :country, presence: true
+  validates :username, length: {
+    maximum: 15,
+    too_long: "%{count} characters is the maximum allowed"
+  }
+  validates :quote, length: {
+    maximum: 48,
+    too_long: "%{count} characters is the maximum allowed"
+  }
   mount_uploader :photo, PhotoUploader
   include PgSearch
   pg_search_scope :search_by_username_country_state_city,
-    against: [:username, :country, :state, :city],
+    against: %i[username country state city],
     using: {
-      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+      tsearch: { prefix: true }
     }
   geocoded_by :address
-  after_validation :geocode #, if: :will_save_change_to_address?
-  # before_save :capitalize_fields #, :downcase_fields,
-
-  # def downcase_fields
-  #   username.downcase!
-  # end
-
-  # def capitalize_fields
-  #   city.capitalize!
-  #   state&.upcase!
-  #   country.capitalize!
-  # end
+  after_validation :geocode # , if: :will_save_change_to_address?
 
   def address
-    [city, state, country].compact.join(' ')
+    [city, state, country].compact.join(', ')
   end
 end
