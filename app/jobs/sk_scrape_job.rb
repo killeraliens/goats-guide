@@ -130,9 +130,9 @@ class SkScrapeJob < ApplicationJob
                   # description: description,
                   # venue: venue,
                   # url_link: event_url,
-                  # fetch_photo: fetch_photo,
-                  # photo_credit: credit,
-                  # source: "Songkick"
+                  fetch_photo: fetch_photo,
+                  photo_credit: credit,
+                  source: "Songkick"
                 )
                 puts "updated #{event.title}-#{event.id}"
               end

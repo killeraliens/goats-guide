@@ -1,6 +1,5 @@
 import places from 'places.js';
 
-
 const userAutocomplete = () => {
   const cityInstance = places({
     container: document.getElementById('user_city'),
