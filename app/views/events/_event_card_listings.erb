@@ -25,7 +25,9 @@
               <% if current_user  %>
                 <div class="card-save-link">
                   <% saved_event_ids = current_user.saved_events.map {|event| event.event_id } %>
-                  <% saved_events = Event.find(saved_event_ids) %>
+                  <% saved_events = Event.find(saved_event_ids)  %>
+                 <!--  <#% saved_events = SavedEvent.where(event_id: event, user_id: current_user) %> -->
+
                   <% if !saved_events.map(&:id).include?(event.id) %>
                     <div class="orange-links">
                       <%= link_to 'save', event_saved_events_path(event), method: :post %>
@@ -43,7 +45,11 @@
 
             </div>
             <%= link_to(event) do %>
-              <h1><%= event.title %></h1>
+
+              <h1 class="card-title"><%= event.title %></h1>
+              <div class="card-title-original" style="display: none;"><%= event.title %></div>
+
+
               <p><%= event.description.present? ? event.descript_limit : "" %></p>
 
               <div class="card-location-row">
@@ -75,3 +81,5 @@
 
   </div>
 <% end %>
+
+
