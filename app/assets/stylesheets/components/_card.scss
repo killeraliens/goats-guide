@@ -62,34 +62,21 @@
   }
 
   .card-title {
-    height: 22px;
-    // overflow: hidden;
-    // position: relative;
-    // max-height: 22px;
-    // text-align: justify-left;
-    // margin-right: 0em;
-    // padding-right: 1em;
-    // // text-overflow: ellipsis;
-    // &:before {
-    //   content: '...';
-    //   position: absolute;
-    //   right: 0;
-    //   bottom: 0;
-    //   text-align: justify-left;
-    // }
-    // &:after {
-    //   content: '';
-    //   position: absolute;
-    //   right: 0;
-    //   width: 1em;
-    //   height: 1em;
-    //   margin-top: 0.2em;
-    //   background-color: $black;
-    // }
-
+    // height: 22px;
   }
 
+.truncate-ellipsis {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+}
 
+.truncate-ellipsis > * {
+    display: table-cell;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
   .card-show-text {
     margin-top: 32px;
