@@ -5,14 +5,18 @@ const ellipsizeTextBox = (claA, claH) => {
     let el = els[i];
     let elH = elsH[i];
     el.innerHTML = elH.innerHTML;
-    let wordArray = el.innerHTML.split(' ');
-    while(el.scrollHeight > el.offsetHeight) {
-        //wordArray.pop();
-        if (wordArray.pop() === "undefined"){
-            break;
-        }
+    //let wordArray = el.innerHTML.split(' ');
 
-        el.innerHTML = wordArray.join(' ') + '...';
+    var str = elH.innerHTML;
+
+    while(el.scrollHeight > el.offsetHeight) {
+    //    wordArray.pop();
+    //    el.innerHTML = wordArray.join(' ') + '...';
+
+        var strCuttedOff = str.substring(0, str.length - 5);
+        str = strCuttedOff;
+        el.innerHTML = strCuttedOff + "...";
+
      }
   };
 }
