@@ -6,8 +6,6 @@ function debounce(func){
   };
 }
 
-
-
 const ellipsizeTextBox = (claA, claH) => {
   // alert('yo');
   const els = document.querySelectorAll(claA);
