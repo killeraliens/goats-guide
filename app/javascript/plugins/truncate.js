@@ -16,4 +16,3 @@ const ellipsizeTextBox = (claA, claH) => {
 
 
 export { ellipsizeTextBox };
-
