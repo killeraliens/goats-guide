@@ -1,11 +1,3 @@
-function debounce(func){
-  var timer;
-  return function(event){
-    if(timer) clearTimeout(timer);
-    timer = setTimeout(func,100,event);
-  };
-}
-
 const ellipsizeTextBox = (claA, claH) => {
   // alert('yo');
   const els = document.querySelectorAll(claA);
@@ -24,4 +16,4 @@ const ellipsizeTextBox = (claA, claH) => {
 
 
 export { ellipsizeTextBox };
-export { debounce };
+
