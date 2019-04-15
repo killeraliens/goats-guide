@@ -13,7 +13,7 @@ const ellipsizeTextBox = (claA, claH) => {
     while(el.scrollHeight >= el.offsetHeight) {
         wordArray.pop();
         el.innerHTML = wordArray.join(' ') + '...';
-        if(ii++ >= 5) break;
+        if(ii++ >= 50) break;
      }
   };
 }
