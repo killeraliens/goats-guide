@@ -32,7 +32,7 @@ class Event < ApplicationRecord
   end
 
   def address
-    "#{self.venue.city} #{self.venue&.state} #{self.venue.country}"
+    "#{venue.city} " + "#{venue.state} " + "- #{venue.country} - #{venue.name}"
   end
 
 
