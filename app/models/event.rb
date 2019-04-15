@@ -31,6 +31,11 @@ class Event < ApplicationRecord
     description&.truncate(122)
   end
 
+  def address
+    "#{self.venue.city} #{self.venue&.state} #{self.venue.country}"
+  end
+
+
   def past
     if end_date.nil? && date < Date.today
       true

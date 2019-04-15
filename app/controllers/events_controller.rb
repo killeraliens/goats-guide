@@ -13,6 +13,10 @@ class EventsController < ApplicationController
     else
       @events = Event.where("date >= ? AND date <= ?", startdate, enddate).order(date: 'ASC').upcoming_events
     end
+    if !current_user.nil?
+      saved_event_ids = current_user.saved_events.map {|event| event.event_id }
+      @saved_events = Event.find(saved_event_ids)
+    end
   end
 
   def index_past
@@ -20,6 +24,10 @@ class EventsController < ApplicationController
       @events = Event.global_search(params[:query]).past_events
     else
       @events = Event.order(date: 'ASC').past_events
+    end
+    if !current_user.nil?
+      saved_event_ids = current_user.saved_events.map {|event| event.event_id }
+      @saved_events = Event.find(saved_event_ids)
     end
   end
 

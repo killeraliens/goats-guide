@@ -12,11 +12,19 @@ class UsersController < ApplicationController
     saved_events = Event.find(saved_event_ids)
     @events = saved_events.select { |event| event.date >= Date.today }.sort_by(&:date)
     @past_saved = saved_events.select { |event| event.end_date < Date.today }.sort_by(&:end_date)
+    if !current_user.nil?
+      saved_event_ids = current_user.saved_events.map {|event| event.event_id }
+      @saved_events = Event.find(saved_event_ids)
+    end
   end
 
   def created
     @events = Event.where("creator_id = ? AND end_date >= ?", @user, Date.today).order(date: 'ASC')
     @past_created = Event.where("creator_id = ? AND end_date < ?", @user, Date.today).order(date: 'ASC')
+    if !current_user.nil?
+      saved_event_ids = current_user.saved_events.map {|event| event.event_id }
+      @saved_events = Event.find(saved_event_ids)
+    end
   end
 
   def edit
