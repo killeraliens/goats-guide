@@ -10,7 +10,7 @@ class Venue < ApplicationRecord
   def capitalize_fields
     city.capitalize!
     state&.upcase!
-    country.capitalize!
+    country.upcase!
   end
 
   def address

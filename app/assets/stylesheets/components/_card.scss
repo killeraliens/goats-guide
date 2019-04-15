@@ -50,6 +50,7 @@
     }
     .card-location-row {
       display: flex;
+      height: 22px;
       span {
         font-size: 14px;
         margin-right: 8px;
@@ -62,10 +63,33 @@
 
   .card-title {
     height: 22px;
-    // overflow:hidden;
-    // text-overflow: ellipsis;
+    // overflow: hidden;
+    // position: relative;
+    // max-height: 22px;
+    // text-align: justify-left;
+    // margin-right: 0em;
+    // padding-right: 1em;
+    // // text-overflow: ellipsis;
+    // &:before {
+    //   content: '...';
+    //   position: absolute;
+    //   right: 0;
+    //   bottom: 0;
+    //   text-align: justify-left;
+    // }
+    // &:after {
+    //   content: '';
+    //   position: absolute;
+    //   right: 0;
+    //   width: 1em;
+    //   height: 1em;
+    //   margin-top: 0.2em;
+    //   background-color: $black;
+    // }
 
   }
+
+
 
   .card-show-text {
     margin-top: 32px;
