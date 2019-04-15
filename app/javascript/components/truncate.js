@@ -10,7 +10,7 @@ const ellipsizeTextBox = (claA, claH) => {
     let wordArray = el.innerHTML.split(' ');
 
     let ii=0;
-    while(el.scrollHeight >= el.offsetHeight) {
+    while(el.scrollHeight > el.offsetHeight) {
         wordArray.pop();
         el.innerHTML = wordArray.join(' ') + '...';
         if(ii++ >= 50) break;
