@@ -1,5 +1,5 @@
 const ellipsizeTextBox = (claA, claH) => {
-  // alert('yo');
+
   const els = document.querySelectorAll(claA);
   const elsH = document.querySelectorAll(claH);
   for (let i = 0; i < els.length; i++ ) {
