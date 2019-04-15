@@ -1,6 +1,6 @@
+import { ellipsizeTextBox } from '../components/truncate';
 import "bootstrap";
 import { userAutocomplete } from '../plugins/user_autocomplete';
-import { ellipsizeTextBox } from '../components/truncate';
 
 
 ellipsizeTextBox(".card-title", ".card-title-original");
