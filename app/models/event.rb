@@ -27,11 +27,7 @@ class Event < ApplicationRecord
     end_date&.strftime('%a, %b %d, %Y')
   end
 
-  def descript_limit
-    description&.truncate(122)
-  end
-
-  def address
+  def location
     "#{venue.city} " + "#{venue.state} " + "- #{venue.country} - #{venue.name}"
   end
 

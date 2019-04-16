@@ -25,64 +25,75 @@
 }
 
 .card-details {
-    h1 {
-      font-size: 20px;
-      // font-weight: bold;
+  h1 {
+    font-size: 20px;
+    // font-weight: bold;
+  }
+  p {
+   font-size: 14px;
+   // margin: 0px
+  }
+  .card-date-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 8px;
+    margin-top: 2px;
+    .card-date {
+      color: $bone-white;
+      font-size: 12px;
+    }
+     a {
+      text-decoration: none;
+      // color: $inactive-text-gray;
+    }
+  }
+  .card-location-row {
+    display: flex;
+    height: 22px;
+    span {
+      font-size: 14px;
+      margin-right: 8px;
     }
     p {
-     font-size: 14px;
-     // margin: 0px
-    }
-    .card-date-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-      margin-bottom: 8px;
-      margin-top: 2px;
-      .card-date {
-        color: $bone-white;
-        font-size: 12px;
-      }
-       a {
-        text-decoration: none;
-        // color: $inactive-text-gray;
-      }
-    }
-    .card-location-row {
-      display: flex;
-      height: 22px;
-      span {
-        font-size: 14px;
-        margin-right: 8px;
-      }
-      p {
-        margin: 0px;
-      }
+      margin: 0px;
     }
   }
-
-  .card-title {
-    // height: 22px;
-  }
+}
 
 .truncate-ellipsis {
     display: table;
     table-layout: fixed;
     width: 100%;
     white-space: nowrap;
+    .card-description {
+      white-space: normal;
+      // height: 48px;
+    }
 }
 
 .truncate-ellipsis > * {
     display: table-cell;
     overflow: hidden;
     text-overflow: ellipsis;
+    .card-description {
+
+    }
 }
 
-  .card-show-text {
-    margin-top: 32px;
-    // opacity: .2;
-    color: $inactive-text-gray;
-  }
+.card-title {
+  padding-bottom: 4px;
+}
+
+.card-description {
+  padding-bottom: 8px;
+}
+
+.card-show-text {
+  margin-top: 32px;
+  // opacity: .2;
+  color: $inactive-text-gray;
+}
 
 
 .card-banner {

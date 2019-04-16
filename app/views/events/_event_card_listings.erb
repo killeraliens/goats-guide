@@ -45,32 +45,18 @@
 
             </div>
             <%= link_to(event) do %>
-              <div class="truncate-ellipsis">
+              <div class="truncate-ellipsis" style>
                 <h1 class="card-title"><%= event.title %></h1>
               </div>
-              <div class="card-title-original" style="display: none;"><%= event.title %></div>
-
-
-              <p><%= event.description.present? ? event.descript_limit : "" %></p>
+              <div class="truncate-ellipsis card-description">
+                <p class=""><%= event.description.present? ? event.description : " " %></p>
+              </div>
 
               <div class="card-location-row ">
                 <span><i class="fas fa-map-marker orange"></i></span>
                 <div class="truncate-ellipsis">
-                  <p >
-                    <!-- <#%= event.venue.city %><#%= ", #{event.venue.state}" if !event.venue.state.nil? %>
-                    <#%= "- #{event.venue.country} -" %>
-                    <#%= event.venue.name %> -->
-
-                    <%= event.address %>
-                  </p>
-
+                  <p ><%= event.location %></p>
                 </div>
-              </div>
-              <div class="card-location-row-original" style="display: none;" >
-                <span><i class="fas fa-map-marker orange"></i></span>
-                <p>
-                  <%= event.address %>
-                </p>
               </div>
             <% end %>
 
