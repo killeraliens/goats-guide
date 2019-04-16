@@ -7,6 +7,7 @@ class Event < ApplicationRecord
   validates :date, uniqueness: { scope: :venue }
   scope :past_events, -> { where("end_date < ?", Date.today) }
   scope :upcoming_events, -> { where("date >= ?", Date.today) }
+  scope :venue_id, -> { joins(:venues).merge(venue_id) }
   mount_uploader :photo, PhotoUploader
   include PgSearch
   pg_search_scope :global_search,
@@ -31,6 +32,13 @@ class Event < ApplicationRecord
     "#{venue.city} " + "#{venue.state} " + "- #{venue.country} - #{venue.name}"
   end
 
+  def latitude
+    venue.latitude
+  end
+
+  def longitude
+    venue.longitude
+  end
 
   def past
     if end_date.nil? && date < Date.today

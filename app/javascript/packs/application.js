@@ -1,20 +1,10 @@
 import "bootstrap";
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { userAutocomplete } from '../plugins/user_autocomplete';
-// import { ellipsizeTextBox } from '../components/truncate';
+import { initMapbox } from '../plugins/init_mapbox';
 
-
-// ellipsizeTextBox(".card-title", ".card-title-original");
-// ellipsizeTextBox(".card-location-row", ".card-location-row-original");
-
-// window.addEventListener('resize', function(event){
-//     ellipsizeTextBox(".card-title", ".card-title-original");
-//     ellipsizeTextBox(".card-location-row", ".card-location-row-original");
-// });
-
-
-// window.onresize = function(event){
-//     ellipsizeTextBox(".card-title", ".card-title-original");
-//     ellipsizeTextBox(".card-location-row", ".card-location-row-original");
-// }
-
+initMapbox();
 userAutocomplete();
+
+
+

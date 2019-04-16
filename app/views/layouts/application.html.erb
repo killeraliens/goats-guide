@@ -28,7 +28,10 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+
+    <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
   </head>
   <body>
     <%= render 'shared/navbar' %>
@@ -38,5 +41,25 @@
     </div>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
+
+    <script>
+      const mapElement = document.getElementById('map');
+
+      if (mapElement) {
+        mapboxgl.accessToken = "<%= ENV['MAPBOX_API_KEY'] %>";
+        const map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/killeraliens/cjujo0v2703j71fqray97kjad'
+        });
+        const markers = JSON.parse(mapElement.dataset.markers);
+        markers.forEach((marker) => {
+        new mapboxgl.Marker()
+          .setLngLat([ marker.lng, marker.lat ])
+          .addTo(map);
+        });
+        // fitMapToMarkers(map, markers);
+      }
+    </script>
+
   </body>
 </html>
