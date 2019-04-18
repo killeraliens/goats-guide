@@ -17,6 +17,13 @@ class EventsController < ApplicationController
     #   saved_event_ids = current_user.saved_events.map {|event| event.event_id }
     #   @saved_events = Event.find(saved_event_ids)
     # end
+
+    @markers = @events.map do |event|
+      {
+        lat: event.latitude,
+        lng: event.longitude
+      }
+    end
   end
 
   def index_past

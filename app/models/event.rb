@@ -31,6 +31,13 @@ class Event < ApplicationRecord
     "#{venue.city} " + "#{venue.state} " + "- #{venue.country} - #{venue.name}"
   end
 
+  def latitude
+    venue.latitude
+  end
+
+  def longitude
+    venue.longitude
+  end
 
   def past
     if end_date.nil? && date < Date.today

@@ -1,21 +1,7 @@
 import "bootstrap";
+import 'mapbox-gl/dist/mapbox-gl.css'; // <-- you need to uncomment the stylesheet_pack_tag in the layout!
 import { userAutocomplete } from '../plugins/user_autocomplete';
+import { initMapbox } from '../plugins/init_mapbox';
 
-// import { ellipsizeTextBox } from '../components/truncate';
-
-
-// ellipsizeTextBox(".card-title", ".card-title-original");
-// ellipsizeTextBox(".card-location-row", ".card-location-row-original");
-
-// window.addEventListener('resize', function(event){
-//     ellipsizeTextBox(".card-title", ".card-title-original");
-//     ellipsizeTextBox(".card-location-row", ".card-location-row-original");
-// });
-
-
-// window.onresize = function(event){
-//     ellipsizeTextBox(".card-title", ".card-title-original");
-//     ellipsizeTextBox(".card-location-row", ".card-location-row-original");
-// }
-
+initMapbox();
 userAutocomplete();
