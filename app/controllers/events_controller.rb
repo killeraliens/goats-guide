@@ -13,13 +13,6 @@ class EventsController < ApplicationController
     else
       @events = Event.where("date >= ? AND date <= ?", startdate, enddate).order(date: 'ASC').upcoming_events
     end
-
-    @markers = @events.map do |event|
-      {
-        lat: event.latitude,
-        lng: event.longitude
-      }
-    end
     # if !current_user.nil?
     #   saved_event_ids = current_user.saved_events.map {|event| event.event_id }
     #   @saved_events = Event.find(saved_event_ids)
