@@ -59,7 +59,8 @@ class SkScrapeJob < ApplicationJob
           end
           if event_type == "concert"
             if page.search('div.line-up').empty?
-              p description = page.search('div.row.component.brief div.location').text.strip.gsub("\n", ' ').squeeze(' ')
+              #p description = page.search('div.row.component.brief div.location').text.strip.gsub("\n", ' ').squeeze(' ')
+              p description = nil
             else
               p description = page.search('div.line-up span').text.strip.gsub("\n", ', ').squeeze(' ')
             end
@@ -101,9 +102,10 @@ class SkScrapeJob < ApplicationJob
                 photo_credit: credit,
                 source: "Songkick"
               )
+              puts "new venue added: #{venue.name}"
               puts "created event for #{event.date} at #{venue.name}"
+              p "--------------"
             else
-              puts "#{venue.name} already created"
               venue = Venue.find_by(name: venue_name, city: city)
               event = Event.new(
                 date: date,
@@ -117,28 +119,30 @@ class SkScrapeJob < ApplicationJob
                 photo_credit: credit,
                 source: "Songkick"
               )
+              puts "venue exists: #{venue.name}"
               if event.save
-                puts "This is a new event"
+                puts "This is a new event at venue: #{venue.name}"
+                p "--------------"
               else
                 puts "This event was already made and should be updated. Updating.."
                 event = Event.find_by(date: event.date, venue: event.venue)
                 event&.update(
-                  # date: date,
-                  # end_date: end_date,
-                  # time: time,
-                  # title: title,
-                  # description: description,
+                  date: date,
+                  end_date: end_date,
+                  time: time,
+                  title: title,
+                  description: description,
                   # venue: venue,
-                  # url_link: event_url,
+                  url_link: event_url,
                   fetch_photo: fetch_photo,
                   photo_credit: credit,
                   source: "Songkick"
                 )
                 puts "updated #{event.title}-#{event.id}"
+                p "--------------"
               end
             end
           sleep(2)
-          p "--------------"
         end
       end
       url = "https://www.songkick.com/search?page=#{page_num}&per_page=30&query=#{band.name}&type=upcoming"
