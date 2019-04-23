@@ -87,8 +87,11 @@ const initMapbox = () => {
         filter: ['has', 'point_count'],
         layout: {
           'text-field': '{point_count_abbreviated}',
-          'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+          'text-font': ['Arial Unicode MS Bold'],
           'text-size': 12
+        },
+        paint: {
+          "text-color": "#ffffff"
         }
       });
 
@@ -99,9 +102,9 @@ const initMapbox = () => {
         filter: ['!', ['has', 'point_count']],
         paint: {
           'circle-color': '#FF3100',
-          'circle-radius': 10,
-          'circle-stroke-width': 1,
-          'circle-stroke-color': '#fff'
+          'circle-radius': 6,
+          'circle-stroke-width': 0,
+          'circle-stroke-color': '#fff',
         }
       });
 
