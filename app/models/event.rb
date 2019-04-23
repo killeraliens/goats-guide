@@ -31,13 +31,13 @@ class Event < ApplicationRecord
     "#{venue.city} " + "#{venue.state} " + "- #{venue.country} - #{venue.name}"
   end
 
-  def latitude
-    venue.latitude
-  end
+  # def latitude
+  #   venue.latitude
+  # end
 
-  def longitude
-    venue.longitude
-  end
+  # def longitude
+  #   venue.longitude
+  # end
 
   def coordinates
     [venue.longitude, venue.latitude]
@@ -52,7 +52,9 @@ class Event < ApplicationRecord
       },
       "properties": {
         "event_id": id,
-        "name": title
+        "name": title,
+        "venue_name": location,
+        "date": date_format
       }
     }
   end

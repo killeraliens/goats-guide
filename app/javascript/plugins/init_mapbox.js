@@ -122,7 +122,30 @@ const initMapbox = () => {
           });
         });
       });
+///
+      map.on('click', 'unclustered-point', function (e) {
+        const features = map.queryRenderedFeatures(e.point, { layers: ['unclustered-point'] });
+        const eventId = features[0].properties.event_id;
+        const title = features[0].properties.name;
+        const venueName = features[0].properties.venue_name;
+        const startDate = features[0].properties.date;
 
+        console.log(features);
+        console.log(title);
+        console.log(venueName);
+
+
+        const popup = new mapboxgl.Popup({offset: [0, -15]})
+          .setLngLat(features[0].geometry.coordinates)
+          .setHTML(
+            "<p style='color: black; font-size:14px' > " + startDate +
+            "</p><p style='color: black;'>" + title +
+            "</p><p style='color: black;'>" + venueName + '</p>'
+            )
+          .setLngLat(features[0].geometry.coordinates)
+          .addTo(map);
+      });
+///
       map.on('mouseenter', 'clusters', function () {
         map.getCanvas().style.cursor = 'pointer';
       });
