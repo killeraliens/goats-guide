@@ -39,6 +39,24 @@ class Event < ApplicationRecord
     venue.longitude
   end
 
+  def coordinates
+    [venue.longitude, venue.latitude]
+  end
+
+  def to_feature
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": coordinates
+      },
+      "properties": {
+        "event_id": id,
+        "name": title
+      }
+    }
+  end
+
   def past
     if end_date.nil? && date < Date.today
       true

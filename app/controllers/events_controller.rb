@@ -18,12 +18,14 @@ class EventsController < ApplicationController
     #   @saved_events = Event.find(saved_event_ids)
     # end
 
-    @markers = @events.map do |event|
-      {
-        lat: event.latitude,
-        lng: event.longitude
-      }
-    end
+    # @markers = @events.map do |event|
+    #   {
+    #     lat: event.latitude,
+    #     lng: event.longitude
+    #   }
+    # end
+
+   @geojson = build_geojson
   end
 
   def index_past
@@ -106,6 +108,13 @@ class EventsController < ApplicationController
     if @event.end_date.nil? || (@event.end_date.instance_of?(Date) && @event.end_date < @event.date)
       @event.end_date = @event.date
     end
+  end
+
+  def build_geojson
+    {
+      type: "FeatureCollection",
+      features: @events.map(&:to_feature)
+    }
   end
 
   def event_params
