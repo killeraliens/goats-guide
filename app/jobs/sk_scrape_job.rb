@@ -48,7 +48,7 @@ class SkScrapeJob < ApplicationJob
           p title = page.search('h1').text.strip
           venue = page.search('div.component.venue-info')
           if venue.empty?
-            p venue_name = title + "(venue TBD)"
+            p venue_name = title + "(venue NA)"
             p location_details = page.search('p.first-location').text
           else
             venue_details = page.search('div.venue-info-details')

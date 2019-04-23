@@ -138,9 +138,11 @@ const initMapbox = () => {
         const popup = new mapboxgl.Popup({offset: [0, -15]})
           .setLngLat(features[0].geometry.coordinates)
           .setHTML(
+            "<a href='/events/" + eventId + "'>" +
             "<p style='color: black; font-size:14px' > " + startDate +
             "</p><p style='color: black;'>" + title +
-            "</p><p style='color: black;'>" + venueName + '</p>'
+            "</p><p style='color: black;'>" + venueName + '</p>' +
+            "<a/>"
             )
           .setLngLat(features[0].geometry.coordinates)
           .addTo(map);
