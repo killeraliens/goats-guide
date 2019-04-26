@@ -1,3 +1,14 @@
+#filter-wrap {
+  display: none;
+  // max-height: 0;
+  // overflow: hidden;
+  // transition: max-height 2000ms ease-in-out;
+}
+
+// #filter-wrap.is-visible {
+//   max-height: 999em;
+// }
+
 .form-group {
   margin-bottom: 14px;
 }
@@ -83,7 +94,7 @@
     margin-bottom: 12px;
   }
   .form-inputs {
-    //line-height: 0px; //fucks up checkboxes
+
     .form-control-label {
       color: $inactive-text-gray;
       margin-bottom: 6px;
