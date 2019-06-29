@@ -34,6 +34,10 @@ a > h1:hover {
   opacity: .8;
 }
 
+#map {
+    height: 200px;
+  }
+
 
 
 
@@ -55,9 +59,19 @@ a > h1:hover {
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .contain-this {
+    margin-left: 24px;
+    margin-right: 24px;
     // width: 600px;
     // margin-right: auto;
     // margin-left: auto;
+  }
+
+  //write jquery conditional - if #contain-this does not have div.desktop-flex add this class,
+  //otherwise set its class to .contain-this
+  .contain-this-more {
+    width: 600px;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .desktop-flex {
@@ -72,6 +86,10 @@ a > h1:hover {
   .listings-desktop-container {
     height: 100vh;
     overflow: scroll;
+  }
+
+  #map {
+    height: 350px;
   }
 }
 
