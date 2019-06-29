@@ -1,57 +1,57 @@
-<%= form_tag events_path, method: :get, class: "" do %>
 
-  <div class="d-flex">
-    <div class="btn btn-grey" id="filter-btn">
-      Filter
-    </div>
-    <div class="form-group form-inputs gro">
-      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Events" %>
-    </div>
-  </div>
-  <div id="filter-wrap">
-    <div class="form-inputs ">
-      <label for="" class="form-control-label">Start Date</label>
-      <%= date_field_tag :date, "", class: "form-group form-control"  %>
-      <label for="" class="form-control-label">End Date</label>
-      <%= date_field_tag :end_date, "", class: "form-group form-control form-control-date" %>
-    </div>
-    <div class="form-actions">
-      <%= submit_tag  "Submit", class: "form-control form-actions"%>
-    </div>
-  </div>
-<% end %>
+<div class="desktop-flex">
+   <div class="nav-desktop-container">
+    <%= form_tag events_path, method: :get, class: "" do %>
+      <div class="d-flex ">
+        <div class="btn btn-grey" id="filter-btn">
+          Filter
+        </div>
+        <div class="form-group form-inputs gro">
+          <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Events" %>
+        </div>
+      </div>
+      <div id="filter-wrap" class="">
+        <div class="form-inputs ">
+          <label for="" class="form-control-label">Start Date</label>
+          <%= date_field_tag :date, "", class: "form-group form-control"  %>
+          <label for="" class="form-control-label">End Date</label>
+          <%= date_field_tag :end_date, "", class: "form-group form-control form-control-date" %>
+        </div>
+        <div class="form-actions">
+          <%= submit_tag  "Submit", class: "form-control form-actions"%>
+        </div>
+      </div>
+    <% end %>
 
-<!-- <#%= simple_form_for events_path, method: :get do |f| %>
-  <div class="form-inline">
-    <#%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Events" %>
-    <div>
-      <#%= f.label "from", required: false %>
-      <#%= f.date_field :date, class: "form-control" %>
-    </div>
-    <div>
-      <#%= f.label "to", required: false %>
-      <#%= f.date_field :end_date, class: "form-control" %>
-    </div>
-    <#%= f.submit "Submit", class: "form-control" %>
+    <!-- <#%= simple_form_for events_path, method: :get do |f| %>
+      <div class="form-inline">
+        <#%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Events" %>
+        <div>
+          <#%= f.label "from", required: false %>
+          <#%= f.date_field :date, class: "form-control" %>
+        </div>
+        <div>
+          <#%= f.label "to", required: false %>
+          <#%= f.date_field :end_date, class: "form-control" %>
+        </div>
+        <#%= f.submit "Submit", class: "form-control" %>
+      </div>
+    <#% end %>
+
+     -->
+    <%= render 'shared/tabs' %>
+    <div
+      id="map"
+      style="width: 100%;
+      height: 300px;"
+      data-events="<%= @geojson.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+    ></div>
   </div>
-<#% end %>
- -->
-<%= render 'shared/tabs' %>
-<!-- <div
-  id="map"
-  style="width: 100%;
-  height: 300px;"
-  data-markers="<#%= @markers.to_json %>"
-  data-mapbox-api-key="<#%= ENV['MAPBOX_API_KEY'] %>"
-></div> -->
-<div
-  id="map"
-  style="width: 100%;
-  height: 300px;"
-  data-events="<%= @geojson.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
-<%= render 'event_card_listings' %>
+  <div class="listings-desktop-container">
+    <%= render 'event_card_listings' %>
+  </div>
+</div>
 
 
 

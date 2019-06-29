@@ -1,11 +1,11 @@
 const hideShow = () => {
 
-    const dateFilterButton = document.getElementById('filter-btn');
-    const dateFilter = document.getElementById('filter-wrap');
-
-    dateFilterButton.addEventListener("click", function() {
-      dateFilter.style.display = (dateFilter.dataset.toggled ^= 1) ? "block" : "none";
-    });
+  const dateFilterButton = document.getElementById('filter-btn');
+  const dateFilter = document.getElementById('filter-wrap');
+  dateFilterButton.addEventListener("click", function() {
+    dateFilter.style.display = (dateFilter.dataset.toggled ^= 1) ? "block" : "none";
+    // dateFilter.classList.toggle("block");
+  });
 }
 
 export { hideShow };

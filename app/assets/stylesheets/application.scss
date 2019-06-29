@@ -35,6 +35,8 @@ a > h1:hover {
 }
 
 
+
+
 // // Small devices (landscape phones, 576px and up)
 // @media (max-width: 576px) {
 //   .card {
@@ -53,10 +55,30 @@ a > h1:hover {
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   .contain-this {
-    width: 600px;
-    margin-right: auto;
-    margin-left: auto;
+    // width: 600px;
+    // margin-right: auto;
+    // margin-left: auto;
+    // margin-left: 40px;
+    // margin-right: 40px;
   }
+
+  .desktop-flex {
+    display: flex;
+  }
+
+  .listings-desktop-container, .nav-desktop-container {
+    width: 50%;
+    // flex-grow: 1;
+    padding: 0px 10px;
+  }
+
+  .listings-desktop-container {
+    height: 100vh;
+    overflow: scroll;
+  }
+  // .nav-desktop-container {
+  //    flex-grow: 1;
+  // }
 }
 
 // // Large devices (desktops, 992px and up)

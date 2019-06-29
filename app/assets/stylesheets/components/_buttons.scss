@@ -9,6 +9,7 @@ input[type="submit"] {
 }
 
 .btn-grey {
+  box-sizing: border-box;
   height: 36px;
   margin: 0px 0px;
   // display: inline-block;
@@ -21,4 +22,10 @@ input[type="submit"] {
 
 #filter-btn {
   margin-right: 8px;
+  padding: 0px 16px;
+  // height: 0px;
+  line-height: 36px;
+  background-color: $light-gray;
 }
+
+
