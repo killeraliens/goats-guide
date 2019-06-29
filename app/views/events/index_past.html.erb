@@ -1,23 +1,30 @@
 <div class="desktop-flex">
   <div class="nav-desktop-container">
     <%= form_tag past_events_path, method: :get, class: "" do %>
-      <div class="form-group form-inputs">
-        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Past Events" %>
+      <div class="d-flex ">
+        <div class="btn btn-grey" id="filter-btn">
+          Filter
+        </div>
+        <div class="form-group form-inputs gro">
+          <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Past Events" %>
+        </div>
       </div>
-      <div class="form-inputs ">
-        <label for="" class="form-control-label">Start Date</label>
-        <%= date_field_tag :date, "", class: "form-group form-control"  %>
-        <label for="" class="form-control-label">End Date</label>
-        <%= date_field_tag :end_date, "", class: "form-group form-control form-control-date" %>
-      </div>
-      <div class="form-actions">
-        <%= submit_tag  "Submit", class: "form-control form-actions"%>
+      <div id="filter-wrap" class="">
+        <div class="form-inputs ">
+          <label for="" class="form-control-label">Start Date</label>
+          <%= date_field_tag :date, "", class: "form-group form-control"  %>
+          <label for="" class="form-control-label">End Date</label>
+          <%= date_field_tag :end_date, "", class: "form-group form-control form-control-date" %>
+        </div>
+        <div class="form-actions">
+          <%= submit_tag  "Submit", class: "form-control form-actions"%>
+        </div>
       </div>
     <% end %>
     <%= render 'shared/tabs' %>
 
       <div
-        id="map2"
+        id="map"
         style="width: 100%;
         height: 300px;"
         data-events="<%= @geojson.to_json %>"
