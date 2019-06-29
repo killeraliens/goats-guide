@@ -32,6 +32,7 @@ const fitMapToMarkers = (map, features) => {
 };
 
 const initMapbox = () => {
+  console.log('mapbox init function running');
   const mapElement = document.getElementById('map');
 
   if (mapElement) {
@@ -44,6 +45,7 @@ const initMapbox = () => {
 
     map.on('load', function() {
       const events = JSON.parse(mapElement.dataset.events)
+      console.log(events);
       map.addSource("events", {
         type: "geojson",
         // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
@@ -51,7 +53,7 @@ const initMapbox = () => {
         cluster: true,
         clusterMaxZoom: 14, // Max zoom to cluster points on
         clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
-      });
+      }, console.log('source added'));
 
       map.addLayer({
         id: 'clusters',
@@ -161,5 +163,7 @@ const initMapbox = () => {
     });
   }
 };
+
+
 
 export { initMapbox };

@@ -11,3 +11,22 @@ initMapbox();
 userAutocomplete();
 
 
+function callHashCh() {
+  console.log('hash changed!!');
+}
+
+window.addEventListener('hashchange', callHashCh(), false);
+
+
+
+// $(document).ready( function(){
+//   initMapbox();
+//   console.log('document ready');
+// });
+
+// initMapbox();
+
+//initMapbox();
+
+
+

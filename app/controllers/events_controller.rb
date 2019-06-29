@@ -38,6 +38,7 @@ class EventsController < ApplicationController
     #   saved_event_ids = current_user.saved_events.map {|event| event.event_id }
     #   @saved_events = Event.find(saved_event_ids)
     # end
+    @geojson = build_geojson
   end
 
   def new

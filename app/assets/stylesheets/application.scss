@@ -58,8 +58,6 @@ a > h1:hover {
     // width: 600px;
     // margin-right: auto;
     // margin-left: auto;
-    // margin-left: 40px;
-    // margin-right: 40px;
   }
 
   .desktop-flex {
@@ -68,7 +66,6 @@ a > h1:hover {
 
   .listings-desktop-container, .nav-desktop-container {
     width: 50%;
-    // flex-grow: 1;
     padding: 0px 10px;
   }
 
@@ -76,9 +73,6 @@ a > h1:hover {
     height: 100vh;
     overflow: scroll;
   }
-  // .nav-desktop-container {
-  //    flex-grow: 1;
-  // }
 }
 
 // // Large devices (desktops, 992px and up)

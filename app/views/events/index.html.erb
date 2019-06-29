@@ -40,13 +40,17 @@
 
      -->
     <%= render 'shared/tabs' %>
-    <div
-      id="map"
-      style="width: 100%;
-      height: 300px;"
-      data-events="<%= @geojson.to_json %>"
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-    ></div>
+
+      <div
+        id="map"
+        style="width: 100%;
+        height: 300px;"
+        data-events="<%= @geojson.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+
+      ></div>
+
+
   </div>
   <div class="listings-desktop-container">
     <%= render 'event_card_listings' %>

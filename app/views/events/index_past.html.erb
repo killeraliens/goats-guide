@@ -1,19 +1,34 @@
-<%= form_tag past_events_path, method: :get, class: "" do %>
+<div class="desktop-flex">
+  <div class="nav-desktop-container">
+    <%= form_tag past_events_path, method: :get, class: "" do %>
+      <div class="form-group form-inputs">
+        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Past Events" %>
+      </div>
+      <div class="form-inputs ">
+        <label for="" class="form-control-label">Start Date</label>
+        <%= date_field_tag :date, "", class: "form-group form-control"  %>
+        <label for="" class="form-control-label">End Date</label>
+        <%= date_field_tag :end_date, "", class: "form-group form-control form-control-date" %>
+      </div>
+      <div class="form-actions">
+        <%= submit_tag  "Submit", class: "form-control form-actions"%>
+      </div>
+    <% end %>
+    <%= render 'shared/tabs' %>
 
-  <div class="form-group form-inputs">
-    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search Past Events" %>
+      <div
+        id="map2"
+        style="width: 100%;
+        height: 300px;"
+        data-events="<%= @geojson.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+      ></div>
+
   </div>
-  <div class="form-inputs ">
-    <label for="" class="form-control-label">Start Date</label>
-    <%= date_field_tag :date, "", class: "form-group form-control"  %>
-    <label for="" class="form-control-label">End Date</label>
-    <%= date_field_tag :end_date, "", class: "form-group form-control form-control-date" %>
+  <div class="listings-desktop-container">
+    <%= render 'event_card_listings' %>
   </div>
-  <div class="form-actions">
-    <%= submit_tag  "Submit", class: "form-control form-actions"%>
-  </div>
-<% end %>
-<%= render 'shared/tabs' %>
-<%= render 'event_card_listings' %>
+
+</div>
 
 
