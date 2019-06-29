@@ -8,16 +8,17 @@ import { hideShow } from '../components/hide_show';
 
 
 hideShow();
+containThisSize();
 initMapbox();
 userAutocomplete();
-containThisSize();
 
 
-function callHashCh() {
-  console.log('hash changed!!');
-}
+// function callHashCh() {
+//   console.log('hash changed!!');
+// }
+//callHashCh()
 
-window.addEventListener('hashchange', callHashCh(), false);
+// window.addEventListener('hashchange', containThisSize(), false);
 
 
 
@@ -25,11 +26,8 @@ window.addEventListener('hashchange', callHashCh(), false);
 //   containThisSize();
 //   console.log('document ready');
 // });
-window.onload="containThisSize()";
+//window.onload="containThisSize()";
 
-// initMapbox();
-
-//initMapbox();
 
 
 

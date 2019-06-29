@@ -69,7 +69,7 @@ a > h1:hover {
   //write jquery conditional - if #contain-this does not have div.desktop-flex add this class,
   //otherwise set its class to .contain-this
   .contain-this-more {
-    width: 600px;
+    width: 600px !important;
     margin-right: auto;
     margin-left: auto;
   }
