@@ -27,7 +27,12 @@ namespace :band do
       "Demilich", "Korpse", "Wormrot", "Disma", "Entrails", "Dismember", "Nokturnal Mortum", "Kroda", "Slayer",
       "Agoraphobic Nosebleed", "Abhorrence", "Demigod", "Gorgoroth", "Vanhelgd", "Mass Grave", "Necrovation", "Deströyer 666",
       "Tsjuder", "Winterfylleth", "Hypocrisy", "Watain", "At The Gates", "Cruciamentum", "Dead Congregation", "Sepulcher",
-      "Necromaniac", "Galvanizer", "Funebrarum", "Anatomia", "Spectral Voice"
+      "Necromaniac", "Galvanizer", "Funebrarum", "Anatomia", "Spectral Voice", "Corpsessed", "Ritual Necromancy", "Exhumed",
+      "Mercyful Fate", "King Diamond", "Gatecreeper", "Moonsorrow", "Bloodbath", "Vomitory", "Skeletal Remains", "Skelelethal",
+      "Obliteration", "Vassafor", "Evoken", "Rippikoulu", "Fetid", "Weregoat", "Sabbatory", "Necrophobic", "Hate Eternal",
+      "Cerebral Rot", "Concrete Winds", "Krypts", "Cariac Arrest", "Dipygus", "Deiquisitor", "Abyssal", "Revenge", "Bonehunter",
+      "Dead Void", "Deathrite", "Darvaza", "Atavisma", "Heinous", "Harakiri For The Sky", "Ruin", "Mammoth Grinder", "Funeralium",
+      "Torture Rack", "Taphos", "Dispirit", "Cosmic Void Ritual", "Black Curse", "Vorum", "Ossuary", "Ceremented"
     ]
     puts "Creating #{custom_bands.size} bands with names ..."
     custom_bands.each do |band_name|
