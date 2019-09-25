@@ -32,7 +32,10 @@ namespace :band do
       "Obliteration", "Vassafor", "Evoken", "Rippikoulu", "Fetid", "Weregoat", "Sabbatory", "Necrophobic", "Hate Eternal",
       "Cerebral Rot", "Concrete Winds", "Krypts", "Cariac Arrest", "Dipygus", "Deiquisitor", "Abyssal", "Revenge", "Bonehunter",
       "Dead Void", "Deathrite", "Darvaza", "Atavisma", "Heinous", "Harakiri For The Sky", "Ruin", "Mammoth Grinder", "Funeralium",
-      "Torture Rack", "Taphos", "Dispirit", "Cosmic Void Ritual", "Black Curse", "Vorum", "Ossuary", "Ceremented"
+      "Torture Rack", "Taphos", "Dispirit", "Cosmic Void Ritual", "Black Curse", "Vorum", "Ossuary", "Ceremented", "Cenotaph",
+      "Haggus", "Agothacles", "Necrowretch", "Destroyer 666", "Immolation", "Burning Witches", "Deicide", "Under The Church",
+      "Sinister", "Feretory", "Scraplord", "Master", "Wolves In The Throne Room", "Escuela Grind", "Judiciary", "Morbid Angel",
+      "Gutslit", "Raven Throne", "Uada", "Deathrite", "Veneficium", "Bethlehem", "Ravencult", "Faceless Burial", "Funeral Moth"
     ]
     puts "Creating #{custom_bands.size} bands with names ..."
     custom_bands.each do |band_name|
