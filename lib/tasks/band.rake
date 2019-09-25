@@ -17,7 +17,7 @@ namespace :band do
 
   desc "Seeding custom band names (sync)"
   task create: :environment do
-    #Band.destroy_all
+    Band.destroy_all
     custom_bands = [
       "Slægt", "Obituary", "Wyrd", "Burial Invocation", "Mortuous", "Necrot", "MGLA", "Cult of Fire",
       "Petrification", "Mortiferum", "Tormentor", "Ultra Silvam", "Asphyx", "Phrenelith", "Horrendous", "Mortal Wound",
@@ -31,7 +31,7 @@ namespace :band do
       "Mercyful Fate", "King Diamond", "Gatecreeper", "Moonsorrow", "Bloodbath", "Vomitory", "Skeletal Remains", "Skelelethal",
       "Obliteration", "Vassafor", "Evoken", "Rippikoulu", "Fetid", "Weregoat", "Sabbatory", "Necrophobic", "Hate Eternal",
       "Cerebral Rot", "Concrete Winds", "Krypts", "Cariac Arrest", "Dipygus", "Deiquisitor", "Abyssal", "Revenge", "Bonehunter",
-      "Dead Void", "Deathrite", "Darvaza", "Atavisma", "Heinous", "Harakiri For The Sky", "Ruin", "Mammoth Grinder", "Funeralium",
+      "Dead Void", "Deathrite", "Darvaza", "Atavisma", "Heinous", "Harakiri For The Sky", "Mammoth Grinder", "Funeralium",
       "Torture Rack", "Taphos", "Dispirit", "Cosmic Void Ritual", "Black Curse", "Vorum", "Ossuary", "Ceremented", "Cenotaph",
       "Haggus", "Agothacles", "Necrowretch", "Destroyer 666", "Immolation", "Burning Witches", "Deicide", "Under The Church",
       "Sinister", "Feretory", "Scraplord", "Master", "Wolves In The Throne Room", "Escuela Grind", "Judiciary", "Morbid Angel",
