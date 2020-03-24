@@ -6,12 +6,26 @@ class EventsController < ApplicationController
     params[:date].present? ? startdate = params[:date] : startdate = Date.today
     params[:end_date].present? ? enddate = params[:end_date] : enddate = (Date.today + 100.year)
     query = params[:query] if params[:query].present?
-
     if params[:query].present?
-      @events = Event.where("date >= ? AND date <= ?", startdate, enddate).order(date: 'ASC')
-                     .global_search(query).upcoming_events
+      @events = Event
+        .where("date >= ? AND date <= ?", startdate, enddate)
+        .order(date: 'ASC')
+        .global_search(query).upcoming_events
+        .paginate(page: params[:page], per_page: 30)
+
+      @events_total = Event
+        .where("date >= ? AND date <= ?", startdate, enddate)
+        .order(date: 'ASC')
+        .global_search(query).upcoming_events
     else
-      @events = Event.where("date >= ? AND date <= ?", startdate, enddate).order(date: 'ASC').upcoming_events
+      @events = Event
+        .where("date >= ? AND date <= ?", startdate, enddate)
+        .order(date: 'ASC').upcoming_events
+        .paginate(page: params[:page], per_page: 30)
+
+      @events_total = Event
+        .where("date >= ? AND date <= ?", startdate, enddate)
+        .order(date: 'ASC').upcoming_events
     end
     # if !current_user.nil?
     #   saved_event_ids = current_user.saved_events.map {|event| event.event_id }
@@ -30,9 +44,24 @@ class EventsController < ApplicationController
 
   def index_past
     if params[:query].present?
-      @events = Event.global_search(params[:query]).past_events
+      @events = Event
+        .global_search(params[:query])
+        .past_events
+        .paginate(page: params[:page], per_page: 30)
+
+      @events_total = Event
+        .global_search(params[:query])
+        .past_events
+
     else
-      @events = Event.order(date: 'ASC').past_events
+      @events = Event
+        .order(date: 'ASC')
+        .past_events
+        .paginate(page: params[:page], per_page: 30)
+
+      @events_total = Event
+        .order(date: 'ASC')
+        .past_events
     end
     # if !current_user.nil?
     #   saved_event_ids = current_user.saved_events.map {|event| event.event_id }
@@ -114,7 +143,7 @@ class EventsController < ApplicationController
   def build_geojson
     {
       type: "FeatureCollection",
-      features: @events.map(&:to_feature)
+      features: @events_total.map(&:to_feature)
     }
   end
 
