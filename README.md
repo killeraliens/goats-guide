@@ -9,7 +9,7 @@ MVP built using Ruby on Rails, HTML-scraping using gems such as Watir and Nokogi
 
 ## Usage and Screenshots.
 
-**[View upcoming or past events](http://goats-guide.herokuapp.com/) to post and upcoming event.**
+**[View upcoming or past events](http://goats-guide.herokuapp.com/) and filter search results on the homepage.**
 
 <div>
   <kbd>
