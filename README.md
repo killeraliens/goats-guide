@@ -61,6 +61,7 @@ MVP built using Ruby on Rails, HTML-scraping using gems such as Watir and Nokogi
 - Watir
 - Nokogiri
 - Devise authentication
+- Mapbox with cluster markers
 
 
 
