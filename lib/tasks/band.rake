@@ -36,7 +36,9 @@ namespace :band do
       "Haggus", "Agothacles", "Necrowretch", "Destroyer 666", "Immolation", "Burning Witches", "Deicide", "Under The Church",
       "Sinister", "Feretory", "Scraplord", "Wolves In The Throne Room", "Escuela Grind", "Judiciary", "Morbid Angel",
       "Gutslit", "Raven Throne", "Uada", "Deathrite", "Veneficium", "Bethlehem", "Ravencult", "Faceless Burial", "Funeral Moth",
-      "Nightfell", "Iron Maiden", "Sabbat"
+      "Nightfell", "Iron Maiden", "Sabbat", "Midnight Odyssey", "Syphilitic Vaginas", "Apraxic", "Savage Necromancy", "Decrepisy",
+      "Impaled Nazarene", "Morbid Messiah", "Moribund Dawn", "Trepaneringsritualen", "Funeral Leech", "Xiuhcoatl", "Devil Master",
+      "Chthonic Deity", "Ascended Dead"
     ]
     puts "Creating #{custom_bands.size} bands with names ..."
     custom_bands.each do |band_name|
